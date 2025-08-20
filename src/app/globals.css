@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-heading: var(--font-copernicus);
+  
+  /* Konverterade från hex till HSL */
+  --background: 60 33.3% 97.6%; /* #FAF9F5 */
+  --foreground: 60 3% 8%; /* #262624 */
+  --accent: 15 63.1% 59.6%; /* #D97757 */
+  --dark: 60 2.2% 7.8%; /* #141413 */
+  --cream: 48 33.3% 91.4%; /* #f0eee6 */
+  --beige: 34 26.5% 84.3%; /* #e3dacc */
+  --sage: 160 16.7% 78.8%; /* #bcd1ca */
+  --lavender: 245 20.8% 82.7%; /* #cbcadb */
+  --coral: 15 63.1% 59.6%; /* #d97757 */
+  --charcoal: 60 1.9% 15.1%; /* #262624 */
+  
+  /* Dina HSL-färger */
+  --accent-brand: 15 63.1% 59.6%;
+  --accent-main-000: 15 55.6% 55.6%;
+  --accent-main-100: 15 63.1% 59.6%;
+  --accent-main-200: 15 63.1% 59.6%;
+  --accent-main-900: 0 0% 0%;
+  --accent-pro-000: 251 84.6% 74.5%;
+  --accent-pro-100: 251 40.2% 54.1%;
+  --accent-pro-200: 251 40% 45.1%;
+  --accent-pro-900: 250 25.3% 19.4%;
+  --accent-secondary-000: 210 71.1% 62%;
+  --accent-secondary-100: 210 70.9% 51.6%;
+  --accent-secondary-200: 210 70.9% 51.6%;
+  --accent-secondary-900: 210 55.9% 24.6%;
+  --bg-000: 60 2.1% 18.4%;
+  --bg-100: 60 2.7% 14.5%;
+  --bg-200: 53 29% 95%;
+  --bg-300: 60 2.6% 7.6%;
+  --bg-400: 60 3.4% 5.7%;
+  --bg-500: 60 3.4% 5.7%;
+  --border-100: 51 16.5% 84.5%;
+  --border-200: 51 16.5% 84.5%;
+  --border-300: 51 16.5% 84.5%;
+  --border-400: 51 16.5% 84.5%;
+  --danger-000: 0 73.1% 66.5%;
+  --danger-100: 0 58.6% 34.1%;
+  --danger-200: 0 58.6% 34.1%;
+  --danger-900: 0 23% 15.6%;
+  --oncolor-100: 0 0% 100%;
+  --oncolor-200: 60 6.7% 97.1%;
+  --oncolor-300: 60 6.7% 97.1%;
+  --text-000: 48 33.3% 97.1%;
+  --text-100: 48 33.3% 97.1%;
+  --text-200: 50 9% 73.7%;
+  --text-300: 50 9% 73.7%;
+  --text-400: 48 4.8% 59.2%;
+  --text-500: 48 4.8% 59.2%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 60 1.9% 15.1%;
+    --foreground: 60 33.3% 97.6%;
+    --bg-200: 30 3.3% 11.8%;
+
+  }
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-styrne), system-ui, sans-serif;
+}
+
+.search-input {
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 0 3px rgba(196, 144, 209, 0.1);
+}
+
+.category-card {
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
