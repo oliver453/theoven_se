@@ -14,22 +14,22 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
+    <nav className="flex items-center space-x-2 text-sm text-foreground/70 mb-6">
       {items.map((item, index) => (
         <div key={index} className="flex items-center">
           {index > 0 && (
-            <ChevronRight className="w-4 h-4 text-gray-400 mx-2" />
+            <ChevronRight className="w-4 h-4 text-foreground mx-2" />
           )}
           
           {item.href && index < items.length - 1 ? (
             <Link
               href={item.href}
-              className="hover:text-anthropic-orange transition-colors"
+              className="hover:text-accent transition-colors"
             >
               {item.label}
             </Link>
           ) : (
-            <span className={index === items.length - 1 ? 'text-gray-900 font-medium' : ''}>
+            <span className={index === items.length - 1 ? 'text-foreground font-medium' : ''}>
               {item.label}
             </span>
           )}

@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 const siteConfig = {
   name: "Diavana",
   description: "Vi tror på enkel och effektiv ärendehantering. Därför utvecklar vi Diavana – framtidens diarieföringssystem för offentlig sektor.",
-  url: "https://diavana.se",
+  url: "https://support.diavana.se",
   ogImage: "/og.png",
   creator: "@diavana",
   keywords: [
     "Diavana",
-    "kommer snart",
+    "Hjälpcenter",
     "kommuner",
     "teknik",
     "startup",
@@ -19,7 +19,7 @@ const siteConfig = {
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `Kommer snart | ${siteConfig.name}`,
+    default: `Hjälpcenter | ${siteConfig.name}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -34,7 +34,7 @@ export const defaultMetadata: Metadata = {
     type: "website",
     locale: "sv_SE",
     url: siteConfig.url,
-    title: `Kommer snart | ${siteConfig.name}`,
+    title: `Hjälpcenter | ${siteConfig.name}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -42,14 +42,14 @@ export const defaultMetadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1920,
         height: 1080,
-        alt: `${siteConfig.name} | Kommer snart`,
+        alt: `${siteConfig.name} | Hjälpcenter`,
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `Kommer snart | ${siteConfig.name}`,
+    title: `Hjälpcenter | ${siteConfig.name}`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,

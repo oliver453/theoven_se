@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { CaretRight } from './icons/icons'
 
 interface ArticleCardProps {
   title: string
@@ -24,35 +24,35 @@ export default function ArticleCard({
 }: ArticleCardProps) {
   return (
     <Link href={`/article/${slug}`}>
-      <div className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer group">
+      <div className="bg-sage/20 rounded-lg border border-sage/30 p-6 hover:shadow-md transition-shadow cursor-pointer group">
         <div className="flex items-start justify-between">
           <div className="flex-1 min-w-0 pr-4">
             <div className="flex items-center gap-2 mb-2">
               {category && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-foreground text-background">
                   {category.title}
                 </span>
               )}
               {featured && (
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-anthropic-orange text-white">
+                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">
                   Featured
                 </span>
               )}
             </div>
-            
-            <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-anthropic-orange transition-colors">
+                     
+            <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
               {title}
             </h3>
-            
+                     
             {excerpt && (
-              <p className="text-gray-600 text-sm line-clamp-2 mb-3">
+              <p className="text-foreground/80 text-sm line-clamp-2 mb-3">
                 {excerpt}
               </p>
             )}
-            
+                     
             {publishedAt && (
-              <p className="text-xs text-gray-500">
-                Published {new Date(publishedAt).toLocaleDateString('en-US', {
+              <p className="text-xs text-foreground/60">
+                {new Date(publishedAt).toLocaleDateString('sv-SE', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'
@@ -60,9 +60,9 @@ export default function ArticleCard({
               </p>
             )}
           </div>
-          
+                 
           <div className="flex-shrink-0 ml-4">
-            <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-anthropic-orange transition-colors" />
+            <CaretRight className="w-5 h-5 text-foreground group-hover:text-accent transition-colors" />
           </div>
         </div>
       </div>

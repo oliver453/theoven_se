@@ -10,10 +10,25 @@ import {
   Code,
   MagicWand,
   DeviceMobile,
+  Desktop,
+  Laptop,
+  Devices,
+  FileText,
+  File,
+  FilePdf,
+  FileDoc,
+  FileCode,
+  Database,
+  CloudArrowUp,
+  HardDrives,
   MagnifyingGlass,
   Globe,
   CaretDown,
-  CaretRight
+  CaretRight,
+  Gear,
+  Wrench,
+  Bug,
+  Terminal
 } from '@phosphor-icons/react'
 
 // Icon mapping för kategorier med Phosphor Icons
@@ -27,6 +42,23 @@ export const CategoryIcons = {
   'code': Code,
   'prompt-design': MagicWand,
   'mobile': DeviceMobile,
+  'desktop': Desktop,
+  'laptop': Laptop,
+  'devices': Devices,
+  'documents': FileText,
+  'files': File,
+  'pdf': FilePdf,
+  'word': FileDoc,
+  'coding': FileCode,
+  'database': Database,
+  'cloud': CloudArrowUp,
+  'hardware': HardDrives,
+  'search': MagnifyingGlass,
+  'web': Globe,
+  'settings': Gear,
+  'tools': Wrench,
+  'debugging': Bug,
+  'terminal': Terminal
 }
 
 // Exportera individuella ikoner för direkt användning
@@ -40,8 +72,23 @@ export {
   Code,
   MagicWand,
   DeviceMobile,
+  Desktop,
+  Laptop,
+  Devices,
+  FileText,
+  File,
+  FilePdf,
+  FileDoc,
+  FileCode,
+  Database,
+  CloudArrowUp,
+  HardDrives,
   MagnifyingGlass,
   Globe,
   CaretDown,
-  CaretRight
+  CaretRight,
+  Gear,
+  Wrench,
+  Bug,
+  Terminal
 }

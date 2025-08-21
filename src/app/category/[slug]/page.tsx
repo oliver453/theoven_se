@@ -1,12 +1,14 @@
 // app/category/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { client } from '@/lib/sanity'
 import { queries } from '@/lib/sanity/queries'
 import Breadcrumb from '@/components/Breadcrumb'
 import SearchBar from '@/components/SearchBar'
 import ArticleCard from '@/components/ArticleCard'
 import CategoryIcon from '@/components/CategoryIcons'
+import { siteConfig } from '@/lib/metadata'
 
 interface PageProps {
   params: {
@@ -24,6 +26,53 @@ async function getCategoryWithArticles(slug: string) {
   }
 }
 
+// Generera metadata dynamiskt
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const category = await getCategoryWithArticles(params.slug)
+  
+  if (!category) {
+    return {
+      title: 'Kategori inte hittad',
+      description: 'Den efterfrågade kategorin kunde inte hittas.'
+    }
+  }
+
+  const articleCount = category.articles?.length || 0
+  const articleText = articleCount === 1 ? 'artikel' : 'artiklar'
+  const title = category.title
+  const description = category.description || `Utforska ${articleCount} ${articleText} inom ${category.title} i vår kunskapsbas.`
+  
+  return {
+    title,
+    description,
+    openGraph: {
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      type: 'website',
+      url: `${siteConfig.url}/category/${params.slug}`,
+      siteName: siteConfig.name,
+      locale: 'sv_SE',
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1920,
+          height: 1080,
+          alt: `${title} - ${siteConfig.name}`,
+        }
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      images: [siteConfig.ogImage],
+    },
+    alternates: {
+      canonical: `${siteConfig.url}/category/${params.slug}`,
+    },
+  }
+}
+
 export default async function CategoryPage({ params }: PageProps) {
   const category = await getCategoryWithArticles(params.slug)
 
@@ -31,49 +80,50 @@ export default async function CategoryPage({ params }: PageProps) {
     notFound()
   }
 
+  const articleCount = category.articles?.length || 0
+  const articleText = articleCount === 1 ? 'artikel' : 'artiklar'
+
   const breadcrumbItems = [
-    { label: 'All Collections', href: '/' },
+    { label: 'Alla samlingar', href: '/' },
     { label: category.title }
   ]
 
   return (
     <div className="min-h-screen w-full z-20">
       {/* Header med sökruta */}
-      <div className="bg-anthropic-bg py-8">
+      <div className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SearchBar placeholder="Search for articles..." />
+          <SearchBar placeholder="Sök efter artiklar..." />
         </div>
       </div>
 
       {/* Kategori innehåll */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Breadcrumb items={breadcrumbItems} />
-        
+                
         {/* Kategori header */}
-        <div className="flex items-center mb-8">
-          <div className="bg-anthropic-orange rounded-lg p-4 mr-4">
+        <div className="flex items-center mb-4">
+          <div className="rounded-lg p-4 mr-4 bg-sage">
             <CategoryIcon 
-              icon={category.icon || 'general'} 
-              className="w-8 h-8 text-white" 
+              icon={category.icon || 'general'}
+              className="w-8 h-8 text-background"
             />
           </div>
           <div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            <h1 className="text-4xl font-bold text-foreground font-display">
               {category.title}
             </h1>
-            <p className="text-gray-600">
-              {category.articles?.length || 0} articles
+            <p className="text-foreground/70">
+              {articleCount} {articleText}
             </p>
           </div>
         </div>
 
         {/* Beskrivning */}
         {category.description && (
-          <div className="bg-white rounded-lg p-6 mb-8">
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-foreground/70 leading-relaxed mb-8">
               {category.description}
             </p>
-          </div>
         )}
 
         {/* Artiklar */}
@@ -92,15 +142,15 @@ export default async function CategoryPage({ params }: PageProps) {
             ))}
           </div>
         ) : (
-          <div className="bg-white rounded-lg p-8 text-center">
-            <p className="text-gray-600 mb-4">
-              No articles found in this category yet.
+          <div className="text-center">
+            <p className="text-foreground mb-4">
+              Inga artiklar hittades i denna kategori ännu.
             </p>
             <Link
               href="/"
-              className="text-anthropic-orange hover:underline"
+              className="text-accent hover:underline"
             >
-              Browse all categories
+              Bläddra bland alla kategorier
             </Link>
           </div>
         )}

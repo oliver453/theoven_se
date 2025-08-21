@@ -1,4 +1,3 @@
-// app/search/page.tsx
 import { Suspense } from 'react'
 import { client } from '@/lib/sanity'
 import { queries } from '@/lib/sanity/queries'
@@ -25,7 +24,7 @@ async function searchArticles(query: string) {
     })
     return articles || []
   } catch (error) {
-    console.error('Error searching articles:', error)
+    console.error('Fel vid sökning av artiklar:', error)
     return []
   }
 }
@@ -41,14 +40,14 @@ async function searchCategories(query: string) {
     })
     return categories || []
   } catch (error) {
-    console.error('Error searching categories:', error)
+    console.error('Fel vid sökning av kategorier:', error)
     return []
   }
 }
 
 function SearchResults({ query }: { query: string }) {
   return (
-    <Suspense fallback={<div>Searching...</div>}>
+    <Suspense fallback={<div>Söker...</div>}>
       <SearchResultsContent query={query} />
     </Suspense>
   )
@@ -62,11 +61,9 @@ async function SearchResultsContent({ query }: { query: string }) {
 
   if (!query || query.length < 2) {
     return (
-      <div className="bg-white rounded-lg p-8 text-center">
-        <p className="text-gray-600">
-          Enter at least 2 characters to search for articles and categories.
+        <p className="text-foreground text-center">
+          Skriv minst 2 tecken för att söka efter artiklar och kategorier.
         </p>
-      </div>
     )
   }
 
@@ -74,24 +71,24 @@ async function SearchResultsContent({ query }: { query: string }) {
 
   if (totalResults === 0) {
     return (
-      <div className="bg-white rounded-lg p-8 text-center">
-        <p className="text-gray-600 mb-2">
-          No articles or categories found for "{query}"
+      <div className="text-center">
+        <p className="text-foreground mb-2">
+          Inga artiklar eller kategorier hittades för "{query}"
         </p>
-        <p className="text-sm text-gray-500">
-          Try different keywords or browse our categories.
+        <p className="text-sm text-foreground/70">
+          Prova andra sökord eller bläddra bland våra kategorier.
         </p>
       </div>
     )
   }
 
   return (
-    <div className="space-y-8">
-      {/* Categories Results */}
+    <div className="flex flex-col gap-4">
+      {/* Kategoriresultat */}
       {categories.length > 0 && (
         <div>
           <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Categories ({categories.length})
+            Kategorier ({categories.length})
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {categories.map((category: any) => (
@@ -108,13 +105,13 @@ async function SearchResultsContent({ query }: { query: string }) {
         </div>
       )}
 
-      {/* Articles Results */}
+      {/* Artikelresultat */}
       {articles.length > 0 && (
         <div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            Articles ({articles.length})
+          <h2 className="text-xl font-semibold text-foreground mb-4">
+            Artiklar ({articles.length})
           </h2>
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             {articles.map((article: any) => (
               <ArticleCard
                 key={article._id}
@@ -129,10 +126,10 @@ async function SearchResultsContent({ query }: { query: string }) {
         </div>
       )}
 
-      {/* Summary */}
-      <div className="mt-6 pt-4 border-t border-gray-200">
-        <p className="text-sm text-gray-600">
-          Found {totalResults} total {totalResults === 1 ? 'result' : 'results'} for "{query}"
+      {/* Sammanfattning */}
+      <div className="mt-6 pt-4 border-t border-foreground">
+        <p className="text-sm text-foreground/70">
+          Hittade {totalResults} totalt {totalResults === 1 ? 'resultat' : 'resultat'} för "{query}"
         </p>
       </div>
     </div>
@@ -143,8 +140,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = searchParams.q || ''
 
   const breadcrumbItems = [
-    { label: 'All Collections', href: '/' },
-    { label: 'Search' }
+    { label: 'Alla samlingar', href: '/' },
+    { label: 'Sök' }
   ]
 
   return (
@@ -152,7 +149,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       {/* Header med sökruta */}
       <div className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SearchBar placeholder="Search for articles..." />
+          <SearchBar placeholder="Sök efter artiklar..." />
         </div>
       </div>
 

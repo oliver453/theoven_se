@@ -1,33 +1,37 @@
-// lib/sanity/queries.ts - Förbättrade sök-queries
+// lib/sanity/queries.ts - Förbättrade sök-queries för enstaka ord
 import { groq } from 'next-sanity'
 
 export const queries = {
-  // ... andra queries ...
-
-  // Förbättrad artikelsökning med fler matchnings-alternativ
+  // Förenklad och robust artikelsökning
   searchArticles: groq`
-    *[_type == "article" && (
-      // Exakt matchning av titel
+    *[_type == "article" && defined(title) && defined(slug.current) && (
+      // Grundläggande matchningar
       title match "*" + $searchTerm + "*" ||
-      // Exakt matchning av sammanfattning
-      excerpt match "*" + $searchTerm + "*" ||
-      // Sökning i innehåll
-      pt::text(content) match "*" + $searchTerm + "*" ||
-      // Sökning på kategorinamn
-      category->title match "*" + $searchTerm + "*" ||
-      // Sökning på delar av orden (för "how to" typ sökningar)
-      title match "*" + split($searchTerm, " ")[0] + "*" ||
-      title match "*" + split($searchTerm, " ")[1] + "*" ||
-      // Case-insensitive sökning
       lower(title) match "*" + lower($searchTerm) + "*" ||
-      lower(excerpt) match "*" + lower($searchTerm) + "*"
+      
+      // Excerpt matchningar (endast om excerpt finns)
+      (defined(excerpt) && excerpt match "*" + $searchTerm + "*") ||
+      (defined(excerpt) && lower(excerpt) match "*" + lower($searchTerm) + "*") ||
+      
+      // Kategori matchningar (endast om kategori finns)
+      (defined(category->title) && category->title match "*" + $searchTerm + "*") ||
+      (defined(category->title) && lower(category->title) match "*" + lower($searchTerm) + "*") ||
+      
+      // Innehåll matchningar (endast om content finns)
+      (defined(content) && pt::text(content) match "*" + $searchTerm + "*") ||
+      (defined(content) && lower(pt::text(content)) match "*" + lower($searchTerm) + "*")
     )] | order(
-      // Prioritera exakta matchningar i titel
+      // Förenklad prioritering
       select(
-        title match $searchTerm => 0,
-        title match "*" + $searchTerm + "*" => 1,
-        category->title match "*" + $searchTerm + "*" => 2,
-        3
+        title == $searchTerm => 0,
+        lower(title) == lower($searchTerm) => 1,
+        title match $searchTerm + "*" => 2,
+        lower(title) match lower($searchTerm) + "*" => 3,
+        title match "*" + $searchTerm + "*" => 4,
+        lower(title) match "*" + lower($searchTerm) + "*" => 5,
+        (defined(category->title) && category->title match "*" + $searchTerm + "*") => 6,
+        (defined(excerpt) && excerpt match "*" + $searchTerm + "*") => 7,
+        10
       ) asc,
       publishedAt desc
     ) {
@@ -41,30 +45,35 @@ export const queries = {
         title,
         slug,
         icon
-      },
-      // Lägg till score för relevans
-      "searchScore": select(
-        title match $searchTerm => 100,
-        title match "*" + $searchTerm + "*" => 80,
-        excerpt match "*" + $searchTerm + "*" => 60,
-        category->title match "*" + $searchTerm + "*" => 40,
-        20
-      )
+      }
     }
   `,
 
   // Förbättrad kategorisökning
   searchCategories: groq`
     *[_type == "category" && (
+      // Exakt matchning
+      title match "*" + $searchTerm + "*" ||
+      description match "*" + $searchTerm + "*" ||
+      
+      // Case-insensitive
       lower(title) match "*" + lower($searchTerm) + "*" ||
       lower(description) match "*" + lower($searchTerm) + "*" ||
-      title match "*" + $searchTerm + "*" ||
-      description match "*" + $searchTerm + "*"
+      
+      // Enstaka ord
+      title match "*" + split($searchTerm, " ")[0] + "*" ||
+      title match "*" + split($searchTerm, " ")[1] + "*" ||
+      lower(title) match "*" + lower(split($searchTerm, " ")[0]) + "*" ||
+      lower(title) match "*" + lower(split($searchTerm, " ")[1]) + "*"
     )] | order(
       select(
-        title match $searchTerm => 0,
-        title match "*" + $searchTerm + "*" => 1,
-        2
+        title == $searchTerm => 0,
+        lower(title) == lower($searchTerm) => 1,
+        title match $searchTerm + "*" => 2,
+        lower(title) match lower($searchTerm) + "*" => 3,
+        title match "*" + $searchTerm + "*" => 4,
+        lower(title) match "*" + lower($searchTerm) + "*" => 5,
+        10
       ) asc,
       title asc
     ) {
@@ -73,25 +82,133 @@ export const queries = {
       slug,
       description,
       icon,
-      "articleCount": count(*[_type == "article" && references(^._id)])
+      "articleCount": count(*[_type == "article" && references(^._id)]),
+      "searchScore": select(
+        title == $searchTerm => 100,
+        lower(title) == lower($searchTerm) => 95,
+        title match "*" + $searchTerm + "*" => 80,
+        lower(title) match "*" + lower($searchTerm) + "*" => 75,
+        50
+      )
     }
   `,
 
-  // Suggestion search - för autocomplete
+  // Förenklad och mer robust suggestion search
   searchSuggestions: groq`
     {
-      "articles": *[_type == "article" && title match "*" + $searchTerm + "*"] | order(publishedAt desc) [0...5] {
+      "articles": *[_type == "article" && defined(title) && defined(slug.current) && (
+        title match "*" + $searchTerm + "*" ||
+        lower(title) match "*" + lower($searchTerm) + "*" ||
+        (defined(excerpt) && excerpt match "*" + $searchTerm + "*") ||
+        (defined(excerpt) && lower(excerpt) match "*" + lower($searchTerm) + "*") ||
+        (defined(category->title) && category->title match "*" + $searchTerm + "*") ||
+        (defined(category->title) && lower(category->title) match "*" + lower($searchTerm) + "*")
+      )] | order(
+        select(
+          title match $searchTerm + "*" => 0,
+          lower(title) match lower($searchTerm) + "*" => 1,
+          title match "*" + $searchTerm + "*" => 2,
+          lower(title) match "*" + lower($searchTerm) + "*" => 3,
+          5
+        ) asc,
+        publishedAt desc
+      ) [0...6] {
         title,
-        slug
+        slug,
+        excerpt,
+        category-> {
+          title,
+          slug
+        }
       },
-      "categories": *[_type == "category" && title match "*" + $searchTerm + "*"] | order(title asc) [0...3] {
+      
+      "categories": *[_type == "category" && defined(title) && defined(slug.current) && (
+        title match "*" + $searchTerm + "*" ||
+        lower(title) match "*" + lower($searchTerm) + "*" ||
+        (defined(description) && description match "*" + $searchTerm + "*") ||
+        (defined(description) && lower(description) match "*" + lower($searchTerm) + "*")
+      )] | order(
+        select(
+          title match $searchTerm + "*" => 0,
+          lower(title) match lower($searchTerm) + "*" => 1,
+          title match "*" + $searchTerm + "*" => 2,
+          5
+        ) asc,
+        title asc
+      ) [0...3] {
         title,
-        slug
+        slug,
+        description,
+        icon
       }
     }
   `,
 
-  // ... resten av queries:n behålls som tidigare
+  // Kombinerad sökning som returnerar både artiklar och kategorier i en query
+  combinedSearch: groq`
+    {
+      "articles": *[_type == "article" && (
+        title match "*" + $searchTerm + "*" ||
+        lower(title) match "*" + lower($searchTerm) + "*" ||
+        excerpt match "*" + $searchTerm + "*" ||
+        lower(excerpt) match "*" + lower($searchTerm) + "*" ||
+        pt::text(content) match "*" + $searchTerm + "*" ||
+        category->title match "*" + $searchTerm + "*" ||
+        title match "*" + split($searchTerm, " ")[0] + "*" ||
+        title match "*" + split($searchTerm, " ")[1] + "*" ||
+        lower(title) match "*" + lower(split($searchTerm, " ")[0]) + "*" ||
+        lower(title) match "*" + lower(split($searchTerm, " ")[1]) + "*"
+      )] | order(
+        select(
+          title == $searchTerm => 0,
+          lower(title) == lower($searchTerm) => 1,
+          title match $searchTerm + "*" => 2,
+          title match "*" + $searchTerm + "*" => 4,
+          category->title match "*" + $searchTerm + "*" => 6,
+          excerpt match "*" + $searchTerm + "*" => 8,
+          10
+        ) asc,
+        publishedAt desc
+      ) {
+        _id,
+        title,
+        slug,
+        excerpt,
+        publishedAt,
+        featured,
+        category-> {
+          title,
+          slug,
+          icon
+        }
+      },
+      
+      "categories": *[_type == "category" && (
+        title match "*" + $searchTerm + "*" ||
+        lower(title) match "*" + lower($searchTerm) + "*" ||
+        description match "*" + $searchTerm + "*" ||
+        title match "*" + split($searchTerm, " ")[0] + "*" ||
+        lower(title) match "*" + lower(split($searchTerm, " ")[0]) + "*"
+      )] | order(
+        select(
+          title == $searchTerm => 0,
+          lower(title) == lower($searchTerm) => 1,
+          title match "*" + $searchTerm + "*" => 4,
+          10
+        ) asc,
+        title asc
+      ) {
+        _id,
+        title,
+        slug,
+        description,
+        icon,
+        "articleCount": count(*[_type == "article" && references(^._id)])
+      }
+    }
+  `,
+
+  // ... behåll alla andra queries som tidigare
   articleBySlug: groq`
     *[_type == "article" && slug.current == $slug][0] {
       _id,

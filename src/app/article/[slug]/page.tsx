@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
+import { Metadata } from 'next'
 import { client } from '@/lib/sanity'
 import { queries } from '@/lib/sanity/queries'
 import Breadcrumb from '@/components/Breadcrumb'
 import SearchBar from '@/components/SearchBar'
+import { siteConfig } from '@/lib/metadata'
 
 interface PageProps {
   params: {
@@ -35,6 +37,61 @@ async function getRelatedArticles(categoryId: string, currentId: string) {
   }
 }
 
+// Generera metadata dynamiskt
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const article = await getArticle(params.slug)
+  
+  if (!article) {
+    return {
+      title: 'Artikel inte hittad',
+      description: 'Den efterfrågade artikeln kunde inte hittas.'
+    }
+  }
+
+  const title = article.title
+  const description = article.excerpt || article.description || `Läs mer om ${article.title} i vår kunskapsbas.`
+  
+  return {
+    title,
+    description,
+    openGraph: {
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      type: 'article',
+      url: `${siteConfig.url}/article/${params.slug}`,
+      siteName: siteConfig.name,
+      locale: 'sv_SE',
+      images: article.featuredImage ? [
+        {
+          url: article.featuredImage.asset.url,
+          width: 1200,
+          height: 630,
+          alt: title,
+        }
+      ] : [
+        {
+          url: siteConfig.ogImage,
+          width: 1920,
+          height: 1080,
+          alt: title,
+        }
+      ],
+      publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt,
+      authors: [siteConfig.name],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${title} | ${siteConfig.name}`,
+      description,
+      images: article.featuredImage ? [article.featuredImage.asset.url] : [siteConfig.ogImage],
+    },
+    alternates: {
+      canonical: `${siteConfig.url}/article/${params.slug}`,
+    },
+  }
+}
+
 export default async function ArticlePage({ params }: PageProps) {
   const article = await getArticle(params.slug)
 
@@ -47,9 +104,9 @@ export default async function ArticlePage({ params }: PageProps) {
     : []
 
   const breadcrumbItems = [
-    { label: 'All Collections', href: '/' },
+    { label: 'Alla samligar', href: '/' },
     { 
-      label: article.category?.title || 'Category', 
+      label: article.category?.title || 'Kategori', 
       href: `/category/${article.category?.slug?.current}` 
     },
     { label: article.title }
@@ -58,9 +115,9 @@ export default async function ArticlePage({ params }: PageProps) {
   return (
     <div className="min-h-screen w-full z-20">
       {/* Header med sökruta */}
-      <div className="bg-anthropic-bg py-8">
+      <div className="py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SearchBar placeholder="Search for articles..." />
+          <SearchBar placeholder="Sök efter artiklar..." />
         </div>
       </div>
 
@@ -68,27 +125,21 @@ export default async function ArticlePage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Breadcrumb items={breadcrumbItems} />
         
-        <article className="bg-white rounded-lg p-8">
+        <article>
           <header className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl font-bold font-display text-foreground mb-4">
               {article.title}
             </h1>
             
-            {article.excerpt && (
-              <p className="text-lg text-gray-600 mb-4">
-                {article.excerpt}
-              </p>
-            )}
-            
-            <div className="flex items-center text-sm text-gray-600 space-x-4">
+            <div className="flex items-center text-foreground/70 text-sm space-x-4">
               {article.category && (
-                <span className="bg-gray-100 px-3 py-1 rounded-full">
+                <span className="text-foreground bg-sage/20 hover:bg-sage/30 hover:scale-105 hover:shadow-lg border border-sage/30 px-3 py-1 rounded-full">
                   {article.category.title}
                 </span>
               )}
               {article.publishedAt && (
                 <span>
-                  Published {new Date(article.publishedAt).toLocaleDateString('en-US', {
+                  {new Date(article.publishedAt).toLocaleDateString('sv-SE', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
@@ -97,7 +148,7 @@ export default async function ArticlePage({ params }: PageProps) {
               )}
               {article.updatedAt && article.updatedAt !== article.publishedAt && (
                 <span>
-                  Updated {new Date(article.updatedAt).toLocaleDateString('en-US', {
+                  Updated {new Date(article.updatedAt).toLocaleDateString('sv-SE', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
@@ -108,29 +159,29 @@ export default async function ArticlePage({ params }: PageProps) {
           </header>
 
           {article.content && (
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-lg text-foreground max-w-none">
               <PortableText
                 value={article.content}
                 components={{
                   block: {
-                    h1: ({children}) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
-                    h2: ({children}) => <h2 className="text-2xl font-semibold mt-6 mb-3">{children}</h2>,
-                    h3: ({children}) => <h3 className="text-xl font-semibold mt-4 mb-2">{children}</h3>,
-                    h4: ({children}) => <h4 className="text-lg font-semibold mt-3 mb-2">{children}</h4>,
-                    normal: ({children}) => <p className="mb-4 leading-relaxed">{children}</p>,
+                    h1: ({children}) => <h1 className="text-3xl text-foreground font-bold mt-8 mb-4">{children}</h1>,
+                    h2: ({children}) => <h2 className="text-2xl text-foreground  font-semibold mt-6 mb-3">{children}</h2>,
+                    h3: ({children}) => <h3 className="text-xl text-foreground font-semibold mt-4 mb-2">{children}</h3>,
+                    h4: ({children}) => <h4 className="text-lg text-foreground font-semibold mt-3 mb-2">{children}</h4>,
+                    normal: ({children}) => <p className="mb-4 text-foreground/90 leading-relaxed">{children}</p>,
                     blockquote: ({children}) => (
-                      <blockquote className="border-l-4 border-anthropic-orange pl-4 italic my-4 text-gray-700 bg-gray-50 py-2">
+                      <blockquote className="border-l-4 border-accent pl-4 italic my-4 text-foreground bg-accent/20 py-2">
                         {children}
                       </blockquote>
                     ),
                   },
                   list: {
-                    bullet: ({children}) => <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>,
-                    number: ({children}) => <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>,
+                    bullet: ({children}) => <ul className="list-disc text-foreground pl-6 mb-4 space-y-2">{children}</ul>,
+                    number: ({children}) => <ol className="list-decimal text-foreground pl-6 mb-4 space-y-2">{children}</ol>,
                   },
                   listItem: {
-                    bullet: ({children}) => <li className="leading-relaxed">{children}</li>,
-                    number: ({children}) => <li className="leading-relaxed">{children}</li>,
+                    bullet: ({children}) => <li className="leading-relaxed text-foreground">{children}</li>,
+                    number: ({children}) => <li className="leading-relaxed text-foreground">{children}</li>,
                   },
                   marks: {
                     link: ({value, children}) => {
@@ -140,13 +191,13 @@ export default async function ArticlePage({ params }: PageProps) {
                           href={value?.href}
                           target={target}
                           rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-                          className="text-anthropic-orange hover:underline font-medium"
+                          className="text-accent hover:underline font-medium"
                         >
                           {children}
                         </a>
                       )
                     },
-                    strong: ({children}) => <strong className="font-semibold">{children}</strong>,
+                    strong: ({children}) => <strong className="font-semibold text-foreground">{children}</strong>,
                     em: ({children}) => <em className="italic">{children}</em>,
                     code: ({children}) => (
                       <code className="bg-gray-100 px-2 py-1 rounded text-sm font-mono text-gray-800">
@@ -210,19 +261,19 @@ export default async function ArticlePage({ params }: PageProps) {
         {/* Relaterade artiklar sektion */}
         {relatedArticles.length > 0 && (
           <section className="mt-12">
-            <div className="border-t border-gray-200 pt-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Related Articles
+            <div className="border-t border-foreground pt-8">
+              <h2 className="text-2xl font-display font-bold text-foreground mb-6">
+                Relaterade artiklar
               </h2>
               <div className="space-y-4">
                 {relatedArticles.map((relatedArticle: any) => (
                   <Link key={relatedArticle._id} href={`/article/${relatedArticle.slug.current}`}>
-                    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-                      <h3 className="font-semibold text-gray-900 hover:text-anthropic-orange mb-2">
+                    <div className="bg-sage/20 border border-sage/30 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
+                      <h3 className="font-semibold text-foreground hover:text-accent mb-2">
                         {relatedArticle.title}
                       </h3>
                       {relatedArticle.excerpt && (
-                        <p className="text-gray-600 text-sm line-clamp-2">
+                        <p className="text-foreground/70 text-sm line-clamp-2">
                           {relatedArticle.excerpt}
                         </p>
                       )}

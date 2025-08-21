@@ -3,11 +3,64 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Globe, CaretDown } from '@/components/icons/icons'
 import useScroll from '@/lib/hooks/use-scroll'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import LanguageSelector from '@/components/LanguageSelector'
+
+// Översättningar för navigationslänkar
+const translations = {
+  sv: {
+    apiDocs: 'API Docs',
+    releaseNotes: 'Release Notes',
+    support: 'Hur du får support',
+    openMenu: 'Öppna mobilmeny',
+    closeMenu: 'Stäng mobilmeny'
+  },
+  en: {
+    apiDocs: 'API Docs',
+    releaseNotes: 'Release Notes',
+    support: 'How to get support',
+    openMenu: 'Open mobile menu',
+    closeMenu: 'Close mobile menu'
+  }
+}
 
 export default function Header() {
   const scrolled = useScroll(50)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [currentLanguage, setCurrentLanguage] = useState<'sv' | 'en'>('sv')
+  const mobileMenuRef = useRef<HTMLDivElement>(null)
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  const t = translations[currentLanguage]
+
+  const handleLanguageChange = (language: string) => {
+    setCurrentLanguage(language as 'sv' | 'en')
+  }
+
+  // Hantera klick utanför menyn
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        menuButtonRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        !menuButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    // Lägg till event listener när menyn är öppen
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    // Cleanup - ta bort event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isMobileMenuOpen])
 
   return (
     <>
@@ -36,39 +89,39 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8" aria-label="Huvudnavigering" role="navigation">
+          <nav className="hidden md:flex items-center space-x-8" aria-label="Huvudnavigering" role="navigation">
             <Link
-              href="/api-docs"
+              href="#"
               className="text-foreground/70 hover:text-foreground transition-colors font-medium"
             >
-              API Docs
+              {t.apiDocs}
             </Link>
             <Link
-              href="/release-notes"
+              href="#"
               className="text-foreground/70 hover:text-foreground transition-colors font-medium"
             >
-              Release Notes
+              {t.releaseNotes}
             </Link>
             <Link
-              href="/support"
+              href="https://diavana.se/contact"
               className="text-foreground/70 hover:text-foreground transition-colors font-medium"
             >
-              Hur du får support
+              {t.support}
             </Link>
 
-            <div className="flex items-center space-x-2 text-foreground/70">
-              <Globe className="w-4 h-4" />
-              <span className="font-medium">Svenska</span>
-              <CaretDown className="w-4 h-4" />
-            </div>
+            <LanguageSelector 
+              currentLanguage={currentLanguage}
+              onLanguageChange={handleLanguageChange}
+            />
           </nav>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
             <button 
+              ref={menuButtonRef}
               className="text-foreground/70 hover:text-foreground transition-all duration-300"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? "Stäng mobilmeny" : "Öppna mobilmeny"}
+              aria-label={isMobileMenuOpen ? t.closeMenu : t.openMenu}
             >
               <svg className="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
@@ -84,35 +137,38 @@ export default function Header() {
 
       {/* Mobile Navigation Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed top-16 left-0 w-full border-b border-foreground/20 bg-background/80 backdrop-blur-xl z-40 md:hidden animate-in slide-in-from-top-2 duration-300">
+        <div 
+          ref={mobileMenuRef}
+          className="fixed top-16 left-0 w-full border-b border-foreground/20 bg-background/80 backdrop-blur-xl z-40 md:hidden animate-in slide-in-from-top-2 duration-300"
+        >
           <nav className="px-5 py-4 space-y-4" role="navigation">
             <Link
               href="/api-docs"
               className="block text-foreground/70 hover:text-foreground transition-colors font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              API Docs
+              {t.apiDocs}
             </Link>
             <Link
               href="/release-notes"
               className="block text-foreground/70 hover:text-foreground transition-colors font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Release Notes
+              {t.releaseNotes}
             </Link>
             <Link
               href="/support"
               className="block text-foreground/70 hover:text-foreground transition-colors font-medium py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Hur du får support
+              {t.support}
             </Link>
 
-            <div className="flex items-center space-x-2 text-foreground/70 py-2">
-              <Globe className="w-4 h-4" />
-              <span className="font-medium">Svenska</span>
-              <CaretDown className="w-4 h-4" />
-            </div>
+              <LanguageSelector 
+                currentLanguage={currentLanguage}
+                onLanguageChange={handleLanguageChange}
+                className="w-full py-2"
+              />
           </nav>
         </div>
       )}
