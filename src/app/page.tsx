@@ -57,7 +57,7 @@ export default async function HomePage() {
                   title={category.title}
                   articleCount={category.articleCount}
                   icon={() => <CategoryIcon icon={category.icon || 'general'} 
-                  className="w-6 h-6 text-background" 
+                  className="w-6 h-6 text-white" 
                 />}
                   slug={category.slug.current}
                   description={category.description}
