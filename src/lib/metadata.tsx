@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 
 const siteConfig = {
   name: "Diavana",
-  description: "Vi tror på enkel och effektiv ärendehantering. Därför utvecklar vi Diavana – framtidens diarieföringssystem för offentlig sektor.",
+  description: "Här hittar du hjälp, guider och support för Diavana. Vi finns här för att göra din ärendehantering enkel, säker och effektiv – varje dag.",
   url: "https://support.diavana.se",
   ogImage: "/og.png",
   creator: "@diavana",
   keywords: [
     "Diavana",
-    "Hjälpcenter",
+    "hjälpcenter",
     "kommuner",
     "teknik",
     "startup",
@@ -63,9 +63,6 @@ export const defaultMetadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  verification: {
-    google: "OW54Iy101WIhLFjiEv1XeJOwmpxj4vRY3rpHZLnIqts",
   },
   alternates: {
     canonical: siteConfig.url,

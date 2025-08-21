@@ -1,4 +1,3 @@
-// app/category/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { Metadata } from 'next'
@@ -103,10 +102,10 @@ export default async function CategoryPage({ params }: PageProps) {
                 
         {/* Kategori header */}
         <div className="flex items-center mb-4">
-          <div className="rounded-lg p-4 mr-4 bg-sage">
+          <div className="rounded-lg p-4 mr-4 bg-accent">
             <CategoryIcon 
               icon={category.icon || 'general'}
-              className="w-8 h-8 text-background"
+              className="w-8 h-8 text-white"
             />
           </div>
           <div>
@@ -128,7 +127,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
         {/* Artiklar */}
         {category.articles && category.articles.length > 0 ? (
-          <div className="space-y-4">
+          <div className="flex flex-col gap-4">
             {category.articles.map((article: any) => (
               <ArticleCard
                 key={article._id}

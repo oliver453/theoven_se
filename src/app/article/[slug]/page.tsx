@@ -265,22 +265,22 @@ export default async function ArticlePage({ params }: PageProps) {
               <h2 className="text-2xl font-display font-bold text-foreground mb-6">
                 Relaterade artiklar
               </h2>
-              <div className="space-y-4">
-                {relatedArticles.map((relatedArticle: any) => (
-                  <Link key={relatedArticle._id} href={`/article/${relatedArticle.slug.current}`}>
-                    <div className="bg-sage/20 border border-sage/30 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-                      <h3 className="font-semibold text-foreground hover:text-accent mb-2">
-                        {relatedArticle.title}
-                      </h3>
-                      {relatedArticle.excerpt && (
-                        <p className="text-foreground/70 text-sm line-clamp-2">
-                          {relatedArticle.excerpt}
-                        </p>
-                      )}
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              <div className="flex flex-col gap-4">
+  {relatedArticles.map((relatedArticle: any) => (
+    <Link key={relatedArticle._id} href={`/article/${relatedArticle.slug.current}`}>
+      <div className="bg-sage/20 border border-sage/30 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
+        <h3 className={`font-semibold text-foreground hover:text-accent ${relatedArticle.excerpt ? 'mb-2' : ''}`}>
+          {relatedArticle.title}
+        </h3>
+        {relatedArticle.excerpt && (
+          <p className="text-foreground/70 text-sm line-clamp-2">
+            {relatedArticle.excerpt}
+          </p>
+        )}
+      </div>
+    </Link>
+  ))}
+</div>
             </div>
           </section>
         )}

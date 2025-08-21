@@ -6,7 +6,7 @@ export default function NotFound() {
   const router = useRouter();
 
   return (
-    <main className='absolute top-1/2 left-1/2 mb-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center' role="main">
+    <main className='mb-16 p-4 z-20 max-w-lg mx-auto items-center justify-center text-center' role="main">
       <div aria-live="polite">
         <h1
           className="animate-fade-up text-center font-display text-6xl font-bold tracking-[-0.02em] opacity-0 drop-shadow-sm [text-wrap:balance] md:text-7xl md:leading-[5rem] relative"
