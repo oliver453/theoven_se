@@ -2,7 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SocialIcons from '../home/social-icons';
 
+const BASE_URL = 'https://diavana.se';
+
 export default function Footer() {
+  const internalLink = (path: string): string => `${BASE_URL}${path}`;
+
   return (
     <footer className="relative w-full bg-dark text-white" role="contentinfo">
       <div className="relative z-10 mx-auto max-w-screen-xl px-5 py-12">
@@ -11,7 +15,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <Link
-              href="/"
+              href={internalLink('/')}
               className="flex items-center font-display text-2xl tracking-tight text-white"
               aria-label="Gå till startsidan - Diavana"
             >
@@ -36,14 +40,14 @@ export default function Footer() {
             </h2>
             <div className="flex flex-col space-y-2">
               <Link
-                href="/about"
+                href={internalLink('/about')}
                 className="text-gray-300 hover:text-white hover:opacity-80 transition-colors text-sm"
                 aria-label="Läs mer om oss"
               >
                 Om oss
               </Link>
               <Link
-                href="/contact"
+                href={internalLink('/contact')}
                 className="text-gray-300 hover:text-white hover:opacity-80 transition-colors text-sm"
                 aria-label="Kontakta oss"
               >
@@ -68,14 +72,14 @@ export default function Footer() {
                 Driftstatus
               </Link>
               <Link
-                href="/download"
+                href={internalLink('/download')}
                 className="text-gray-300 hover:text-white hover:opacity-80 transition-colors text-sm"
                 aria-label="Ladda ner appar"
               >
                 Ladda ner appar
               </Link>
               <Link
-                href="#"
+                href="https://support.diavana.se"
                 className="text-gray-300 hover:text-white hover:opacity-80 transition-colors text-sm"
                 aria-label="Besök vårt hjälpcenter"
               >
@@ -91,14 +95,14 @@ export default function Footer() {
             </h2>
             <div className="flex flex-col space-y-2">
               <Link
-                href="/legal/privacy"
+                href={internalLink('/legal/privacy')}
                 className="text-gray-300 hover:text-white hover:opacity-80 transition-colors text-sm"
                 aria-label="Läs vår integritetspolicy"
               >
                 Integritetspolicy
               </Link>
               <Link
-                href="/legal/cookie-policy"
+                href={internalLink('/legal/cookie-policy')}
                 className="text-gray-300 hover:text-white hover:opacity-80 transition-colors text-sm"
                 aria-label="Läs vår cookiepolicy"
               >
@@ -108,9 +112,9 @@ export default function Footer() {
           </nav>
         </div>
 
-              <div aria-label="Sociala medier">
-                <SocialIcons />
-              </div>
+        <div aria-label="Sociala medier">
+          <SocialIcons />
+        </div>
 
         {/* Divider */}
         <div 

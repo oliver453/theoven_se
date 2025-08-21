@@ -1,9 +1,12 @@
+// components/CategoryCard.tsx
 import Link from 'next/link'
+import CategoryIcon from '@/components/CategoryIcons'
+import React from 'react'
 
 interface CategoryCardProps {
   title: string
   articleCount: number
-  icon: React.ComponentType<{ className?: string; weight?: string }>
+  icon: React.ComponentType<{ className?: string; weight?: string }> | string
   slug: string
   description?: string
 }
@@ -11,7 +14,7 @@ interface CategoryCardProps {
 export default function CategoryCard({ 
   title, 
   articleCount, 
-  icon: Icon, 
+  icon, 
   slug, 
   description 
 }: CategoryCardProps) {
@@ -20,7 +23,11 @@ export default function CategoryCard({
       <div className="category-card bg-background rounded-xl border border-foreground/20 p-6 hover:shadow-lg cursor-pointer">
         <div className="flex items-start space-x-4">
           <div className="bg-sage rounded-lg p-3 flex-shrink-0">
-            <Icon className="w-6 h-6 text-background" weight="fill" />
+            {typeof icon === 'string' ? (
+              <CategoryIcon icon={icon} className="w-6 h-6 text-background" />
+            ) : (
+              React.createElement(icon, { className: "w-6 h-6 text-background", weight: "fill" })
+            )}
           </div>
           
           <div className="flex-1 min-w-0">

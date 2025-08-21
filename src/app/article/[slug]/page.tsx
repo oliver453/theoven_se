@@ -1,7 +1,8 @@
-// app/article/[slug]/page.tsx
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { PortableText } from '@portabletext/react'
-import { client, queries } from '@/lib/sanity'
+import { client } from '@/lib/sanity'
+import { queries } from '@/lib/sanity/queries'
 import Breadcrumb from '@/components/Breadcrumb'
 import SearchBar from '@/components/SearchBar'
 
@@ -21,6 +22,19 @@ async function getArticle(slug: string) {
   }
 }
 
+async function getRelatedArticles(categoryId: string, currentId: string) {
+  try {
+    const articles = await client.fetch(queries.relatedArticles, {
+      categoryId,
+      currentId
+    })
+    return articles || []
+  } catch (error) {
+    console.error('Error fetching related articles:', error)
+    return []
+  }
+}
+
 export default async function ArticlePage({ params }: PageProps) {
   const article = await getArticle(params.slug)
 
@@ -28,21 +42,25 @@ export default async function ArticlePage({ params }: PageProps) {
     notFound()
   }
 
+  const relatedArticles = article.category?._id 
+    ? await getRelatedArticles(article.category._id, article._id)
+    : []
+
   const breadcrumbItems = [
-    { label: 'Alla samlingar', href: '/' },
+    { label: 'All Collections', href: '/' },
     { 
-      label: article.category?.title || 'Kategori', 
+      label: article.category?.title || 'Category', 
       href: `/category/${article.category?.slug?.current}` 
     },
     { label: article.title }
   ]
 
   return (
-    <div className="min-h-screen bg-anthropic-bg">
+    <div className="min-h-screen w-full z-20">
       {/* Header med sökruta */}
       <div className="bg-anthropic-bg py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SearchBar placeholder="Sök efter artiklar..." />
+          <SearchBar placeholder="Search for articles..." />
         </div>
       </div>
 
@@ -70,12 +88,20 @@ export default async function ArticlePage({ params }: PageProps) {
               )}
               {article.publishedAt && (
                 <span>
-                  Publicerad {new Date(article.publishedAt).toLocaleDateString('sv-SE')}
+                  Published {new Date(article.publishedAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </span>
               )}
               {article.updatedAt && article.updatedAt !== article.publishedAt && (
                 <span>
-                  Uppdaterad {new Date(article.updatedAt).toLocaleDateString('sv-SE')}
+                  Updated {new Date(article.updatedAt).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </span>
               )}
             </div>
@@ -182,16 +208,31 @@ export default async function ArticlePage({ params }: PageProps) {
         </article>
 
         {/* Relaterade artiklar sektion */}
-        <section className="mt-12">
-          <div className="border-t border-gray-200 pt-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Relaterade artiklar
-            </h2>
-            <div className="text-gray-600">
-              <p>Relaterade artiklar kommer att visas här...</p>
+        {relatedArticles.length > 0 && (
+          <section className="mt-12">
+            <div className="border-t border-gray-200 pt-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                Related Articles
+              </h2>
+              <div className="space-y-4">
+                {relatedArticles.map((relatedArticle: any) => (
+                  <Link key={relatedArticle._id} href={`/article/${relatedArticle.slug.current}`}>
+                    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
+                      <h3 className="font-semibold text-gray-900 hover:text-anthropic-orange mb-2">
+                        {relatedArticle.title}
+                      </h3>
+                      {relatedArticle.excerpt && (
+                        <p className="text-gray-600 text-sm line-clamp-2">
+                          {relatedArticle.excerpt}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
       </div>
     </div>
   )
