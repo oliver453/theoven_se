@@ -17,7 +17,6 @@ async function getCategories() {
       }
     `)
         
-    console.log('Fetched categories:', categories) // Debug
     return categories || []
   } catch (error) {
     console.error('Error fetching categories:', error)

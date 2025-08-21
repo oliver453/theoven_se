@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
+import { CaretRight } from './icons/icons'
 
 interface BreadcrumbItem {
   label: string
@@ -18,7 +18,7 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
       {items.map((item, index) => (
         <div key={index} className="flex items-center">
           {index > 0 && (
-            <ChevronRight className="w-4 h-4 text-foreground mx-2" />
+            <CaretRight className="w-4 h-4 text-foreground mx-2" />
           )}
           
           {item.href && index < items.length - 1 ? (
