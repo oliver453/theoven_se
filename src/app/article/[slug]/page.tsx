@@ -7,6 +7,7 @@ import { queries } from '@/lib/sanity/queries'
 import Breadcrumb from '@/components/Breadcrumb'
 import SearchBar from '@/components/SearchBar'
 import { siteConfig } from '@/lib/metadata'
+import { CaretRight } from '@/components/icons/icons'
 
 interface PageProps {
   params: {
@@ -115,7 +116,7 @@ export default async function ArticlePage({ params }: PageProps) {
   return (
     <div className="min-h-screen w-full z-20">
       {/* Header med sökruta */}
-      <div className="py-8">
+      <div className="pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SearchBar placeholder="Sök efter artiklar..." />
         </div>
@@ -266,21 +267,27 @@ export default async function ArticlePage({ params }: PageProps) {
                 Relaterade artiklar
               </h2>
               <div className="flex flex-col gap-4">
-  {relatedArticles.map((relatedArticle: any) => (
-    <Link key={relatedArticle._id} href={`/article/${relatedArticle.slug.current}`}>
-      <div className="bg-sage/20 border border-sage/30 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
-        <h3 className={`font-semibold text-foreground hover:text-accent ${relatedArticle.excerpt ? 'mb-2' : ''}`}>
-          {relatedArticle.title}
-        </h3>
-        {relatedArticle.excerpt && (
-          <p className="text-foreground/70 text-sm line-clamp-2">
-            {relatedArticle.excerpt}
-          </p>
-        )}
-      </div>
-    </Link>
-  ))}
-</div>
+                {relatedArticles.map((relatedArticle: any) => (
+                  <Link key={relatedArticle._id} href={`/article/${relatedArticle.slug.current}`}>
+                    <div className="bg-sage/20 border border-sage/30 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer">
+                      <div className="flex items-center justify-between">
+                        <h3 className={`font-semibold text-foreground hover:text-accent ${relatedArticle.excerpt ? 'mb-2' : ''}`}>
+                          {relatedArticle.title}
+                        </h3>
+                        <CaretRight 
+                          className="w-5 h-5 text-foreground/50 flex-shrink-0 ml-2" 
+                          weight="regular"
+                        />
+                      </div>
+                      {relatedArticle.excerpt && (
+                        <p className="text-foreground/70 text-sm line-clamp-2">
+                          {relatedArticle.excerpt}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
         )}

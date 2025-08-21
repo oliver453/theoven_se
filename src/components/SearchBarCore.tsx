@@ -192,7 +192,7 @@ export default function SearchBarCore({
     <div className="relative max-w-2xl mx-auto" ref={searchRef}>
       <form onSubmit={handleSubmit}>
         <div className="relative">
-          <MagnifyingGlass className="absolute left-4 top-1/2 transform -translate-y-1/2 text-foreground/40 w-5 h-5" />
+          <MagnifyingGlass className="absolute left-4 top-1/2 transform -translate-y-1/2 text-foreground/60 w-5 h-5" />
           <input
             ref={inputRef}
             type="text"
@@ -201,14 +201,14 @@ export default function SearchBarCore({
             onKeyDown={handleKeyDown}
             onFocus={() => query.length >= 1 && setShowSuggestionsList(true)}
             placeholder={placeholder}
-            className="search-input w-full pl-12 pr-12 py-4 bg-background rounded-lg border border-foreground/20 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-lg text-foreground placeholder:text-foreground/50"
+            className="search-input w-full pl-12 pr-12 py-4 bg-sage/20 rounded-lg border border-sage/30 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-lg text-foreground placeholder:text-foreground/60"
             autoComplete="off"
           />
           {query && (
             <button
               type="button"
               onClick={clearSearch}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-foreground/40 hover:text-foreground/60 w-5 h-5 flex items-center justify-center"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-foreground/60 hover:text-foreground w-5 h-5 flex items-center justify-center"
             >
               ✕
             </button>

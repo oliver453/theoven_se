@@ -14,7 +14,7 @@ interface BreadcrumbProps {
 
 export default function Breadcrumb({ items }: BreadcrumbProps) {
   return (
-    <nav className="flex flex-wrap items-center gap-y-1 text-sm text-foreground/70 mb-6">
+    <nav className="flex flex-wrap items-center gap-y-1 text-sm text-foreground/70 mb-8">
       {items.map((item, index) => (
         <>
           {index > 0 && (

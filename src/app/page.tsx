@@ -30,7 +30,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen z-10">
       {/* Hero Section */}
-      <section className="pb-20">
+      <section className="pb-14">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl font-bold font-display text-foreground mb-6">
             Upptäck svar och insikter från Diavana-teamet
@@ -49,7 +49,7 @@ export default async function HomePage() {
             <p className="text-foreground/60">Inga kategorier hittades.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {categories.map((category: any) => {                            
               return (
                 <CategoryCard

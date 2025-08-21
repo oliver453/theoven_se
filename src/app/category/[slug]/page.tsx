@@ -90,7 +90,7 @@ export default async function CategoryPage({ params }: PageProps) {
   return (
     <div className="min-h-screen w-full z-20">
       {/* Header med sökruta */}
-      <div className="py-8">
+      <div className="pb-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <SearchBar placeholder="Sök efter artiklar..." />
         </div>
@@ -100,31 +100,30 @@ export default async function CategoryPage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         <Breadcrumb items={breadcrumbItems} />
                 
-        {/* Kategori header */}
-        <div className="flex items-center mb-4">
-          <div className="rounded-lg p-4 mr-4 bg-accent">
-            <CategoryIcon 
-              icon={category.icon || 'general'}
-              className="w-8 h-8 text-white"
-            />
-          </div>
-          <div>
-            <h1 className="text-4xl font-bold text-foreground font-display">
-              {category.title}
-            </h1>
-            <p className="text-foreground/70">
-              {articleCount} {articleText}
-            </p>
-          </div>
-        </div>
+ {/* Kategori header */}
+<div className={`flex items-center ${category.description ? 'mb-4' : 'mb-8'}`}>
+  <div className="rounded-lg p-4 mr-4 bg-accent">
+    <CategoryIcon
+      icon={category.icon || 'general'}
+      className="w-8 h-8 text-white"
+    />
+  </div>
+  <div>
+    <h1 className="text-4xl font-bold text-foreground font-display">
+      {category.title}
+    </h1>
+    <p className="text-foreground/70">
+      {articleCount} {articleText}
+    </p>
+  </div>
+</div>
 
-        {/* Beskrivning */}
-        {category.description && (
-            <p className="text-foreground/70 leading-relaxed mb-8">
-              {category.description}
-            </p>
-        )}
-
+{/* Beskrivning */}
+{category.description && (
+  <p className="text-foreground/70 leading-relaxed mb-8">
+    {category.description}
+  </p>
+)}
         {/* Artiklar */}
         {category.articles && category.articles.length > 0 ? (
           <div className="flex flex-col gap-4">

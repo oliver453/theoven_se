@@ -22,7 +22,7 @@ export default async function RootLayout({
         <Suspense fallback="...">
           <Navbar />
         </Suspense>
-        <main className="flex min-h-screen w-full flex-col items-center justify-center pt-28 md:pt-32">
+        <main className="flex min-h-screen w-full flex-col items-center justify-center pt-36">
           {children}
         </main>
         <Footer />
