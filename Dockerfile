@@ -2,17 +2,18 @@
 FROM node:20-alpine AS base
 RUN apk add --no-cache libc6-compat python3 make g++
 WORKDIR /app
+RUN npm install -g pnpm@9.3.0
 
 # === Install dependencies ===
 FROM base AS deps
-COPY package.json package-lock.json ./
-RUN npm config set registry https://registry.npmjs.org/ && npm ci
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 # === Build app ===
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN pnpm build
 
 # === Production image ===
 FROM base AS runner
