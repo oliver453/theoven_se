@@ -4,7 +4,7 @@
 
 :root {
   --font-heading: var(--font-copernicus);
-  
+
   /* Konverterade från hex till HSL */
   --background: 60 33.3% 97.6%; /* #FAF9F5 */
   --foreground: 60 3% 8%; /* #262624 */
@@ -16,7 +16,7 @@
   --lavender: 245 20.8% 82.7%; /* #cbcadb */
   --coral: 15 63.1% 59.6%; /* #d97757 */
   --charcoal: 60 1.9% 15.1%; /* #262624 */
-  
+
   /* Dina HSL-färger */
   --accent-brand: 15 63.1% 59.6%;
   --accent-main-000: 15 55.6% 55.6%;
@@ -61,7 +61,6 @@
     --background: 60 1.9% 15.1%;
     --foreground: 60 33.3% 97.6%;
     --bg-200: 30 3.3% 11.8%;
-
   }
 }
 

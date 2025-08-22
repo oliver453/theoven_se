@@ -2,6 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Switch from './switch';
+import { 
+  getConsentPreferences, 
+  setConsentPreferences,
+  areCookiesEnabled 
+} from '../../utils/cookieUtils';
 
 interface CookiePreferences {
   necessary: boolean;
@@ -19,23 +24,23 @@ const CookieBanner: React.FC = () => {
   });
 
   useEffect(() => {
+    // Kontrollera om cookies är aktiverade
+    if (!areCookiesEnabled()) {
+      console.warn('Cookies är inte aktiverade i denna webbläsare');
+      return;
+    }
+
     // Kontrollera om användaren redan har gjort ett val
-    const cookieConsent = localStorage.getItem('diavana-consent-preferences');
-    if (!cookieConsent) {
+    const existingPreferences = getConsentPreferences();
+    if (!existingPreferences) {
       setIsVisible(true);
     } else {
       // Ladda befintliga inställningar
-      try {
-        const decoded = decodeURIComponent(cookieConsent);
-        const parsed = JSON.parse(decoded);
-        setPreferences(prev => ({
-          ...prev,
-          analytics: parsed.analytics || false,
-          marketing: parsed.marketing || false
-        }));
-      } catch (error) {
-        console.error('Kunde inte läsa cookie-inställningar:', error);
-      }
+      setPreferences(prev => ({
+        ...prev,
+        analytics: existingPreferences.analytics,
+        marketing: existingPreferences.marketing
+      }));
     }
   }, []);
 
@@ -45,8 +50,8 @@ const CookieBanner: React.FC = () => {
       analytics: prefs.analytics,
       marketing: prefs.marketing
     };
-    const encoded = encodeURIComponent(JSON.stringify(prefsToSave));
-    localStorage.setItem('diavana-consent-preferences', encoded);
+    
+    setConsentPreferences(prefsToSave);
     
     // Skicka custom event för att notifiera andra komponenter
     window.dispatchEvent(new Event('cookieConsentChanged'));

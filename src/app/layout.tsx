@@ -2,7 +2,7 @@ import cx from "classnames";
 import "./globals.css";
 import type { Metadata } from "next";
 import { defaultMetadata } from "@/lib/metadata";
-import { Copernicus, Styrne } from './fonts';
+import { Copernicus, Styrne } from "./fonts";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import Navbar from "@/components/layout/navbar";

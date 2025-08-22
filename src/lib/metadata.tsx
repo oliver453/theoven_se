@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 const siteConfig = {
-  name: "Diavana",
-  description: "Här hittar du hjälp, guider och support för Diavana. Vi finns här för att göra din ärendehantering enkel, säker och effektiv – varje dag.",
+  name: "Diavana hjälpcenter",
+  description:
+    "Här hittar du hjälp, guider och support för Diavana. Vi finns här för att göra din ärendehantering enkel, säker och effektiv – varje dag.",
   url: "https://support.diavana.se",
   ogImage: "/og.png",
   creator: "@diavana",
@@ -12,14 +13,14 @@ const siteConfig = {
     "kommuner",
     "teknik",
     "startup",
-    "Sverige"
+    "Sverige",
   ],
 };
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `Hjälpcenter | ${siteConfig.name}`,
+    default: `${siteConfig.name}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -34,7 +35,7 @@ export const defaultMetadata: Metadata = {
     type: "website",
     locale: "sv_SE",
     url: siteConfig.url,
-    title: `Hjälpcenter | ${siteConfig.name}`,
+    title: `${siteConfig.name}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -49,7 +50,7 @@ export const defaultMetadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `Hjälpcenter | ${siteConfig.name}`,
+    title: `${siteConfig.name}`,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,

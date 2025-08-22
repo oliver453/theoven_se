@@ -1,67 +1,77 @@
-import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { Metadata } from 'next'
-import { client } from '@/lib/sanity'
-import { queries } from '@/lib/sanity/queries'
-import Breadcrumb from '@/components/Breadcrumb'
-import SearchBar from '@/components/SearchBar'
-import ArticleCard from '@/components/ArticleCard'
-import CategoryIcon from '@/components/CategoryIcons'
-import { siteConfig } from '@/lib/metadata'
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { Metadata } from "next";
+import { client } from "@/lib/sanity";
+import { queries } from "@/lib/sanity/queries";
+import Breadcrumb from "@/components/Breadcrumb";
+import SearchBar from "@/components/SearchBar";
+import ArticleCard from "@/components/ArticleCard";
+import CategoryIcon from "@/components/CategoryIcons";
+import { siteConfig } from "@/lib/metadata";
 
 interface PageProps {
   params: {
-    slug: string
-  }
+    slug: string;
+  };
 }
 
 async function getCategoryWithArticles(slug: string) {
   try {
-    const category = await client.fetch(queries.categoryWithArticles, { slug })
-    return category
+    const category = await client.fetch(
+      queries.categoryWithArticles,
+      { slug },
+      {
+        next: { revalidate: 60 },
+      },
+    );
+    return category;
   } catch (error) {
-    console.error('Error fetching category:', error)
-    return null
+    console.error("Error fetching category:", error);
+    return null;
   }
 }
 
 // Generera metadata dynamiskt
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const category = await getCategoryWithArticles(params.slug)
-  
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const category = await getCategoryWithArticles(params.slug);
+
   if (!category) {
     return {
-      title: 'Kategori inte hittad',
-      description: 'Den efterfrågade kategorin kunde inte hittas.'
-    }
+      title: "Kategori inte hittad",
+      description: "Den efterfrågade kategorin kunde inte hittas.",
+    };
   }
 
-  const articleCount = category.articles?.length || 0
-  const articleText = articleCount === 1 ? 'artikel' : 'artiklar'
-  const title = category.title
-  const description = category.description || `Utforska ${articleCount} ${articleText} inom ${category.title} i vår kunskapsbas.`
-  
+  const articleCount = category.articles?.length || 0;
+  const articleText = articleCount === 1 ? "artikel" : "artiklar";
+  const title = category.title;
+  const description =
+    category.description ||
+    `Utforska ${articleCount} ${articleText} inom ${category.title} i vår kunskapsbas.`;
+
   return {
     title,
     description,
     openGraph: {
       title: `${title} | ${siteConfig.name}`,
       description,
-      type: 'website',
+      type: "website",
       url: `${siteConfig.url}/category/${params.slug}`,
       siteName: siteConfig.name,
-      locale: 'sv_SE',
+      locale: "sv_SE",
       images: [
         {
           url: siteConfig.ogImage,
           width: 1920,
           height: 1080,
           alt: `${title} - ${siteConfig.name}`,
-        }
+        },
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: `${title} | ${siteConfig.name}`,
       description,
       images: [siteConfig.ogImage],
@@ -69,61 +79,65 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `${siteConfig.url}/category/${params.slug}`,
     },
-  }
+  };
 }
 
 export default async function CategoryPage({ params }: PageProps) {
-  const category = await getCategoryWithArticles(params.slug)
+  const category = await getCategoryWithArticles(params.slug);
 
   if (!category) {
-    notFound()
+    notFound();
   }
 
-  const articleCount = category.articles?.length || 0
-  const articleText = articleCount === 1 ? 'artikel' : 'artiklar'
+  const articleCount = category.articles?.length || 0;
+  const articleText = articleCount === 1 ? "artikel" : "artiklar";
 
   const breadcrumbItems = [
-    { label: 'Alla samlingar', href: '/' },
-    { label: category.title }
-  ]
+    { label: "Alla samlingar", href: "/" },
+    { label: category.title },
+  ];
 
   return (
-    <div className="min-h-screen w-full z-20">
+    <div className="z-20 min-h-screen w-full">
       {/* Header med sökruta */}
       <div className="pb-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SearchBar placeholder="Sök efter artiklar..." />
         </div>
       </div>
 
       {/* Kategori innehåll */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="mx-auto max-w-3xl px-4 pb-20 sm:px-6 lg:px-8">
         <Breadcrumb items={breadcrumbItems} />
-                
- {/* Kategori header */}
-<div className={`flex items-center ${category.description ? 'mb-4' : 'mb-8'}`}>
-  <div className="rounded-lg p-4 mr-4 bg-accent">
-    <CategoryIcon
-      icon={category.icon || 'general'}
-      className="w-8 h-8 text-white"
-    />
-  </div>
-  <div>
-    <h1 className="text-4xl font-bold text-foreground font-display">
-      {category.title}
-    </h1>
-    <p className="text-foreground/70">
-      {articleCount} {articleText}
-    </p>
-  </div>
-</div>
 
-{/* Beskrivning */}
-{category.description && (
-  <p className="text-foreground/70 leading-relaxed mb-8">
-    {category.description}
-  </p>
-)}
+        {/* Kategori header */}
+        <div
+          className={`flex items-center ${
+            category.description ? "mb-4" : "mb-8"
+          }`}
+        >
+          <div className="mr-4 rounded-lg bg-accent p-4">
+            <CategoryIcon
+              icon={category.icon || "general"}
+              className="h-8 w-8 text-white"
+            />
+          </div>
+          <div>
+            <h1 className="font-display text-3xl font-bold text-foreground">
+              {category.title}
+            </h1>
+            <p className="text-foreground/70">
+              {articleCount} {articleText}
+            </p>
+          </div>
+        </div>
+
+        {/* Beskrivning */}
+        {category.description && (
+          <p className="mb-8 leading-relaxed text-foreground/70">
+            {category.description}
+          </p>
+        )}
         {/* Artiklar */}
         {category.articles && category.articles.length > 0 ? (
           <div className="flex flex-col gap-4">
@@ -141,18 +155,15 @@ export default async function CategoryPage({ params }: PageProps) {
           </div>
         ) : (
           <div className="text-center">
-            <p className="text-foreground mb-4">
+            <p className="mb-4 text-foreground">
               Inga artiklar hittades i denna kategori ännu.
             </p>
-            <Link
-              href="/"
-              className="text-accent hover:underline"
-            >
+            <Link href="/" className="text-accent hover:underline">
               Bläddra bland alla kategorier
             </Link>
           </div>
         )}
       </div>
     </div>
-  )
+  );
 }

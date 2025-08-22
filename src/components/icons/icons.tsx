@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   ChatCircle,
@@ -28,38 +28,40 @@ import {
   Gear,
   Wrench,
   Bug,
-  Terminal
-} from '@phosphor-icons/react'
+  Terminal,
+} from "@phosphor-icons/react";
+import { DiavanaIcon } from "./DiavanaIcon";
 
 // Icon mapping för kategorier med Phosphor Icons
 export const CategoryIcons = {
-  'claude': ChatCircle,
-  'paid-plans': Lightning,
-  'team': Users,
-  'financial': CurrencyDollar,
-  'education': GraduationCap,
-  'api': Monitor,
-  'code': Code,
-  'prompt-design': MagicWand,
-  'mobile': DeviceMobile,
-  'desktop': Desktop,
-  'laptop': Laptop,
-  'devices': Devices,
-  'documents': FileText,
-  'files': File,
-  'pdf': FilePdf,
-  'word': FileDoc,
-  'coding': FileCode,
-  'database': Database,
-  'cloud': CloudArrowUp,
-  'hardware': HardDrives,
-  'search': MagnifyingGlass,
-  'web': Globe,
-  'settings': Gear,
-  'tools': Wrench,
-  'debugging': Bug,
-  'terminal': Terminal
-}
+  chat: ChatCircle,
+  lightning: Lightning,
+  users: Users,
+  dollar: CurrencyDollar,
+  education: GraduationCap,
+  monitor: Monitor,
+  code: Code,
+  magic: MagicWand,
+  mobile: DeviceMobile,
+  desktop: Desktop,
+  laptop: Laptop,
+  devices: Devices,
+  documents: FileText,
+  files: File,
+  pdf: FilePdf,
+  word: FileDoc,
+  coding: FileCode,
+  database: Database,
+  cloud: CloudArrowUp,
+  hardware: HardDrives,
+  search: MagnifyingGlass,
+  web: Globe,
+  settings: Gear,
+  tools: Wrench,
+  debugging: Bug,
+  terminal: Terminal,
+  diavana: DiavanaIcon,
+};
 
 // Exportera individuella ikoner för direkt användning
 export {
@@ -90,5 +92,6 @@ export {
   Gear,
   Wrench,
   Bug,
-  Terminal
-}
+  Terminal,
+  DiavanaIcon,
+};

@@ -1,5 +1,5 @@
 // lib/sanity/queries.ts - Förbättrade sök-queries för enstaka ord
-import { groq } from 'next-sanity'
+import { groq } from "next-sanity";
 
 export const queries = {
   // Förenklad och robust artikelsökning
@@ -307,5 +307,5 @@ export const queries = {
         slug
       }
     }
-  `
-}
+  `,
+};

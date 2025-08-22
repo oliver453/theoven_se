@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface SwitchProps {
   checked: boolean;
@@ -7,7 +7,11 @@ interface SwitchProps {
 }
 
 // Switch component med shadcn-stil
-const Switch: React.FC<SwitchProps> = ({ checked, onCheckedChange, disabled = false }) => {
+const Switch: React.FC<SwitchProps> = ({
+  checked,
+  onCheckedChange,
+  disabled = false,
+}) => {
   return (
     <button
       type="button"
@@ -19,19 +23,13 @@ const Switch: React.FC<SwitchProps> = ({ checked, onCheckedChange, disabled = fa
         peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900
         disabled:cursor-not-allowed disabled:opacity-50
-        ${checked 
-          ? 'bg-accent-secondary-100' 
-          : 'bg-bg-300'
-        }
+        ${checked ? "bg-accent-secondary-100" : "bg-bg-300"}
       `}
     >
       <span
         className={`
           pointer-events-none block h-5 w-5 rounded-full shadow-lg ring-0 transition-transform
-          ${checked 
-            ? 'translate-x-5 bg-white' 
-            : 'translate-x-0 bg-white'
-          }
+          ${checked ? "translate-x-5 bg-white" : "translate-x-0 bg-white"}
         `}
       />
     </button>

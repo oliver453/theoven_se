@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 // Typer för cookie-samtycken
 export interface CookieConsent {
@@ -6,7 +6,7 @@ export interface CookieConsent {
   marketing: boolean;
 }
 
-export type ConsentType = 'analytics' | 'marketing';
+export type ConsentType = "analytics" | "marketing";
 
 // Utility-funktioner för att hantera cookie-samtycken
 
@@ -15,26 +15,26 @@ export type ConsentType = 'analytics' | 'marketing';
  * @returns {CookieConsent} Samtycken eller default-värden
  */
 export function getCookieConsent(): CookieConsent {
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     // Server-side rendering - returnera default-värden
     return { analytics: false, marketing: false };
   }
 
   try {
-    const stored = localStorage.getItem('diavana-consent-preferences');
+    const stored = localStorage.getItem("diavana-consent-preferences");
     if (!stored) {
       return { analytics: false, marketing: false };
     }
-    
+
     const decoded = decodeURIComponent(stored);
     const parsed = JSON.parse(decoded);
-    
+
     return {
       analytics: parsed.analytics || false,
-      marketing: parsed.marketing || false
+      marketing: parsed.marketing || false,
     };
   } catch (error) {
-    console.error('Kunde inte läsa cookie-inställningar:', error);
+    console.error("Kunde inte läsa cookie-inställningar:", error);
     return { analytics: false, marketing: false };
   }
 }
@@ -70,24 +70,26 @@ export function hasConsent(type: ConsentType): boolean {
  * Använd tillsammans med en custom event för att uppdatera när cookies ändras
  */
 export function useCookieConsent(): CookieConsent {
-  const [consent, setConsent] = useState<CookieConsent>(() => getCookieConsent());
-  
+  const [consent, setConsent] = useState<CookieConsent>(() =>
+    getCookieConsent(),
+  );
+
   useEffect(() => {
     const handleStorageChange = (): void => {
       setConsent(getCookieConsent());
     };
-    
+
     // Lyssna på localStorage-ändringar
-    window.addEventListener('storage', handleStorageChange);
-    
+    window.addEventListener("storage", handleStorageChange);
+
     // Lyssna på custom event för samma tab
-    window.addEventListener('cookieConsentChanged', handleStorageChange);
-    
+    window.addEventListener("cookieConsentChanged", handleStorageChange);
+
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('cookieConsentChanged', handleStorageChange);
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("cookieConsentChanged", handleStorageChange);
     };
   }, []);
-  
+
   return consent;
 }

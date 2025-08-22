@@ -1,47 +1,47 @@
-import { Suspense } from 'react'
-import { client } from '@/lib/sanity'
-import { queries } from '@/lib/sanity/queries'
-import SearchBar from '@/components/SearchBar'
-import ArticleCard from '@/components/ArticleCard'
-import CategoryCard from '@/components/CategoryCard'
-import Breadcrumb from '@/components/Breadcrumb'
-import { getCategoryIcon } from '@/components/CategoryIcons'
+import { Suspense } from "react";
+import { client } from "@/lib/sanity";
+import { queries } from "@/lib/sanity/queries";
+import SearchBar from "@/components/SearchBar";
+import ArticleCard from "@/components/ArticleCard";
+import CategoryCard from "@/components/CategoryCard";
+import Breadcrumb from "@/components/Breadcrumb";
+import { CategoryIcons } from "@/components/icons/icons";
 
 interface SearchPageProps {
   searchParams: {
-    q?: string
-  }
+    q?: string;
+  };
 }
 
 async function searchArticles(query: string) {
   if (!query || query.length < 2) {
-    return []
+    return [];
   }
 
   try {
     const articles = await client.fetch(queries.searchArticles, {
-      searchTerm: query
-    })
-    return articles || []
+      searchTerm: query,
+    });
+    return articles || [];
   } catch (error) {
-    console.error('Fel vid sökning av artiklar:', error)
-    return []
+    console.error("Fel vid sökning av artiklar:", error);
+    return [];
   }
 }
 
 async function searchCategories(query: string) {
   if (!query || query.length < 2) {
-    return []
+    return [];
   }
 
   try {
     const categories = await client.fetch(queries.searchCategories, {
-      searchTerm: query
-    })
-    return categories || []
+      searchTerm: query,
+    });
+    return categories || [];
   } catch (error) {
-    console.error('Fel vid sökning av kategorier:', error)
-    return []
+    console.error("Fel vid sökning av kategorier:", error);
+    return [];
   }
 }
 
@@ -50,36 +50,36 @@ function SearchResults({ query }: { query: string }) {
     <Suspense fallback={<div>Söker...</div>}>
       <SearchResultsContent query={query} />
     </Suspense>
-  )
+  );
 }
 
 async function SearchResultsContent({ query }: { query: string }) {
   const [articles, categories] = await Promise.all([
     searchArticles(query),
-    searchCategories(query)
-  ])
+    searchCategories(query),
+  ]);
 
   if (!query || query.length < 2) {
     return (
-        <p className="text-foreground text-center">
-          Skriv minst 2 tecken för att söka efter artiklar och kategorier.
-        </p>
-    )
+      <p className="text-center text-foreground">
+        Skriv minst 2 tecken för att söka efter artiklar och kategorier.
+      </p>
+    );
   }
 
-  const totalResults = articles.length + categories.length
+  const totalResults = articles.length + categories.length;
 
   if (totalResults === 0) {
     return (
       <div className="text-center">
-        <p className="text-foreground mb-2">
+        <p className="mb-2 text-foreground">
           Inga artiklar eller kategorier hittades för "{query}"
         </p>
         <p className="text-sm text-foreground/70">
           Prova andra sökord eller bläddra bland våra kategorier.
         </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -87,16 +87,19 @@ async function SearchResultsContent({ query }: { query: string }) {
       {/* Kategoriresultat */}
       {categories.length > 0 && (
         <div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
+          <h2 className="mb-4 text-xl font-semibold text-gray-900">
             Kategorier ({categories.length})
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2">
             {categories.map((category: any) => (
               <CategoryCard
                 key={category._id}
                 title={category.title}
                 articleCount={category.articleCount}
-                icon={getCategoryIcon(category.icon)}
+                icon={
+                  CategoryIcons[category.icon as keyof typeof CategoryIcons] ||
+                  CategoryIcons.chat
+                }
                 slug={category.slug.current}
                 description={category.description}
               />
@@ -108,7 +111,7 @@ async function SearchResultsContent({ query }: { query: string }) {
       {/* Artikelresultat */}
       {articles.length > 0 && (
         <div>
-          <h2 className="text-xl font-semibold text-foreground mb-4">
+          <h2 className="mb-4 text-xl font-semibold text-foreground">
             Artiklar ({articles.length})
           </h2>
           <div className="flex flex-col gap-4">
@@ -127,38 +130,39 @@ async function SearchResultsContent({ query }: { query: string }) {
       )}
 
       {/* Sammanfattning */}
-      <div className="mt-6 pt-4 border-t border-foreground">
+      <div className="mt-6 border-t border-foreground pt-4">
         <p className="text-sm text-foreground/70">
-          Hittade {totalResults} totalt {totalResults === 1 ? 'resultat' : 'resultat'} för "{query}"
+          Hittade {totalResults} totalt{" "}
+          {totalResults === 1 ? "resultat" : "resultat"} för "{query}"
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const query = searchParams.q || ''
+  const query = searchParams.q || "";
 
   const breadcrumbItems = [
-    { label: 'Alla samlingar', href: '/' },
-    { label: 'Sök' }
-  ]
+    { label: "Alla samlingar", href: "/" },
+    { label: "Sök" },
+  ];
 
   return (
-    <div className="min-h-screen w-full z-20">
+    <div className="z-20 min-h-screen w-full">
       {/* Header med sökruta */}
       <div className="py-8">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SearchBar placeholder="Sök efter artiklar..." />
         </div>
       </div>
 
       {/* Sökresultat */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="mx-auto max-w-4xl px-4 pb-20 sm:px-6 lg:px-8">
         <Breadcrumb items={breadcrumbItems} />
-        
+
         <SearchResults query={query} />
       </div>
     </div>
-  )
+  );
 }
