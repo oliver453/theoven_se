@@ -1,6 +1,6 @@
 "use client";
 
-import { FacebookLogo, Envelope } from "@phosphor-icons/react";
+import { FacebookLogo, LinkedinLogo, Envelope } from "@phosphor-icons/react";
 
 export default function SocialIcons() {
   return (
@@ -12,6 +12,14 @@ export default function SocialIcons() {
       >
         <span className="sr-only">Facebook</span>
         <FacebookLogo size={22} weight="bold" />
+      </a>
+      <a
+        href="https://www.linkedin.com/company/diavana/"
+        className="transition-opacity hover:opacity-80"
+        aria-label="Linkedin"
+      >
+        <span className="sr-only">Linkedin</span>
+        <LinkedinLogo size={22} weight="bold" />
       </a>
       <a
         href="mailto:hej@diavana.se"

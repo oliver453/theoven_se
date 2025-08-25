@@ -31,7 +31,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-300">
-              Ett modernt och säkert system för diarieföring i offentlig sektor.
+              Ett modernt och säkert ärende- och diarieföringssystem för
+              offentlig sektor.
             </p>
           </div>
 
