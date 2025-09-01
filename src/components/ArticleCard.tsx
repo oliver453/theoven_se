@@ -27,36 +27,17 @@ export default function ArticleCard({
       <div className="group cursor-pointer rounded-lg border border-sage/30 bg-sage/20 p-6 transition-shadow hover:shadow-md">
         <div className="flex items-start justify-between">
           <div className="min-w-0 flex-1 pr-4">
-            <div className="mb-2 flex items-center gap-2">
-              {category && (
-                <span className="inline-flex items-center rounded-full bg-foreground px-2.5 py-0.5 text-xs font-medium text-background">
-                  {category.title}
-                </span>
-              )}
-              {featured && (
-                <span className="inline-flex items-center rounded-full bg-accent px-2.5 py-0.5 text-xs font-medium text-white">
-                  Utvald
-                </span>
-              )}
-            </div>
-
-            <h3 className="mb-2 text-lg font-semibold text-foreground transition-colors group-hover:text-accent">
+            <h3
+              className={`text-lg font-semibold text-foreground transition-colors group-hover:text-accent ${
+                excerpt ? "mb-2" : ""
+              }`}
+            >
               {title}
             </h3>
 
             {excerpt && (
-              <p className="mb-3 line-clamp-2 text-sm text-foreground/80">
+              <p className="line-clamp-2 text-sm text-foreground/80">
                 {excerpt}
-              </p>
-            )}
-
-            {publishedAt && (
-              <p className="text-xs text-foreground/60">
-                {new Date(publishedAt).toLocaleDateString("sv-SE", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
               </p>
             )}
           </div>

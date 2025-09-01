@@ -104,7 +104,7 @@ export default function Header() {
               {t.status}
             </Link>
             <Link
-              href="#"
+              href="/changelog"
               className="font-medium text-foreground/70 transition-colors hover:text-foreground"
             >
               {t.releaseNotes}
@@ -172,7 +172,7 @@ export default function Header() {
               {t.status}
             </Link>
             <Link
-              href="#"
+              href="/changelog"
               className="block rounded-md px-3 py-2 font-medium text-foreground/70 transition-colors hover:bg-accent hover:text-foreground"
               onClick={() => setIsMobileMenuOpen(false)}
             >

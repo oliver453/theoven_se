@@ -8,11 +8,43 @@ import Breadcrumb from "@/components/Breadcrumb";
 import SearchBar from "@/components/SearchBar";
 import { siteConfig } from "@/lib/metadata";
 import { CaretRight } from "@/components/icons/icons";
+import FeedbackSection from "@/components/FeedbackSection";
 
 interface PageProps {
   params: {
     slug: string;
   };
+}
+
+// Funktion för att formatera datum till relativ tid på svenska
+function getRelativeTime(date: string): string {
+  const now = new Date();
+  const targetDate = new Date(date);
+  const diffInMs = now.getTime() - targetDate.getTime();
+  const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  const diffInWeeks = Math.floor(diffInDays / 7);
+  const diffInMonths = Math.floor(diffInDays / 30);
+  const diffInYears = Math.floor(diffInDays / 365);
+
+  if (diffInDays <= 0) {
+    return "idag";
+  } else if (diffInDays === 1) {
+    return "igår";
+  } else if (diffInDays < 7) {
+    return `för ${diffInDays} dagar sedan`;
+  } else if (diffInWeeks === 1) {
+    return "förra veckan";
+  } else if (diffInWeeks < 4) {
+    return `för ${diffInWeeks} veckor sedan`;
+  } else if (diffInMonths === 1) {
+    return "förra månaden";
+  } else if (diffInMonths < 12) {
+    return `för ${diffInMonths} månader sedan`;
+  } else if (diffInYears === 1) {
+    return "förra året";
+  } else {
+    return `för ${diffInYears} år sedan`;
+  }
 }
 
 async function getArticle(slug: string) {
@@ -163,24 +195,11 @@ export default async function ArticlePage({ params }: PageProps) {
                 </Link>
               )}
               {article.publishedAt && (
-                <span>
-                  {new Date(article.publishedAt).toLocaleDateString("sv-SE", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </span>
+                <span>Publicerad {getRelativeTime(article.publishedAt)}</span>
               )}
               {article.updatedAt &&
                 article.updatedAt !== article.publishedAt && (
-                  <span>
-                    Updated{" "}
-                    {new Date(article.updatedAt).toLocaleDateString("sv-SE", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
+                  <span>Uppdaterad {getRelativeTime(article.updatedAt)}</span>
                 )}
             </div>
           </header>
@@ -224,12 +243,12 @@ export default async function ArticlePage({ params }: PageProps) {
                   },
                   list: {
                     bullet: ({ children }) => (
-                      <ul className="mb-4 list-disc space-y-2 pl-6 text-foreground">
+                      <ul className="mb-4 list-disc space-y-2 pl-6 text-foreground marker:text-foreground/60">
                         {children}
                       </ul>
                     ),
                     number: ({ children }) => (
-                      <ol className="mb-4 list-decimal space-y-2 pl-6 text-foreground">
+                      <ol className="mb-4 list-decimal space-y-2 pl-6 text-foreground marker:text-foreground/60">
                         {children}
                       </ol>
                     ),
@@ -344,6 +363,9 @@ export default async function ArticlePage({ params }: PageProps) {
             </div>
           )}
         </article>
+
+        {/* Feedback sektion */}
+        <FeedbackSection />
 
         {/* Relaterade artiklar sektion */}
         {relatedArticles.length > 0 && (

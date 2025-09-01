@@ -29,6 +29,8 @@ import {
   Wrench,
   Bug,
   Terminal,
+  ThumbsUp,
+  ThumbsDown,
 } from "@phosphor-icons/react";
 import { DiavanaIcon } from "./DiavanaIcon";
 
@@ -94,4 +96,6 @@ export {
   Bug,
   Terminal,
   DiavanaIcon,
+  ThumbsDown,
+  ThumbsUp,
 };
