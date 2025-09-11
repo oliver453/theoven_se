@@ -10,8 +10,7 @@
     "lint:case": "find src -name '*.tsx' -o -name '*.ts' | xargs grep -l 'import.*[./]' | head -20",
     "check:imports": "grep -r 'from [\"\\']\\.' src/ --include='*.tsx' --include='*.ts' || echo 'No relative imports found'",
     "check:case": "find src -name '*.tsx' -o -name '*.ts' -exec basename {} \\; | sort | uniq -d",
-    "vercel-build": "npm run build",
-    "prebuild": "echo 'Starting build process...' && npm run check:imports"
+    "vercel-build": "npm run build"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
