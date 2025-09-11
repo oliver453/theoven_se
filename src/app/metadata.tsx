@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 export const siteConfig = {
   name: "The Oven | Äkta napolitansk pizza i Arvika",
-  shortName: "The Oven Arvika",
+  shortName: "The Oven",
   description:
-    "The Oven i Arvika serverar äkta napolitansk pizza bakad i vedugn, lunchbuffé och à la carte. Med noggrant utvalda råvaror och genuin service får du en matupplevelse utöver det vanliga. Välkommen till oss på Kyrkogatan 20 i Arvika.",
+    "Vi serverar äkta napolitansk pizza bakad i vedugn, lunchbuffé och à la carte. Med noggrant utvalda råvaror och genuin service får du en matupplevelse utöver det vanliga. Välkommen till oss på Kyrkogatan 20 i Arvika.",
   url: "https://theoven.se",
   ogImage: "/og.png",
   creator: "@theovenarvika",
@@ -48,7 +48,7 @@ export const defaultMetadata: Metadata = {
     siteName: siteConfig.shortName,
     images: [
       {
-        url: siteConfig.ogImage,
+        url: "/og.png",
         width: 1920,
         height: 1080,
         alt: `${siteConfig.shortName} | Napolitansk pizza i Arvika`,
