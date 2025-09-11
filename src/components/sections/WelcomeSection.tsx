@@ -65,11 +65,12 @@ export function WelcomeSection() {
             <p className="text-md mx-auto max-w-lg leading-relaxed text-white/80 lg:mx-0">
               {t.welcome.text}
             </p>
-            <Link href={createLink("/meny")}>
-              <Button className="bg-white hover:bg-gray-200 px-8 py-7 font-rustic text-lg uppercase text-black">
-                {t.welcome.button}
-              </Button>
-            </Link>
+            <Link href={createLink("/meny")} className="block">
+  <Button className="bg-white hover:bg-gray-200 px-8 py-7 font-rustic text-lg uppercase text-black">
+    {t.welcome.button}
+  </Button>
+</Link>
+
           </div>
         </div>
       </div>
