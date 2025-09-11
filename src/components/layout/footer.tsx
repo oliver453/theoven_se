@@ -4,7 +4,7 @@ import React from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { useLanguage } from "../../../contexts/LanguageContext";
 
-export function Footer() {
+export default function Footer() {
   const { t } = useLanguage();
 
   return (
