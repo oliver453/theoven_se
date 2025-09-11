@@ -1,14 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
-  images: {
-    domains: ['cdn.sanity.io'],
+  output: "standalone",
+  experimental: {
+    appDir: true,
   },
-  env: {
-    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
-    NEXT_PUBLIC_SANITY_API_VERSION: process.env.NEXT_PUBLIC_SANITY_API_VERSION,
+  async redirects() {
+    return [
+      {
+        source: "/sv",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/sv/:path*",
+        destination: "/:path*",
+        permanent: true,
+      },
+    ];
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

@@ -1,144 +1,56 @@
-import Link from "next/link";
-import Image from "next/image";
-import SocialIcons from "../home/social-icons";
+"use client";
 
-const BASE_URL = "https://diavana.se";
+import React from "react";
+import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import { useLanguage } from "../../../contexts/LanguageContext";
 
-export default function Footer() {
-  const internalLink = (path: string): string => `${BASE_URL}${path}`;
+export function Footer() {
+  const { t } = useLanguage();
 
   return (
-    <footer className="relative w-full bg-dark text-white" role="contentinfo">
-      <div className="relative z-10 mx-auto max-w-screen-xl px-5 py-12">
-        {/* Main Content */}
-        <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* Brand Section */}
-          <div className="space-y-4">
-            <Link
-              href={internalLink("/")}
-              className="flex items-center font-display text-2xl tracking-tight text-white"
-              aria-label="Gå till startsidan - Diavana"
-            >
-              <Image
-                src="/owl.svg"
-                alt="Diavana logo"
-                width={24}
-                height={24}
-                className="h-6 w-6"
-              />
-              <span className="translate-y-0.5 font-medium leading-none">
-                Diavana
-              </span>
-            </Link>
-            <p className="text-sm leading-relaxed text-gray-300">
-              Ett modernt och säkert ärende- och diarieföringssystem för
-              offentlig sektor.
-            </p>
+    <footer id="kontakt" className="bg-black text-white">
+      <div className="mx-auto w-full">
+        <div className="flex flex-col md:grid md:grid-cols-2 md:gap-12">
+          {/* Karta */}
+          <div className="h-60 md:h-72 w-full overflow-hidden md:h-96 md:px-0">
+            <iframe
+              src="https://maps.google.com/maps?q=The%20Oven%2C%20671%2031%20Arvika&amp;t=m&amp;z=15&amp;output=embed&amp;iwloc=near"
+              title="The Oven, 671 31 Arvika"
+              aria-label="The Oven, 671 31 Arvika"
+              loading="lazy"
+              className="h-full w-full border-0"
+            />
           </div>
 
-          {/* Företaget Section */}
-          <nav className="space-y-2" aria-labelledby="company-heading">
-            <h2
-              id="company-heading"
-              className="font-display font-medium text-gray-200"
-            >
-              Företaget
-            </h2>
-            <div className="flex flex-col space-y-2">
-              <Link
-                href={internalLink("/about")}
-                className="text-sm text-gray-300 transition-colors hover:text-white hover:opacity-80"
-                aria-label="Läs mer om oss"
-              >
-                Om oss
-              </Link>
-              <Link
-                href={internalLink("/contact")}
-                className="text-sm text-gray-300 transition-colors hover:text-white hover:opacity-80"
-                aria-label="Kontakta oss"
-              >
-                Kontakta oss
-              </Link>
-            </div>
-          </nav>
-
-          {/* Hjälp och säkerhet Section */}
-          <nav className="space-y-2" aria-labelledby="help-safety-heading">
-            <h2
-              id="help-safety-heading"
-              className="font-display font-medium text-gray-200"
-            >
-              Hjälp & säkerhet
-            </h2>
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="https://status.diavana.se"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-gray-300 transition-colors hover:text-white hover:opacity-80"
-                aria-label="Visa driftstatus - öppnas i ny flik"
-              >
-                Driftstatus
-              </Link>
-              <Link
-                href={internalLink("/download")}
-                className="text-sm text-gray-300 transition-colors hover:text-white hover:opacity-80"
-                aria-label="Ladda ner appar"
-              >
-                Ladda ner appar
-              </Link>
-              <Link
-                href="https://support.diavana.se"
-                className="text-sm text-gray-300 transition-colors hover:text-white hover:opacity-80"
-                aria-label="Besök vårt hjälpcenter"
-              >
-                Hjälpcenter
-              </Link>
-            </div>
-          </nav>
-
-          {/* Juridiskt Section */}
-          <nav className="space-y-2" aria-labelledby="legal-heading">
-            <h2
-              id="legal-heading"
-              className="font-display font-medium text-gray-200"
-            >
-              Juridiskt
-            </h2>
-            <div className="flex flex-col space-y-2">
-              <Link
-                href={internalLink("/legal/privacy")}
-                className="text-sm text-gray-300 transition-colors hover:text-white hover:opacity-80"
-                aria-label="Läs vår integritetspolicy"
-              >
-                Integritetspolicy
-              </Link>
-              <Link
-                href={internalLink("/legal/cookie-policy")}
-                className="text-sm text-gray-300 transition-colors hover:text-white hover:opacity-80"
-                aria-label="Läs vår cookiepolicy"
-              >
-                Cookiepolicy
-              </Link>
-            </div>
-          </nav>
-        </div>
-
-        <div aria-label="Sociala medier">
-          <SocialIcons />
-        </div>
-
-        {/* Divider */}
-        <div
-          className="mb-8 h-px bg-gradient-to-r from-transparent via-gray-500 to-transparent"
-          role="separator"
-          aria-hidden="true"
-        ></div>
-
-        {/* Bottom Section */}
-        <div className="flex items-center justify-center">
-          <div className="text-sm text-gray-400">
-            © {new Date().getFullYear()} Diavana. All rights reserved.
+          {/* Kontaktinfo */}
+          <div className="h-80 md:h-72 mx-auto flex flex-col justify-center space-y-6 px-6 py-10 text-center sm:px-8 md:h-96 md:px-10">
+            <h3 className="font-rustic text-2xl font-bold uppercase tracking-wide">
+              {t.footer.contactTitle}
+            </h3>
+            <ul className="space-y-2 font-roboto">
+              <li>
+                <a
+                  href="tel:+4657010100"
+                  className="flex items-center justify-center gap-2 hover:underline"
+                >
+                  <FaPhone className="h-4 w-4 scale-x-[-1] transform" />
+                  <span>0570-10 100</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:hello@theoven.se"
+                  className="flex items-center justify-center gap-2 hover:underline"
+                >
+                  <FaEnvelope className="h-4 w-4" />{" "}
+                  <span>hello@theoven.se</span>
+                </a>
+              </li>
+              <li className="flex items-center justify-center gap-2">
+                <FaMapMarkerAlt className="h-4 w-4" />{" "}
+                <span>Kyrkogatan 20, 671 31 Arvika</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

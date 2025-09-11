@@ -1,32 +1,34 @@
-import cx from "classnames";
+import type { Viewport, Metadata } from "next";
 import "./globals.css";
-import type { Metadata } from "next";
-import { defaultMetadata } from "@/lib/metadata";
-import { Copernicus, Styrne } from "./fonts";
-import Footer from "@/components/layout/footer";
-import { Suspense } from "react";
-import Navbar from "@/components/layout/navbar";
-import CookieBanner from "@/components/home/cookie-banner";
+import { LanguageProvider } from "../../contexts/LanguageContext";
+import { rusticPrinted, robotoSlab } from "./fonts";
+import { defaultMetadata } from "./metadata";
 
+// Viewport config
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#000000",
+};
+
+// Metadata från metadata.ts
 export const metadata: Metadata = defaultMetadata;
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="sv-SE">
-      <body className={cx(Styrne.variable, Copernicus.variable)}>
-        <div className="fixed h-screen w-full bg-gradient-to-b from-transparent to-background/60" />
-        <Suspense fallback="...">
-          <Navbar />
-        </Suspense>
-        <main className="flex min-h-screen w-full flex-col items-center justify-center pt-36">
-          {children}
-        </main>
-        <Footer />
-        <CookieBanner />
+    <html
+      lang="sv"
+      className={`${rusticPrinted.variable} ${robotoSlab.variable}`}
+      suppressHydrationWarning
+    >
+      <body
+        className={`${robotoSlab.className} bg-black text-white antialiased selection:bg-primary/20`}
+      >
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );

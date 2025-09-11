@@ -1,0 +1,363 @@
+{
+  "nav": {
+    "about": "Om oss",
+    "menu": "Meny",
+    "groups": "Stora sällskap",
+    "hours": "Öppettider",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title": "The Oven",
+    "subtitle": "Äkta Napolitansk pizza i Arvika"
+  },
+  "welcome": {
+    "subheading": "Äkta Napolitansk pizza i Arvika",
+    "title": "Välkommen till The Oven",
+    "text": "I Arvika sticker vi ut. Med noggrant utvalda råvaror och pizzor gräddade i äkta vedugn märker du direkt skillnaden. För oss går fantastisk mat och service hand i hand – därför lägger vi lika mycket hjärta i köket som i serveringen. Vårt mål är att ge dig som gäst en upplevelse utöver det vanliga. Välkommen och smaklig måltid!",
+    "button": "Se meny"
+  },
+  "info": {
+    "section1": {
+      "title": "I ugnen",
+      "text": "En äkta napolitansk pizza ska enligt regler skapade av organisationen Associazione Verace Pizza Napoletano vara rund med en diameter på 30-35 centimeter, ha höga kanter och vara mjuk och elastisk.\n\nDegen bestående av vetemjöl, jäst, salt och vatten ska jäsa i olika omgångar och sedan formas platt och rund för hand, utan någon hjälp av kavel eller mekaniska pressar.\n\nPizzan ska tillagas i en vedeldad ugn."
+    },
+    "section2": {
+      "subheading": "Boka en upplevelse",
+      "title": "Stora sällskap",
+      "text": "Är ni ett sällskap på fler än 8 personer som vill besöka The Oven? För större sällskap behöver vi manuellt lägga in er bokning. Vänligen maila in er bokning till mailadressen nedan så hör vi av oss, varmt välkomna!",
+      "button": "hello@theoven.se"
+    }
+  },
+  "hours": {
+    "title": "Öppettider",
+    "monday": "Måndag",
+    "tuesday": "Tisdag",
+    "wednesday": "Onsdag",
+    "thursday": "Torsdag",
+    "friday": "Fredag",
+    "saturday": "Lördag",
+    "sunday": "Söndag",
+    "closed": "Stängt",
+    "today": "Idag",
+    "disclamer": "Öppettiderna kan variera under helger och speciella tillfällen"
+  },
+  "faq": {
+    "title": "Vanliga frågor",
+    "questions": [
+      {
+        "question": "Behöver jag boka bord i förväg?",
+        "answer": "Vi rekommenderar starkt att boka bord i förväg, särskilt på helger och kvällar. Du kan boka via telefon eller genom att skicka ett mail till oss."
+      },
+      {
+        "question": "Tar ni kontanter?",
+        "answer": "Vi är en kontantfri restaurang och tar endast betalning med kort."
+      },
+      {
+        "question": "Kan ni hantera allergier och specialkost?",
+        "answer": "Absolut! Meddela oss om eventuella allergier eller dietary restrictions när du bokar så ser vi till att du får en säker och njutbar måltid."
+      },
+        {
+          "question": "Har ni takeaway?",
+          "answer": "Vi erbjuder ingen egen takeaway, men du hittar oss på Foodora för smidig beställning och leverans."
+        },
+      {
+        "question": "Har ni alkoholtillstånd?",
+        "answer": "Ja, vi har fullständiga rättigheter för servering av alkohol."
+      }
+    ]
+  },
+  "footer": {
+    "contactTitle": "Kontakta oss och hitta hit",
+    "address": "Storgatan 123, 123 45 Stockholm",
+    "phone": "+46 8 123 456 78",
+    "email": "hello@theoven.se",
+    "followUs": "Följ oss",
+    "copyright": "© 2024 The Oven. Alla rättigheter förbehållna."
+  },
+  "bookingBtn": {
+    "buttonText": "Boka bord",
+    "buttonAriaLabel": "Boka bord"
+  },
+  "newMenuModal": {
+    "title": "Ny meny!",
+    "description": "Vi har släppt vår uppdaterade meny med nya spännande rätter och smaker.",
+    "button": "Se menyn",
+    "close": "Stäng"
+  },
+  "menu": {
+    "title": "Vår meny",
+    "subtitle": "Upptäck våra autentiska italienska rätter",
+    "categories": [
+      {
+        "name": "Förrätter",
+        "description": "Traditionella italienska förrätter för att starta måltiden",
+        "image": "/images/9.webp",
+        "items": [
+          {
+            "name": "Toast Skagen",
+            "description": "Hembakat bröd, skagenröra, handskalade räkor, stenbitsrom, röd lök, dill och citron.",
+            "price": "159"
+          },
+          {
+            "name": "Dirty Fries",
+            "description": "Pommes frites, cheddarsås med jalapeño, rödlök, knaperstekt bacon och tryffelmajonnäs.",
+            "price": "149"
+          },
+          {
+            "name": "Gambas Al Ajillo",
+            "description": "Scampiräkor frästa med vitlök, chili och olivolja. Serveras med rostat, hembakat bröd.",
+            "price": "159"
+          }
+        ]
+      },
+      {
+        "name": "Varmrätter",
+        "description": "Hemgjord pasta tillagad enligt traditionella recept",
+        "image": "/images/10.webp",
+        "items": [
+          {
+            "name": "Grillad Entrecôte 250g",
+            "description": "Serveras med rödvinssås, bearnaisesås, örtrostad färskpotatis och smörstekta primörer.",
+            "price": "399"
+          },
+          {
+            "name": "Pepparstek av Oxfilé 200g",
+            "description": "Serveras med pepparsås, örtrostad färskpotatis och smörstekta primörer.",
+            "price": "419"
+          },
+          {
+            "name": "Smörstekt Röding",
+            "description": "Serveras med sandefjordssås, dillslungad färskpotatis och smörstekta primörer.",
+            "price": "399"
+          }
+        ]
+      },
+      {
+        "name": "Enklare rätter",
+        "description": "Stenugnsbaklad pizza med italienska smaker",
+        "image": "/images/6.webp",
+        "items": [
+          {
+            "name": "Moules Frites",
+            "description": "Blåmusslor kokta i vitt vin, grädde och örter. Serveras med pommes frites, citronaioli och citron.",
+            "price": "249"
+          },
+          {
+            "name": "Caesarsallad",
+            "description": "Romansallad, rödlök, cocktailtomater, grana padano, krutonger, caesardressing, kyckling och bacon.",
+            "price": "259"
+          },
+          {
+            "name": "Oxfilépasta",
+            "description": "Rigatoni i krämig gräddsås med basilika och grana padano. Toppas med stekt oxfilé, ruccola, cocktailtomater och grana padano.",
+            "price": "269"
+          },
+          {
+            "name": "Pasta Frutti Di Mare",
+            "description": "Rigatoni i krämig hummersås med räkor, musslor, scampiräkor och krabba. Toppas med ruccola och citron.",
+            "price": "269"
+          },
+          {
+            "name": "Fish 'N' Chips",
+            "description": "Pankofriterad torsk med pommes frites, aioli, salladsmix, vinägrett och citron.",
+            "price": "279"
+          }
+        ]
+      },
+      {
+        "name": "Hamburgare",
+        "description": "Huvudrätter med kött och fisk",
+        "image": "/images/2.webp",
+        "items": [
+          {
+            "name": "Double Decker",
+            "description": "2x 120g smashed högrevsburgare med cheddarost, bacon, rökig majonnäs, krispig sallad, hembakat Potato Burger Bun, tomat, picklad rödlök och BBQ-sås. Serveras med pommes frites.",
+            "price": "269"
+          },
+          {
+            "name": "Halloumiburgare",
+            "description": "Stekt halloumi med tryffelmajonnäs, hembakat Potato Burger Bun, krispig sallad, tomat och picklad rödlök. Serveras med pommes frites.",
+            "price": "259"
+          }
+        ]
+      },
+      {
+        "name": "Napolitanska Pizzor (vedugnsbakade)",
+        "description": "Äkta napolitansk pizza bakas i vedugn enligt tradition",
+        "image": "/images/11.webp",
+        "items": [
+          {
+            "name": "Margherita",
+            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, extra jungfru olivolja, grana padano.",
+            "price": "175"
+          },
+          {
+            "name": "Vesuvio",
+            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, skinka, extra jungfru olivolja, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Capricciosa",
+            "description": "San Marzano tomatsås, färsk mozzarella, skinka, färska champinjoner, kronärtskocka, oliver, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Prosciutto & Ruccola",
+            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, prosciutto crudo, ruccola, extra jungfru olivolja, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Calabrese",
+            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, salami, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Funghi & Tartufo",
+            "description": "Färsk mozzarella, kantareller, svamp, persilja, grana padano, tryffelolja.",
+            "price": "179"
+          },
+          {
+            "name": "Pesto E Pinoli",
+            "description": "San Marzano tomatsås, färsk mozzarella, kycklingfilé, basilikapesto, pinjenötter, karamelliserade fikon, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "The Oven's Oxfilépizza",
+            "description": "San Marzano tomatsås, färsk mozzarella, oxfilé, grillad paprika, champinjoner och gorgonzola.",
+            "price": "199"
+          },
+          {
+            "name": "Bagarens Kebab",
+            "description": "San Marzano tomatsås, färsk mozzarella, gyroskebab, champinjoner och cocktailtomater.",
+            "price": "189"
+          }
+        ]
+      },
+      {
+        "name": "Dessert",
+        "description": "Traditionella italienska desserter",
+        "image": "/images/8.webp",
+        "items": [
+          {
+            "name": "Semifreddo",
+            "description": "Med rostad vit choklad och bärsås.",
+            "price": "109"
+          },
+          {
+            "name": "Crème Brûlée",
+            "description": "Serveras med färska bär och sorbet med smak av grönt äpple.",
+            "price": "109"
+          },
+          {
+            "name": "2X Tryffel",
+            "description": "Mörk chokladtryffel med smak av kaffe och cointreau. Serveras med färska bär och grädde.",
+            "price": "69"
+          },
+          {
+            "name": "Kalasglass (Endast 3–12 år)",
+            "description": "2 kulor vaniljglass, tutti frutti strössel, chokladsås, rån och vispad grädde.",
+            "price": "59"
+          }
+        ]
+      },
+      {
+        "name": "Barnmeny (Endast 3–12 år)",
+        "description": "Särskilda rätter för våra yngsta gäster",
+        "image": "/images/7.webp",
+        "items": [
+          {
+            "name": "Fish 'N' Chips",
+            "description": "Pankofriterad torsk med pommes frites, aioli, sallad och citron.",
+            "price": "149"
+          },
+          {
+            "name": "Pannkakor",
+            "description": "Serveras med grädde och sylt.",
+            "price": "119"
+          },
+          {
+            "name": "Hamburgare",
+            "description": "120g nymald högrevsburgare serveras med hembakat Potato Burger Bun, krispig sallad, pommes frites och ketchup.",
+            "price": "149"
+          },
+          {
+            "name": "Pizza Vesuvio",
+            "description": "Tomatsås, ost och skinka.",
+            "price": "149"
+          }
+        ]
+      }
+    ]
+  },
+  "bookingSection": {
+    "title": "Boka bord",
+    "largeParty": "För större sällskap behöver vi manuellt lägga in er bokning. Vänligen maila in er bokning till mailadressen nedan så hör vi av oss, varmt välkomna!",
+    "email": "hello@theoven.se"
+  },
+  "notFound": {
+    "title": "Sidan kunde inte hittas",
+    "description": "Sidan du letar efter har smitit iväg som en pizza från ugnen!",
+    "homeButton": "Gå till startsidan",
+    "menuButton": "Se meny"
+  },
+  "booking": {
+    "buttonText": "Boka bord",
+    "buttonAriaLabel": "Boka bord",
+    "nextButton": "Nästa",
+    "backButton": "Tillbaka",
+    "step1": {
+      "title": "Hur många är ni?",
+      "subtitle": "Välj antal personer"
+    },
+    "step2": {
+      "title": "Vilken dag?",
+      "subtitle": "Välj datum för din bokning"
+    },
+    "step3": {
+      "title": "Vilken tid?",
+      "noTimes": "Inga lediga tider för detta datum",
+      "bookButton": "Boka bord"
+    },
+    "step4": {
+      "title": "Dina uppgifter",
+      "subtitle": "Fyll i dina kontaktuppgifter för bokningen",
+      "firstName": "Förnamn",
+      "firstNamePlaceholder": "Förnamn",
+      "lastName": "Efternamn",
+      "lastNamePlaceholder": "Efternamn",
+      "titleLabel": "Titel",
+      "email": "E-post",
+      "emailPlaceholder": "din@email.se",
+      "phone": "Telefonnummer",
+      "phonePlaceholder": "+46 70 123 45 67",
+      "customerNote": "Meddelande till restaurangen (frivilligt)",
+      "customerNotePlaceholder": "Särskilda önskemål, allergier, etc...",
+      "newsletter": "Jag vill ta emot nyhetsbrev från restaurangen",
+      "submitButton": "Slutför bokning",
+      "submitting": "Bokar...",
+      "validation": {
+        "emailRequired": "E-post är obligatorisk",
+        "emailInvalid": "Oggiltig e-postadress",
+        "firstNameRequired": "Förnamn är obligatoriskt",
+        "lastNameRequired": "Efternamn är obligatoriskt",
+        "phoneRequired": "Telefonnummer är obligatoriskt",
+        "phoneInvalid": "Ogiltigt telefonnummer"
+      }
+    },
+    "confirmation": {
+      "success": {
+        "title": "Bokning bekräftad!",
+        "message": "Din bokning har genomförts framgångsrikt.",
+        "reservationNumber": "Bokningsnummer:",
+        "emailNotice": "Du kommer att få en bekräftelse via e-post inom kort.",
+        "closeButton": "Stäng"
+      },
+      "error": {
+        "title": "Något gick fel",
+        "message": "Vi kunde inte slutföra din bokning.",
+        "closeButton": "Stäng",
+        "tryAgainButton": "Försök igen"
+      }
+    }
+  }
+}

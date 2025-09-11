@@ -1,0 +1,363 @@
+{
+  "nav": {
+    "about": "About Us",
+    "menu": "Menu",
+    "groups": "Large Groups",
+    "hours": "Opening Hours",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "The Oven",
+    "subtitle": "Authentic Neapolitan pizza in Arvika"
+  },
+  "welcome": {
+    "subheading": "Authentic Neapolitan pizza in Arvika",
+    "title": "Welcome to The Oven",
+    "text": "In Arvika, we stand out. With carefully selected ingredients and pizzas baked in a genuine wood-fired oven, you can taste the difference right away. For us, great food and excellent service go hand in hand – that's why we put just as much heart into the kitchen as we do into the service. Our goal is to give you, as our guest, an experience beyond the ordinary. Welcome, and enjoy your meal!",
+    "button": "See menu"
+  },
+  "info": {
+    "section1": {
+      "title": "In the oven",
+      "text": "An authentic Neapolitan pizza should, according to rules created by the organization Associazione Verace Pizza Napoletano, be round with a diameter of 30-35 centimeters, have high edges and be soft and elastic.\n\nThe dough consisting of wheat flour, yeast, salt and water should rise in different stages and then be formed flat and round by hand, without any help from rolling pins or mechanical presses.\n\nThe pizza should be cooked in a wood-fired oven."
+    },
+    "section2": {
+      "subheading": "Book an experience",
+      "title": "Large groups",
+      "text": "Are you a party of more than 8 people who want to visit The Oven? For larger groups, we need to manually enter your booking. Please email your booking to the email address below and we'll get back to you, warmly welcome!",
+      "button": "hello@theoven.se"
+    }
+  },
+  "hours": {
+    "title": "Opening Hours",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "closed": "Closed",
+    "today": "Today",
+    "disclamer": "Opening hours may vary during holidays and special occasions"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "Do I need to book a table in advance?",
+        "answer": "We highly recommend booking a table in advance, especially on weekends and evenings. You can book by phone or by sending us an email."
+      },
+      {
+        "question": "Do you accept cash?",
+        "answer": "We are a cash-free restaurant and only accept card payments."
+      },
+      {
+        "question": "Can you accommodate allergies and special dietary needs?",
+        "answer": "Absolutely! Please let us know about any allergies or dietary restrictions when booking, and we'll make sure you enjoy a safe and delicious meal."
+      },
+      {
+        "question": "Do you offer takeaway?",
+        "answer": "We don't offer our own takeaway, but you can find us on Foodora for convenient ordering and delivery."
+      },
+      {
+        "question": "Do you serve alcohol?",
+        "answer": "Yes, we are fully licensed to serve alcohol."
+      }
+    ]
+  },
+  "footer": {
+    "contactTitle": "Contact us and find your way here",
+    "address": "Storgatan 123, 123 45 Stockholm",
+    "phone": "+46 8 123 456 78",
+    "email": "hello@theoven.se",
+    "followUs": "Follow us",
+    "copyright": "© 2024 The Oven. All rights reserved."
+  },
+  "bookingBtn": {
+    "buttonText": "Book Table",
+    "buttonAriaLabel": "Book table"
+  },
+  "newMenuModal": {
+    "title": "New menu!",
+    "description": "We have released our updated menu with new exciting dishes and flavors.",
+    "button": "See the menu",
+    "close": "Close"
+  },
+  "menu": {
+    "title": "Our menu",
+    "subtitle": "Discover our authentic Italian dishes",
+    "categories": [
+      {
+        "name": "Starters",
+        "description": "Traditional Italian appetizers to start your meal",
+        "image": "/images/9.webp",
+        "items": [
+          {
+            "name": "Toast Skagen",
+            "description": "Homemade bread, shrimp salad, hand-peeled shrimp, lumpfish roe, red onion, dill and lemon.",
+            "price": "159"
+          },
+          {
+            "name": "Dirty Fries",
+            "description": "French fries, cheddar sauce with jalapeño, red onion, crispy bacon and truffle mayonnaise.",
+            "price": "149"
+          },
+          {
+            "name": "Gambas Al Ajillo",
+            "description": "Scampi prawns sautéed with garlic, chili and olive oil. Served with toasted, homemade bread.",
+            "price": "159"
+          }
+        ]
+      },
+      {
+        "name": "Main Courses",
+        "description": "Homemade pasta prepared according to traditional recipes",
+        "image": "/images/10.webp",
+        "items": [
+          {
+            "name": "Grilled Entrecôte 250g",
+            "description": "Served with red wine sauce, béarnaise sauce, herb-roasted new potatoes and butter-sautéed vegetables.",
+            "price": "399"
+          },
+          {
+            "name": "Pepper Steak of Beef Tenderloin 200g",
+            "description": "Served with pepper sauce, herb-roasted new potatoes and butter-sautéed vegetables.",
+            "price": "419"
+          },
+          {
+            "name": "Butter-fried Arctic Char",
+            "description": "Served with Sandefjord sauce, dill-tossed new potatoes and butter-sautéed vegetables.",
+            "price": "399"
+          }
+        ]
+      },
+      {
+        "name": "Lighter Dishes",
+        "description": "Stone oven-baked pizza with Italian flavors",
+        "image": "/images/6.webp",
+        "items": [
+          {
+            "name": "Moules Frites",
+            "description": "Blue mussels cooked in white wine, cream and herbs. Served with french fries, lemon aioli and lemon.",
+            "price": "249"
+          },
+          {
+            "name": "Caesar Salad",
+            "description": "Romaine lettuce, red onion, cherry tomatoes, grana padano, croutons, caesar dressing, chicken and bacon.",
+            "price": "259"
+          },
+          {
+            "name": "Beef Tenderloin Pasta",
+            "description": "Rigatoni in creamy cream sauce with basil and grana padano. Topped with fried beef tenderloin, arugula, cherry tomatoes and grana padano.",
+            "price": "269"
+          },
+          {
+            "name": "Pasta Frutti Di Mare",
+            "description": "Rigatoni in creamy lobster sauce with shrimp, mussels, scampi prawns and crab. Topped with arugula and lemon.",
+            "price": "269"
+          },
+          {
+            "name": "Fish 'N' Chips",
+            "description": "Panko-fried cod with french fries, aioli, salad mix, vinaigrette and lemon.",
+            "price": "279"
+          }
+        ]
+      },
+      {
+        "name": "Burgers",
+        "description": "Main courses with meat and fish",
+        "image": "/images/2.webp",
+        "items": [
+          {
+            "name": "Double Decker",
+            "description": "2x 120g smashed beef burgers with cheddar cheese, bacon, smoky mayonnaise, crispy lettuce, homemade Potato Burger Bun, tomato, pickled red onion and BBQ sauce. Served with french fries.",
+            "price": "269"
+          },
+          {
+            "name": "Halloumi Burger",
+            "description": "Fried halloumi with truffle mayonnaise, homemade Potato Burger Bun, crispy lettuce, tomato and pickled red onion. Served with french fries.",
+            "price": "259"
+          }
+        ]
+      },
+      {
+        "name": "Neapolitan Pizzas (wood-fired)",
+        "description": "Authentic Neapolitan pizza baked in wood-fired oven according to tradition",
+        "image": "/images/11.webp",
+        "items": [
+          {
+            "name": "Margherita",
+            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, extra virgin olive oil, grana padano.",
+            "price": "175"
+          },
+          {
+            "name": "Vesuvio",
+            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, ham, extra virgin olive oil, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Capricciosa",
+            "description": "San Marzano tomato sauce, fresh mozzarella, ham, fresh mushrooms, artichoke, olives, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Prosciutto & Arugula",
+            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, prosciutto crudo, arugula, extra virgin olive oil, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Calabrese",
+            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, salami, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "Funghi & Tartufo",
+            "description": "Fresh mozzarella, chanterelles, mushrooms, parsley, grana padano, truffle oil.",
+            "price": "179"
+          },
+          {
+            "name": "Pesto E Pinoli",
+            "description": "San Marzano tomato sauce, fresh mozzarella, chicken fillet, basil pesto, pine nuts, caramelized figs, grana padano.",
+            "price": "179"
+          },
+          {
+            "name": "The Oven's Beef Tenderloin Pizza",
+            "description": "San Marzano tomato sauce, fresh mozzarella, beef tenderloin, grilled bell pepper, mushrooms and gorgonzola.",
+            "price": "199"
+          },
+          {
+            "name": "Baker's Kebab",
+            "description": "San Marzano tomato sauce, fresh mozzarella, gyros kebab, mushrooms and cherry tomatoes.",
+            "price": "189"
+          }
+        ]
+      },
+      {
+        "name": "Dessert",
+        "description": "Traditional Italian desserts",
+        "image": "/images/8.webp",
+        "items": [
+          {
+            "name": "Semifreddo",
+            "description": "With roasted white chocolate and berry sauce.",
+            "price": "109"
+          },
+          {
+            "name": "Crème Brûlée",
+            "description": "Served with fresh berries and green apple flavored sorbet.",
+            "price": "109"
+          },
+          {
+            "name": "2X Truffle",
+            "description": "Dark chocolate truffle with coffee and cointreau flavor. Served with fresh berries and cream.",
+            "price": "69"
+          },
+          {
+            "name": "Party Ice Cream (Ages 3–12 only)",
+            "description": "2 scoops vanilla ice cream, tutti frutti sprinkles, chocolate sauce, cookies and whipped cream.",
+            "price": "59"
+          }
+        ]
+      },
+      {
+        "name": "Kids Menu (Ages 3–12 only)",
+        "description": "Special dishes for our youngest guests",
+        "image": "/images/7.webp",
+        "items": [
+          {
+            "name": "Fish 'N' Chips",
+            "description": "Panko-fried cod with french fries, aioli, salad and lemon.",
+            "price": "149"
+          },
+          {
+            "name": "Pancakes",
+            "description": "Served with cream and jam.",
+            "price": "119"
+          },
+          {
+            "name": "Burger",
+            "description": "120g freshly ground beef burger served with homemade Potato Burger Bun, crispy lettuce, french fries and ketchup.",
+            "price": "149"
+          },
+          {
+            "name": "Pizza Vesuvio",
+            "description": "Tomato sauce, cheese and ham.",
+            "price": "149"
+          }
+        ]
+      }
+    ]
+  },
+  "bookingSection": {
+    "title": "Book a table",
+    "largeParty": "For larger groups, we need to manually enter your booking. Please email your booking to the email address below and we'll get back to you, warmly welcome!",
+    "email": "hello@theoven.se"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for has disappeared like a pizza from the oven!",
+    "homeButton": "Go to Homepage",
+    "menuButton": "View Menu"
+  },
+  "booking": {
+    "buttonText": "Book Table",
+    "buttonAriaLabel": "Book table",
+    "nextButton": "Next",
+    "backButton": "Back",
+    "step1": {
+      "title": "How many are you?",
+      "subtitle": "Select number of guests"
+    },
+    "step2": {
+      "title": "Which day?",
+      "subtitle": "Choose date for your booking"
+    },
+    "step3": {
+      "title": "What time?",
+      "noTimes": "No available times for this date",
+      "bookButton": "Book Table"
+    },
+    "step4": {
+      "title": "Your Details",
+      "subtitle": "Fill in your contact information for the booking",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "First Name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Last Name",
+      "titleLabel": "Title",
+      "email": "Email",
+      "emailPlaceholder": "your@email.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+46 70 123 45 67",
+      "customerNote": "Message to restaurant (optional)",
+      "customerNotePlaceholder": "Special requests, allergies, etc...",
+      "newsletter": "I want to receive newsletters from the restaurant",
+      "submitButton": "Complete Booking",
+      "submitting": "Booking...",
+      "validation": {
+        "emailRequired": "Email is required",
+        "emailInvalid": "Invalid email address",
+        "firstNameRequired": "First name is required",
+        "lastNameRequired": "Last name is required",
+        "phoneRequired": "Phone number is required",
+        "phoneInvalid": "Invalid phone number"
+      }
+    },
+    "confirmation": {
+      "success": {
+        "title": "Booking Confirmed!",
+        "message": "Your booking has been completed successfully.",
+        "reservationNumber": "Reservation number:",
+        "emailNotice": "You will receive a confirmation email shortly.",
+        "closeButton": "Close"
+      },
+      "error": {
+        "title": "Something went wrong",
+        "message": "We could not complete your booking.",
+        "closeButton": "Close",
+        "tryAgainButton": "Try Again"
+      }
+    }
+  }
+}

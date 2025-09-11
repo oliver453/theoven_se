@@ -1,23 +1,18 @@
+import { Roboto_Slab } from "next/font/google";
 import localFont from "next/font/local";
 
-export const Copernicus = localFont({
-  src: [
-    {
-      path: "./copernicus.p.woff2",
-      weight: "200",
-      style: "normal",
-    },
-  ],
-  variable: "--font-copernicus",
+// Google Font
+export const robotoSlab = Roboto_Slab({
+  subsets: ["latin"],
+  variable: "--font-roboto-slab",
+  weight: ["400", "700"],
+  display: "swap",
 });
 
-export const Styrne = localFont({
-  src: [
-    {
-      path: "./styrne.p.woff2",
-      weight: "400",
-      style: "normal",
-    },
-  ],
-  variable: "--font-styrne",
+export const rusticPrinted = localFont({
+  src: "./rustic-printed.woff2",
+  variable: "--font-rustic",
+  display: "swap",
+  preload: true,
+  fallback: ["Georgia", "serif"],
 });

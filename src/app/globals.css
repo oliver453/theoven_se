@@ -2,93 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --font-heading: var(--font-copernicus);
-
-  /* Konverterade från hex till HSL */
-  --background: 60 33.3% 97.6%; /* #FAF9F5 */
-  --foreground: 60 3% 8%; /* #262624 */
-  --accent: 15 63.1% 59.6%; /* #D97757 */
-  --dark: 60 2.2% 7.8%; /* #141413 */
-  --cream: 48 33.3% 91.4%; /* #f0eee6 */
-  --beige: 34 26.5% 84.3%; /* #e3dacc */
-  --sage: 160 16.7% 78.8%; /* #bcd1ca */
-  --lavender: 245 20.8% 82.7%; /* #cbcadb */
-  --coral: 15 63.1% 59.6%; /* #d97757 */
-  --charcoal: 60 1.9% 15.1%; /* #262624 */
-
-  /* Dina HSL-färger */
-  --accent-brand: 15 63.1% 59.6%;
-  --accent-main-000: 15 55.6% 55.6%;
-  --accent-main-100: 15 63.1% 59.6%;
-  --accent-main-200: 15 63.1% 59.6%;
-  --accent-main-900: 0 0% 0%;
-  --accent-pro-000: 251 84.6% 74.5%;
-  --accent-pro-100: 251 40.2% 54.1%;
-  --accent-pro-200: 251 40% 45.1%;
-  --accent-pro-900: 250 25.3% 19.4%;
-  --accent-secondary-000: 210 71.1% 62%;
-  --accent-secondary-100: 210 70.9% 51.6%;
-  --accent-secondary-200: 210 70.9% 51.6%;
-  --accent-secondary-900: 210 55.9% 24.6%;
-  --bg-000: 60 2.1% 18.4%;
-  --bg-100: 60 2.7% 14.5%;
-  --bg-200: 53 29% 95%;
-  --bg-300: 60 2.6% 7.6%;
-  --bg-400: 60 3.4% 5.7%;
-  --bg-500: 60 3.4% 5.7%;
-  --border-100: 51 16.5% 84.5%;
-  --border-200: 51 16.5% 84.5%;
-  --border-300: 51 16.5% 84.5%;
-  --border-400: 51 16.5% 84.5%;
-  --danger-000: 0 73.1% 66.5%;
-  --danger-100: 0 58.6% 34.1%;
-  --danger-200: 0 58.6% 34.1%;
-  --danger-900: 0 23% 15.6%;
-  --oncolor-100: 0 0% 100%;
-  --oncolor-200: 60 6.7% 97.1%;
-  --oncolor-300: 60 6.7% 97.1%;
-  --text-000: 48 33.3% 97.1%;
-  --text-100: 48 33.3% 97.1%;
-  --text-200: 50 9% 73.7%;
-  --text-300: 50 9% 73.7%;
-  --text-400: 48 4.8% 59.2%;
-  --text-500: 48 4.8% 59.2%;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: 60 1.9% 15.1%;
-    --foreground: 60 33.3% 97.6%;
-    --bg-200: 30 3.3% 11.8%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
-body {
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-family: var(--font-styrne), system-ui, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-.search-input {
-  transition: all 0.3s ease;
+html {
+  scroll-behavior: smooth;
 }
 
-.search-input:focus {
-  box-shadow: 0 0 0 3px rgba(196, 144, 209, 0.1);
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.category-card {
-  transition: all 0.3s ease;
+@media (max-width: 768px) {
+  .parallax {
+    background-attachment: scroll;
+  }
 }
 
-.category-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+.content-box {
+  @apply rounded-none bg-black p-8 py-12 shadow-lg backdrop-blur-sm;
 }
-.line-clamp-2 {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

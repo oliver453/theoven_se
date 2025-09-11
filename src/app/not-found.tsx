@@ -1,50 +1,74 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { FaHome, FaPizzaSlice, FaUtensils } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+import Header from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function NotFound() {
   const router = useRouter();
+  const { t, language } = useLanguage();
+
+  // Funktion för att skapa språkmedvetna länkar
+  const createLink = (path: string) => {
+    if (language === "en") {
+      if (path === "/") return "/en";
+      return `/en${path}`;
+    }
+    return path;
+  };
+
+  const handleGoHome = () => {
+    router.push(createLink("/"));
+  };
+
+  const handleGoToMenu = () => {
+    router.push(createLink("/meny"));
+  };
 
   return (
-    <main
-      className="z-20 mx-auto mb-16 max-w-lg items-center justify-center p-4 text-center"
-      role="main"
-    >
-      <div aria-live="polite">
-        <h1
-          className="relative animate-fade-up text-center font-display text-6xl font-bold tracking-[-0.02em] opacity-0 drop-shadow-sm [text-wrap:balance] md:text-7xl md:leading-[5rem]"
-          style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
-          aria-label="Fel 404 - sidan hittades inte"
-        >
-          <span className="bg-gradient-to-br from-black to-stone-500 bg-clip-text text-transparent dark:from-white dark:to-gray-400">
+    <>
+      <Header />
+      <main className="min-h-screen bg-black flex items-center justify-center px-4">
+        <div className="text-center space-y-8 max-w-md mx-auto">
+          <h1 className="text-white text-8xl md:text-9xl font-rustic tracking-tight">
             404
-          </span>
-          <div
-            className="absolute -inset-1 -z-10 bg-gradient-to-r from-sage/20 via-transparent to-coral/20 opacity-50 blur-3xl"
-            aria-hidden="true"
-          ></div>
-        </h1>
+          </h1>
+          
+          <div className="space-y-4">
+            <h2 className="text-white text-2xl font-light">
+              {t.notFound?.title || "Sidan kunde inte hittas"}
+            </h2>
+            <p className="text-gray-400 text-lg">
+              {t.notFound?.description || "Sidan du letar efter har smitit iväg som en pizza från ugnen!"}{" "}
+              <FaPizzaSlice className="inline" />
+            </p>
+          </div>
 
-        <h2 className="font-heading my-2 text-2xl font-bold">
-          Sidan på rymmen!
-        </h2>
-
-        <p className="mb-4">
-          Sidan du letar efter har smitit iväg som en kaka från kakburken. Testa
-          startsidan istället!
-        </p>
-      </div>
-
-      <div className="mt-8 flex justify-center gap-2">
-        <button
-          onClick={() => router.push("/")}
-          className="rounded-md border border-foreground bg-foreground px-4 py-1.5 text-sm text-background transition-colors hover:bg-background hover:text-foreground focus:outline-none focus:ring-2 focus:ring-foreground focus:ring-offset-2 focus:ring-offset-background"
-          aria-label="Gå tillbaka till startsidan"
-          type="button"
-        >
-          Gå hem
-        </button>
-      </div>
-    </main>
+          <div className="flex flex-col sm:flex-row justify-center gap-3">
+            <Button
+              onClick={handleGoHome}
+              variant="default"
+              size="lg"
+              className="bg-white hover:bg-gray-100 font-rustic uppercase text-black flex items-center justify-center"
+            >
+              {t.notFound?.homeButton || "Gå till startsidan"}
+            </Button>
+            
+            <Button
+              onClick={handleGoToMenu}
+              variant="outline"
+              size="lg"
+              className="border-white text-white font-rustic uppercase hover:bg-white hover:text-black flex items-center justify-center"
+            >
+              {t.notFound?.menuButton || "Se meny"}
+            </Button>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }
