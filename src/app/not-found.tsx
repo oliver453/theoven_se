@@ -3,8 +3,7 @@
 import { useRouter } from "next/navigation";
 import { FaHome, FaPizzaSlice, FaUtensils } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-import Header from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { Header, Footer } from "@/components/layout";
 import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function NotFound() {

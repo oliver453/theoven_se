@@ -2,8 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Header from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { Header, Footer } from "@/components/layout";;
 import { useLanguage } from "../../../contexts/LanguageContext";
 import SocialSidebar from "@/components/layout/SocialSidebar";
 import { BookingButton } from "@/components/booking";
