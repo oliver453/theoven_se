@@ -44,7 +44,7 @@ export function WelcomeSection() {
             <h4 className="hidden font-rustic uppercase tracking-wider lg:block">
               {t.welcome.subheading}
             </h4>
-            <h1 className="font-rustic text-2xl uppercase md:text-xl lg:text-3xl">
+            <h1 className="mb-4 font-rustic text-3xl uppercase text-white">
               {t.welcome.title}
             </h1>
             <p className="text-md mx-auto max-w-lg leading-relaxed text-white/80 lg:mx-0">

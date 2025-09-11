@@ -25,23 +25,18 @@ const translations = {
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("sv");
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
-  // Lyssna på pathname ändringar och uppdatera språk
+  // Initial språkinställning - kör bara en gång
   useEffect(() => {
-    const newLang = pathname.startsWith("/en") ? "en" : "sv";
-    if (newLang !== language) {
-      setLanguage(newLang);
-    }
-  }, [pathname, language]);
-
-  // Initial språkinställning
-  useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && !isInitialized) {
       const savedLang = localStorage.getItem("lang");
       let initialLang: Language = "sv";
 
+      // Bestäm språk baserat på URL först
       if (pathname.startsWith("/en")) {
         initialLang = "en";
       } else if (savedLang && (savedLang === "sv" || savedLang === "en")) {
@@ -50,14 +45,35 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         initialLang = "en";
       }
 
-      // Endast redirect om vi är på root och språket är engelska
+      // Om vi är på root och ska ha engelska, markera för redirect
       if (pathname === "/" && initialLang === "en") {
-        router.replace("/en");
-      } else if (initialLang !== language) {
+        setShouldRedirect(true);
+        setLanguage("en");
+      } else {
         setLanguage(initialLang);
       }
+      
+      setIsInitialized(true);
     }
-  }, []); // Kör bara en gång vid mount
+  }, [pathname, isInitialized]);
+
+  // Hantera redirect efter att state är satt
+  useEffect(() => {
+    if (shouldRedirect && isInitialized) {
+      router.replace("/en");
+      setShouldRedirect(false);
+    }
+  }, [shouldRedirect, isInitialized, router]);
+
+  // Lyssna på pathname ändringar för navigation
+  useEffect(() => {
+    if (isInitialized && !shouldRedirect) {
+      const newLang = pathname.startsWith("/en") ? "en" : "sv";
+      if (newLang !== language) {
+        setLanguage(newLang);
+      }
+    }
+  }, [pathname, language, isInitialized, shouldRedirect]);
 
   const handleLanguageChange = (newLang: Language) => {
     if (newLang === language) return;
@@ -73,7 +89,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
     const finalPath = newLang === "sv" ? newPath : `/en${newPath}`;
     
-    // Navigera till ny path (detta kommer trigga useEffect ovan)
+    // Navigera till ny path
     router.push(finalPath);
   };
 
@@ -82,6 +98,15 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setLanguage: handleLanguageChange,
     t: translations[language],
   };
+
+  // Visa loading eller null medan vi initialiserar för att förhindra flash
+  if (!isInitialized || shouldRedirect) {
+    return (
+      <div style={{ opacity: 0, position: "absolute" }}>
+        {children}
+      </div>
+    );
+  }
 
   return (
     <LanguageContext.Provider value={value}>
