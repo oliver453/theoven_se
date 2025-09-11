@@ -12,6 +12,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: Translations;
+  isInitialized: boolean; // Lägg till denna så komponenter kan vänta
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -26,7 +27,7 @@ const translations = {
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>("sv");
   const [isInitialized, setIsInitialized] = useState(false);
-  const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -39,48 +40,61 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       // Bestäm språk baserat på URL först
       if (pathname.startsWith("/en")) {
         initialLang = "en";
+        setLanguage("en");
+        setIsInitialized(true);
       } else if (savedLang && (savedLang === "sv" || savedLang === "en")) {
         initialLang = savedLang as Language;
+        
+        // Om vi är på root och har sparat engelska, redirecta
+        if (pathname === "/" && initialLang === "en") {
+          setIsRedirecting(true);
+          setLanguage("en");
+          router.replace("/en");
+        } else {
+          setLanguage(initialLang);
+          setIsInitialized(true);
+        }
       } else if (navigator.language && navigator.language.startsWith("en")) {
-        initialLang = "en";
-      }
-
-      // Om vi är på root och ska ha engelska, markera för redirect
-      if (pathname === "/" && initialLang === "en") {
-        setShouldRedirect(true);
-        setLanguage("en");
+        // Browser language är engelska och vi är på root
+        if (pathname === "/") {
+          setIsRedirecting(true);
+          setLanguage("en");
+          router.replace("/en");
+        } else {
+          setLanguage("en");
+          setIsInitialized(true);
+        }
       } else {
-        setLanguage(initialLang);
+        setLanguage("sv");
+        setIsInitialized(true);
       }
-      
+    }
+  }, [pathname, isInitialized, router]);
+
+  // Hantera när redirect är klar
+  useEffect(() => {
+    if (isRedirecting && pathname.startsWith("/en")) {
+      setIsRedirecting(false);
       setIsInitialized(true);
     }
-  }, [pathname, isInitialized]);
-
-  // Hantera redirect efter att state är satt
-  useEffect(() => {
-    if (shouldRedirect && isInitialized) {
-      router.replace("/en");
-      setShouldRedirect(false);
-    }
-  }, [shouldRedirect, isInitialized, router]);
+  }, [pathname, isRedirecting]);
 
   // Lyssna på pathname ändringar för navigation
   useEffect(() => {
-    if (isInitialized && !shouldRedirect) {
+    if (isInitialized && !isRedirecting) {
       const newLang = pathname.startsWith("/en") ? "en" : "sv";
       if (newLang !== language) {
         setLanguage(newLang);
       }
     }
-  }, [pathname, language, isInitialized, shouldRedirect]);
+  }, [pathname, language, isInitialized, isRedirecting]);
 
   const handleLanguageChange = (newLang: Language) => {
     if (newLang === language) return;
 
     // Spara i localStorage
     localStorage.setItem("lang", newLang);
-    
+
     // Beräkna ny path
     let newPath = pathname;
     if (pathname.startsWith("/en") || pathname.startsWith("/sv")) {
@@ -88,7 +102,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
 
     const finalPath = newLang === "sv" ? newPath : `/en${newPath}`;
-    
+
     // Navigera till ny path
     router.push(finalPath);
   };
@@ -97,20 +111,20 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     language,
     setLanguage: handleLanguageChange,
     t: translations[language],
+    isInitialized,
   };
 
-  // Visa loading eller null medan vi initialiserar för att förhindra flash
-  if (!isInitialized || shouldRedirect) {
-    return (
-      <div style={{ opacity: 0, position: "absolute" }}>
-        {children}
-      </div>
-    );
-  }
-
+  // Tillhandahåll alltid context, men med en loading-indikator
   return (
     <LanguageContext.Provider value={value}>
-      {children}
+      {isInitialized ? children : (
+        <div className="min-h-screen bg-black">
+          {/* Minimal loading state som matchar din design */}
+          <div className="flex items-center justify-center min-h-screen">
+            <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+          </div>
+        </div>
+      )}
     </LanguageContext.Provider>
   );
 }

@@ -9,8 +9,13 @@ import { useLanguage } from "../../../contexts/LanguageContext";
 
 export default function Header() {
   const scrolled = useScroll(50);
-  const { t, language } = useLanguage();
+  const { t, language, isInitialized } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Visa inte headern förrän språket är initialiserat
+  if (!isInitialized) {
+    return null; // eller en enkel placeholder
+  }
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

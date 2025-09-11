@@ -7,7 +7,7 @@ import { FAQSection } from "@/components/sections/FAQSection";
 import Footer from "@/components/layout/Footer";
 import SocialSidebar from "@/components/layout/SocialSidebar";
 import { BookingButton } from "@/components/booking";
-import { NewMenuModal } from "@/components/NewMenuModal";
+// import { NewMenuModal } from "@/components/NewMenuModal";
 
 export default function HomePage() {
   return (
@@ -21,7 +21,6 @@ export default function HomePage() {
       <Footer />
       <BookingButton />
       <SocialSidebar />
-      <NewMenuModal />
     </main>
   );
 }

@@ -5,7 +5,6 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { fetchAvailabilities } from "../../utils/theForkApi";
 import {
   formatDateForAPI,
-  getMonthName,
   getDaysInMonth,
 } from "../../utils/dateHelpers";
 import { useLanguage } from "../../../contexts/LanguageContext";
@@ -36,6 +35,23 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
     ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     : ["Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"];
 
+  // Get month name based on selected language
+  const getMonthName = (date: Date): string => {
+    const locale = language === "en" ? "en-US" : "sv-SE";
+    return date.toLocaleDateString(locale, { 
+      month: "long", 
+      year: "numeric" 
+    });
+  };
+
+  // Helper function to create timezone-safe date strings
+  const createDateString = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const loadAvailabilities = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -60,14 +76,14 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
   }, [loadAvailabilities]);
 
   const isDateAvailable = (date: Date): boolean => {
-    const dateStr = formatDateForAPI(date);
+    const dateStr = createDateString(date);
     return availabilities.some(
       (avail) => avail.date === dateStr && avail.hasNormalStock,
     );
   };
 
   const isDateSelected = (date: Date): boolean => {
-    return formatDateForAPI(date) === selectedDate;
+    return createDateString(date) === selectedDate;
   };
 
   const navigateMonth = (direction: "prev" | "next") => {
@@ -81,8 +97,10 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
   };
 
   const handleDateClick = (date: Date) => {
-    if (isDateAvailable(date) && date >= new Date()) {
-      onDateSelect(formatDateForAPI(date));
+    const dateStr = createDateString(date);
+    
+    if (isDateAvailable(date)) {
+      onDateSelect(dateStr);
     }
   };
 
@@ -90,7 +108,10 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
     currentMonth.getFullYear(),
     currentMonth.getMonth(),
   );
+  
+  // Skapa dagens datum utan tid för korrekt jämförelse
   const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   return (
     <div className="space-y-6">
@@ -107,70 +128,83 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigateMonth("prev")}
-          className="p-2 text-gray-400 transition-colors hover:text-white"
+          className="p-2 text-gray-400 transition-colors hover:text-white disabled:opacity-50"
           disabled={isLoading}
         >
           <FaChevronLeft className="h-4 w-4" />
         </button>
 
         <h4 className="font-medium capitalize text-white">
-          {/* FIX: Ändra från getMonthName(currentMonth, language) till bara getMonthName(currentMonth) */}
           {getMonthName(currentMonth)}
         </h4>
 
         <button
           onClick={() => navigateMonth("next")}
-          className="p-2 text-gray-400 transition-colors hover:text-white"
+          className="p-2 text-gray-400 transition-colors hover:text-white disabled:opacity-50"
           disabled={isLoading}
         >
           <FaChevronRight className="h-4 w-4" />
         </button>
       </div>
 
-      {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-1">
-        {/* Weekday headers */}
-        {weekdays.map((day) => (
-          <div
-            key={day}
-            className="py-2 text-center text-xs font-medium text-gray-400"
-          >
-            {day}
+      {/* Calendar Grid with loading overlay */}
+      <div className="relative">
+        <div className={`transition-opacity duration-300 ${isLoading ? 'opacity-30' : 'opacity-100'}`}>
+          <div className="grid grid-cols-7 gap-1">
+            {/* Weekday headers */}
+            {weekdays.map((day) => (
+              <div
+                key={day}
+                className="py-2 text-center text-xs font-medium text-gray-400"
+              >
+                {day}
+              </div>
+            ))}
+
+            {/* Empty cells for days before month start */}
+            {Array.from({ length: (daysInMonth[0].getDay() + 6) % 7 }, (_, i) => (
+              <div key={`empty-${i}`} />
+            ))}
+
+            {/* Calendar days */}
+            {daysInMonth.map((date) => {
+              const available = isDateAvailable(date);
+              const selected = isDateSelected(date);
+              
+              // Korrekt jämförelse för att tillåta dagens datum
+              const dateWithoutTime = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+              const isPast = dateWithoutTime < today;
+              const canSelect = available && !isPast;
+
+              return (
+                <button
+                  key={date.toISOString()}
+                  onClick={() => handleDateClick(date)}
+                  disabled={!canSelect || isLoading}
+                  className={`
+                    aspect-square rounded text-sm font-medium transition-all duration-200
+                    ${
+                      selected
+                        ? "bg-white text-black"
+                        : canSelect
+                        ? "border border-gray-600 bg-gray-800 text-white hover:bg-gray-700"
+                        : "cursor-not-allowed text-gray-500 opacity-50"
+                    }
+                  `}
+                >
+                  {date.getDate()}
+                </button>
+              );
+            })}
           </div>
-        ))}
+        </div>
 
-        {/* Empty cells for days before month start */}
-        {Array.from({ length: (daysInMonth[0].getDay() + 6) % 7 }, (_, i) => (
-          <div key={`empty-${i}`} />
-        ))}
-
-        {/* Calendar days */}
-        {daysInMonth.map((date) => {
-          const available = isDateAvailable(date);
-          const selected = isDateSelected(date);
-          const isPast = date < today;
-          const canSelect = available && !isPast;
-
-          return (
-            <button
-              key={date.toISOString()}
-              onClick={() => handleDateClick(date)}
-              disabled={!canSelect}
-              className={`
-                aspect-square rounded text-sm font-medium transition-all duration-200
-                ${
-                  selected
-                    ? "bg-white text-black"
-                    : canSelect
-                    ? "border border-gray-600 bg-gray-800 text-white hover:bg-gray-700"
-                    : "cursor-not-allowed text-gray-500 opacity-50"
-                }
-              `}
-            >
-              {date.getDate()}
-            </button>
-          );
-        })}
+        {/* Loading overlay */}
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="h-6 w-6 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
+          </div>
+        )}
       </div>
 
       <div className="flex space-x-3">
