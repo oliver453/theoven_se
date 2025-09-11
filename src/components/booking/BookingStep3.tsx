@@ -48,18 +48,27 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
     }
   }, [selectedDate, loadTimeslots]);
 
-  // Check if content is scrollable
+  // Lyssna på scrollposition och visa/dölj pilen
   useEffect(() => {
-    const checkScrollable = () => {
-      if (scrollContainerRef.current) {
-        const { scrollHeight, clientHeight } = scrollContainerRef.current;
-        setShowScrollIndicator(scrollHeight > clientHeight);
-      }
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 5;
+      setShowScrollIndicator(!isAtBottom && scrollHeight > clientHeight);
     };
 
-    checkScrollable();
-    window.addEventListener('resize', checkScrollable);
-    return () => window.removeEventListener('resize', checkScrollable);
+    // Kör en gång direkt
+    handleScroll();
+
+    scrollContainer.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [timeslots]);
 
   // Time period names based on language
@@ -133,9 +142,9 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
           <>
             {/* Background gradient for scroll area */}
             <div className="absolute inset-0 bg-gradient-to-b from-gray-900/10 via-transparent to-gray-900/30 rounded-xl pointer-events-none" />
-            
+
             {/* Scrollable content - increased height */}
-            <div 
+            <div
               ref={scrollContainerRef}
               className="relative max-h-96 overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-600 hover:scrollbar-thumb-gray-500"
             >
@@ -168,12 +177,16 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
               </div>
             </div>
 
-            {/* Scroll indicator at bottom with FontAwesome icon */}
-            {showScrollIndicator && (
-              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/60 to-transparent pointer-events-none flex items-end justify-center pb-2">
-                <FaChevronDown className="text-gray-400 animate-bounce" size={14} />
-              </div>
-            )}
+            {/* Scroll indicator at bottom with smooth transition */}
+            <div
+              className={`absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-2 transform transition-all duration-500 ${
+                showScrollIndicator
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-2 pointer-events-none"
+              }`}
+            >
+              <FaChevronDown className="text-gray-400 animate-bounce" size={14} />
+            </div>
           </>
         )}
       </div>

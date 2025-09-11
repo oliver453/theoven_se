@@ -108,7 +108,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[80] bg-black opacity-50"
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 z-[80]"
         onClick={handleClose}
       />
 

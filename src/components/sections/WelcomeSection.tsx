@@ -70,7 +70,6 @@ export function WelcomeSection() {
     {t.welcome.button}
   </Button>
 </Link>
-
           </div>
         </div>
       </div>

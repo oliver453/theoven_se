@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useLanguage } from "../../../contexts/LanguageContext";
+import { motion } from "framer-motion";
 
 const openingHours = {
   monday: "closed",
@@ -41,14 +42,20 @@ export function HoursSection() {
   ] as const;
 
   return (
-    <section 
-      id="business-hours" 
+    <section
+      id="business-hours"
       className="parallax flex h-screen items-center justify-center"
       style={{
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url(/images/1.webp)`,
       }}
     >
-      <div className="content-box bg-white/95 backdrop-blur-sm max-w-lg text-center px-6 w-full mx-4 md:mx-auto lg:mr-24">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="content-box bg-white/95 backdrop-blur-sm max-w-lg text-center px-6 w-full mx-4 md:mx-auto lg:mr-24"
+      >
         <h2 className="mb-8 text-center font-rustic text-4xl uppercase text-white">
           {t.hours.title}
         </h2>
@@ -87,7 +94,7 @@ export function HoursSection() {
         <p className="mt-6 text-center text-sm text-white/80 font-roboto">
           {t.hours.disclamer}
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 }
