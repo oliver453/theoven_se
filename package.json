@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:case": "find src -name '*.tsx' -o -name '*.ts' | xargs grep -l 'import.*[./]' | head -20",
+    "check:imports": "grep -r 'from [\"\\']\\.' src/ --include='*.tsx' --include='*.ts' || echo 'No relative imports found'",
+    "check:case": "find src -name '*.tsx' -o -name '*.ts' -exec basename {} \\; | sort | uniq -d",
+    "vercel-build": "npm run build",
+    "prebuild": "echo 'Starting build process...' && npm run check:imports"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.1.2",
@@ -33,5 +38,9 @@
     "postcss": "^8.0.0",
     "tailwindcss": "^3.0.0",
     "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
