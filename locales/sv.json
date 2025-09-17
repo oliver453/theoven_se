@@ -58,7 +58,7 @@
       },
         {
           "question": "Har ni takeaway?",
-          "answer": "Vi erbjuder ingen egen takeaway, men du hittar oss på Foodora för smidig beställning och leverans."
+          "answer": "Du kan beställa takeaway direkt hos oss för avhämtning. Vill du hellre få maten levererad hem till dörren går det enkelt och smidigt via Foodora, där du hittar hela vår meny."
         },
       {
         "question": "Har ni alkoholtillstånd?",
@@ -84,209 +84,214 @@
     "button": "Se menyn",
     "close": "Stäng"
   },
-  "menu": {
-    "title": "Vår meny",
-    "subtitle": "Upptäck våra autentiska italienska rätter",
-    "categories": [
-      {
-        "name": "Förrätter",
-        "description": "Traditionella italienska förrätter för att starta måltiden",
-        "image": "/images/9.webp",
-        "items": [
-          {
-            "name": "Toast Skagen",
-            "description": "Hembakat bröd, skagenröra, handskalade räkor, stenbitsrom, röd lök, dill och citron.",
-            "price": "159"
-          },
-          {
-            "name": "Dirty Fries",
-            "description": "Pommes frites, cheddarsås med jalapeño, rödlök, knaperstekt bacon och tryffelmajonnäs.",
-            "price": "149"
-          },
-          {
-            "name": "Gambas Al Ajillo",
-            "description": "Scampiräkor frästa med vitlök, chili och olivolja. Serveras med rostat, hembakat bröd.",
-            "price": "159"
-          }
-        ]
-      },
-      {
-        "name": "Varmrätter",
-        "description": "Hemgjord pasta tillagad enligt traditionella recept",
-        "image": "/images/10.webp",
-        "items": [
-          {
-            "name": "Grillad Entrecôte 250g",
-            "description": "Serveras med rödvinssås, bearnaisesås, örtrostad färskpotatis och smörstekta primörer.",
-            "price": "399"
-          },
-          {
-            "name": "Pepparstek av Oxfilé 200g",
-            "description": "Serveras med pepparsås, örtrostad färskpotatis och smörstekta primörer.",
-            "price": "419"
-          },
-          {
-            "name": "Smörstekt Röding",
-            "description": "Serveras med sandefjordssås, dillslungad färskpotatis och smörstekta primörer.",
-            "price": "399"
-          }
-        ]
-      },
-      {
-        "name": "Enklare rätter",
-        "description": "Stenugnsbaklad pizza med italienska smaker",
-        "image": "/images/6.webp",
-        "items": [
-          {
-            "name": "Moules Frites",
-            "description": "Blåmusslor kokta i vitt vin, grädde och örter. Serveras med pommes frites, citronaioli och citron.",
-            "price": "249"
-          },
-          {
-            "name": "Caesarsallad",
-            "description": "Romansallad, rödlök, cocktailtomater, grana padano, krutonger, caesardressing, kyckling och bacon.",
-            "price": "259"
-          },
-          {
-            "name": "Oxfilépasta",
-            "description": "Rigatoni i krämig gräddsås med basilika och grana padano. Toppas med stekt oxfilé, ruccola, cocktailtomater och grana padano.",
-            "price": "269"
-          },
-          {
-            "name": "Pasta Frutti Di Mare",
-            "description": "Rigatoni i krämig hummersås med räkor, musslor, scampiräkor och krabba. Toppas med ruccola och citron.",
-            "price": "269"
-          },
-          {
-            "name": "Fish 'N' Chips",
-            "description": "Pankofriterad torsk med pommes frites, aioli, salladsmix, vinägrett och citron.",
-            "price": "279"
-          }
-        ]
-      },
-      {
-        "name": "Hamburgare",
-        "description": "Huvudrätter med kött och fisk",
-        "image": "/images/2.webp",
-        "items": [
-          {
-            "name": "Double Decker",
-            "description": "2x 120g smashed högrevsburgare med cheddarost, bacon, rökig majonnäs, krispig sallad, hembakat Potato Burger Bun, tomat, picklad rödlök och BBQ-sås. Serveras med pommes frites.",
-            "price": "269"
-          },
-          {
-            "name": "Halloumiburgare",
-            "description": "Stekt halloumi med tryffelmajonnäs, hembakat Potato Burger Bun, krispig sallad, tomat och picklad rödlök. Serveras med pommes frites.",
-            "price": "259"
-          }
-        ]
-      },
-      {
-        "name": "Napolitanska Pizzor (vedugnsbakade)",
-        "description": "Äkta napolitansk pizza bakas i vedugn enligt tradition",
-        "image": "/images/11.webp",
-        "items": [
-          {
-            "name": "Margherita",
-            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, extra jungfru olivolja, grana padano.",
-            "price": "175"
-          },
-          {
-            "name": "Vesuvio",
-            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, skinka, extra jungfru olivolja, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Capricciosa",
-            "description": "San Marzano tomatsås, färsk mozzarella, skinka, färska champinjoner, kronärtskocka, oliver, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Prosciutto & Ruccola",
-            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, prosciutto crudo, ruccola, extra jungfru olivolja, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Calabrese",
-            "description": "San Marzano tomatsås, färsk mozzarella, färsk basilika, salami, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Funghi & Tartufo",
-            "description": "Färsk mozzarella, kantareller, svamp, persilja, grana padano, tryffelolja.",
-            "price": "179"
-          },
-          {
-            "name": "Pesto E Pinoli",
-            "description": "San Marzano tomatsås, färsk mozzarella, kycklingfilé, basilikapesto, pinjenötter, karamelliserade fikon, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "The Oven's Oxfilépizza",
-            "description": "San Marzano tomatsås, färsk mozzarella, oxfilé, grillad paprika, champinjoner och gorgonzola.",
-            "price": "199"
-          },
-          {
-            "name": "Bagarens Kebab",
-            "description": "San Marzano tomatsås, färsk mozzarella, gyroskebab, champinjoner och cocktailtomater.",
-            "price": "189"
-          }
-        ]
-      },
-      {
-        "name": "Dessert",
-        "description": "Traditionella italienska desserter",
-        "image": "/images/8.webp",
-        "items": [
-          {
-            "name": "Semifreddo",
-            "description": "Med rostad vit choklad och bärsås.",
-            "price": "109"
-          },
-          {
-            "name": "Crème Brûlée",
-            "description": "Serveras med färska bär och sorbet med smak av grönt äpple.",
-            "price": "109"
-          },
-          {
-            "name": "2X Tryffel",
-            "description": "Mörk chokladtryffel med smak av kaffe och cointreau. Serveras med färska bär och grädde.",
-            "price": "69"
-          },
-          {
-            "name": "Kalasglass (Endast 3–12 år)",
-            "description": "2 kulor vaniljglass, tutti frutti strössel, chokladsås, rån och vispad grädde.",
-            "price": "59"
-          }
-        ]
-      },
-      {
-        "name": "Barnmeny (Endast 3–12 år)",
-        "description": "Särskilda rätter för våra yngsta gäster",
-        "image": "/images/7.webp",
-        "items": [
-          {
-            "name": "Fish 'N' Chips",
-            "description": "Pankofriterad torsk med pommes frites, aioli, sallad och citron.",
-            "price": "149"
-          },
-          {
-            "name": "Pannkakor",
-            "description": "Serveras med grädde och sylt.",
-            "price": "119"
-          },
-          {
-            "name": "Hamburgare",
-            "description": "120g nymald högrevsburgare serveras med hembakat Potato Burger Bun, krispig sallad, pommes frites och ketchup.",
-            "price": "149"
-          },
-          {
-            "name": "Pizza Vesuvio",
-            "description": "Tomatsås, ost och skinka.",
-            "price": "149"
-          }
-        ]
-      }
+"menu": {
+  "title": "Vår meny",
+  "subtitle": "Upptäck våra autentiska italienska rätter",
+  "categories": [
+    {
+      "name": "Förrätter",
+      "description": "Traditionella italienska förrätter för att starta måltiden",
+      "image": "/images/9.webp",
+      "items": [
+        {
+          "name": "Dirty Fries",
+          "description": "Pommes frites, cheddarsås, jalapeño, rödlök, knaperstekt bacon och tryffelmajonnäs.",
+          "price": "149"
+        },
+        {
+          "name": "Gambas Al Ajillo",
+          "description": "Scampiräkor med vitlök, chili och olivolja. Serveras med rostat hembakat bröd.",
+          "price": "159"
+        },
+        {
+          "name": "Chèvre Chaud",
+          "description": "Smörstekt hembakat bröd med gratinerad chèvreost. Toppas med honung, kanderade valnötter, picklade betor och ruccola.",
+          "price": "169"
+        }
+      ]
+    },
+    {
+      "name": "Varmrätter",
+      "description": "Huvudrätter med kött och fisk",
+      "image": "/images/10.webp",
+      "items": [
+        {
+          "name": "Plankstek med Oxfilé 200g",
+          "description": "Serveras med duchessemos, rödvinssås, bearnaisesås och smörstekta grönsaker.",
+          "price": "299"
+        },
+        {
+          "name": "Bouillabaisse",
+          "description": "Fisk- och skaldjursgryta med smak av saffran och tomat. Serveras med citronaioli och rostat hembakat bröd.",
+          "price": "279"
+        },
+        {
+          "name": "Pankopanerad Schnitzel",
+          "description": "Fläskschnitzel med rödvinssås, bearnaisesås, pommes frites, persiljesmör samt smörstekta grönsaker.",
+          "price": "199"
+        }
+      ]
+    },
+    {
+      "name": "Enklare rätter",
+      "description": "Lättare rätter och pastarätter",
+      "image": "/images/6.webp",
+      "items": [
+        {
+          "name": "Caesarsallad",
+          "description": "Romansallad, rödlök, cocktailtomater, grana padano, krutonger, caesardressing, kyckling och bacon.",
+          "price": "199"
+        },
+        {
+          "name": "Pasta Tartufo med Oxfilé",
+          "description": "Rigatoni i krämig gräddsås med basilika och vittryffelolja. Toppas med stekt oxfilé, ruccola och grana padano.",
+          "price": "249"
+        },
+        {
+          "name": "Pestopasta med Kyckling",
+          "description": "Rigatoni i krämig gräddsås smaksatt med basilikapesto (nötter). Toppas med stekt kycklingfilé, ruccola och grana padano.",
+          "price": "239"
+        },
+        {
+          "name": "Fish 'n' Chips",
+          "description": "Pankofriterad torsk med pommes frites, citronaioli och salladsmix med citrus och honungsvinägrett.",
+          "price": "249"
+        }
+      ]
+    },
+    {
+      "name": "Hamburgare",
+      "description": "Smashburgare serverade med pommes frites",
+      "image": "/images/2.webp",
+      "items": [
+        {
+          "name": "Double Decker",
+          "description": "2x 100g smashed högrevsburgare med cheddarost, bacon, rökig majonnäs, briochebröd, krispsallad, tomat, picklad rödlök och BBQ-sås. Serveras med pommes frites eller sötpotatispommes.",
+          "price": "219"
+        },
+        {
+          "name": "BBQ & Chèvre",
+          "description": "100g smashed högrevsburgare med gratinerad chèvreost och honung. BBQ-majonnäs, briochebröd, krispsallad, tomat och picklad rödlök. Serveras med pommes frites eller sötpotatispommes.",
+          "price": "219"
+        },
+        {
+          "name": "Halloumiburgare",
+          "description": "Friterad halloumi med tryffelmajonnäs, briochebröd, krispsallad, tomat och picklad rödlök. Serveras med pommes frites eller sötpotatispommes.",
+          "price": "199"
+        }
+      ]
+    },
+    {
+      "name": "Napolitanska Pizzor",
+      "description": "Äkta napolitansk pizza bakas i vedugn enligt tradition",
+      "image": "/images/11.webp",
+      "items": [
+        {
+          "name": "Margherita",
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, jungfruolivolja, grana padano.",
+          "price": "159"
+        },
+        {
+          "name": "Vesuvio",
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, kokt skinka, jungfruolivolja, grana padano.",
+          "price": "159"
+        },
+        {
+          "name": "Capricciosa",
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, kronärtskocka, kokt skinka, svarta oliver, champinjoner, jungfruolivolja, grana padano.",
+          "price": "179"
+        },
+        {
+          "name": "Prosciutto & Ruccola",
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, prosciutto crudo, ruccola, jungfruolivolja, grana padano. Toppas med honung.",
+          "price": "179"
+        },
+        {
+          "name": "Calabrese",
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, salami, grana padano.",
+          "price": "179"
+        },
+        {
+          "name": "Funghi & Tartufo",
+          "description": "Färsk mozzarella, kantareller, svamp, persilja, grana padano, vittryffelolja.",
+          "price": "179"
+        },
+        {
+          "name": "Pesto E Pinoli",
+          "description": "San Marzano-tomatsås, färsk mozzarella, kycklingfilé, basilikapesto (nötter), grana padano, fikonmarmelad, kanderade valnötter.",
+          "price": "179"
+        },
+        {
+          "name": "The Oven's Oxfilépizza",
+          "description": "San Marzano-tomatsås, färsk mozzarella, oxfilé, grillad paprika, champinjoner och gorgonzola.",
+          "price": "219"
+        },
+        {
+          "name": "Bagarens Kebab",
+          "description": "San Marzano-tomatsås, färsk mozzarella, gyroskebab, champinjoner och cocktailtomater.",
+          "price": "199"
+        },
+        {
+          "name": "Pizza Bianco",
+          "description": "Crème fraîche, chèvreost, päron, picklade rödbetor, kanderade valnötter, honung, ruccola och grana padano. Toppad med balsamico.",
+          "price": "209"
+        },
+        {
+          "name": "Löjromspizza",
+          "description": "Crème fraîche, handskalade räkor, finhackad rödlök, dill, löjrom och citron.",
+          "price": "259"
+        }
+      ]
+    },
+    {
+      "name": "Desserter",
+      "description": "Traditionella italienska desserter",
+      "image": "/images/8.webp",
+      "items": [
+        {
+          "name": "Semifreddo",
+          "description": "Med rostad vit choklad, salt kolasås och äppelkompott med kanel och vanilj.",
+          "price": "79"
+        },
+        {
+          "name": "Crème Brûlée",
+          "description": "Med hallonsorbet.",
+          "price": "79"
+        },
+        {
+          "name": "2x Tryffel",
+          "description": "Mörk chokladtryffel med smak av kaffe och cointreau. Serveras med grädde.",
+          "price": "59"
+        },
+        {
+          "name": "Kalasgott!",
+          "description": "2 kulor vaniljglass med tutti frutti-strössel, chokladsås, rån och vispad grädde.",
+          "price": "59"
+        }
+      ]
+    },
+    {
+      "name": "Barnmenyer",
+      "description": "Särskilda rätter för våra yngsta gäster",
+      "image": "/images/7.webp",
+      "items": [
+        {
+          "name": "Fish 'n' Chips",
+          "description": "",
+          "price": "129"
+        },
+        {
+          "name": "Pizza Vesuvio",
+          "description": "Tomatsås, ost och skinka.",
+          "price": "129"
+        },
+        {
+          "name": "Hamburgare",
+          "description": "100g smashed högrevsburgare serveras med briochebröd, krispsallad, pommes frites och ketchup.",
+          "price": "129"
+        }
+      ]
+    }
     ]
   },
   "bookingSection": {

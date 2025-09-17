@@ -58,7 +58,7 @@
       },
       {
         "question": "Do you offer takeaway?",
-        "answer": "We don't offer our own takeaway, but you can find us on Foodora for convenient ordering and delivery."
+        "answer": "You can order takeaway directly from us for pick-up. If you’d prefer to have your food delivered straight to your door, it’s quick and easy via Foodora, where you’ll also find our full menu."
       },
       {
         "question": "Do you serve alcohol?",
@@ -84,209 +84,214 @@
     "button": "See the menu",
     "close": "Close"
   },
-  "menu": {
-    "title": "Our menu",
-    "subtitle": "Discover our authentic Italian dishes",
-    "categories": [
-      {
-        "name": "Starters",
-        "description": "Traditional Italian appetizers to start your meal",
-        "image": "/images/9.webp",
-        "items": [
-          {
-            "name": "Toast Skagen",
-            "description": "Homemade bread, shrimp salad, hand-peeled shrimp, lumpfish roe, red onion, dill and lemon.",
-            "price": "159"
-          },
-          {
-            "name": "Dirty Fries",
-            "description": "French fries, cheddar sauce with jalapeño, red onion, crispy bacon and truffle mayonnaise.",
-            "price": "149"
-          },
-          {
-            "name": "Gambas Al Ajillo",
-            "description": "Scampi prawns sautéed with garlic, chili and olive oil. Served with toasted, homemade bread.",
-            "price": "159"
-          }
-        ]
-      },
-      {
-        "name": "Main Courses",
-        "description": "Homemade pasta prepared according to traditional recipes",
-        "image": "/images/10.webp",
-        "items": [
-          {
-            "name": "Grilled Entrecôte 250g",
-            "description": "Served with red wine sauce, béarnaise sauce, herb-roasted new potatoes and butter-sautéed vegetables.",
-            "price": "399"
-          },
-          {
-            "name": "Tenderloin Steak 200g",
-            "description": "Served with pepper sauce, herb-roasted new potatoes and butter-sautéed vegetables.",
-            "price": "419"
-          },
-          {
-            "name": "Butter-fried Arctic Char",
-            "description": "Served with Sandefjord sauce, dill-tossed new potatoes and butter-sautéed vegetables.",
-            "price": "399"
-          }
-        ]
-      },
-      {
-        "name": "Lighter Dishes",
-        "description": "Stone oven-baked pizza with Italian flavors",
-        "image": "/images/6.webp",
-        "items": [
-          {
-            "name": "Moules Frites",
-            "description": "Blue mussels cooked in white wine, cream and herbs. Served with french fries, lemon aioli and lemon.",
-            "price": "249"
-          },
-          {
-            "name": "Caesar Salad",
-            "description": "Romaine lettuce, red onion, cherry tomatoes, grana padano, croutons, caesar dressing, chicken and bacon.",
-            "price": "259"
-          },
-          {
-            "name": "Beef Tenderloin Pasta",
-            "description": "Rigatoni in creamy cream sauce with basil and grana padano. Topped with fried beef tenderloin, arugula, cherry tomatoes and grana padano.",
-            "price": "269"
-          },
-          {
-            "name": "Pasta Frutti Di Mare",
-            "description": "Rigatoni in creamy lobster sauce with shrimp, mussels, scampi prawns and crab. Topped with arugula and lemon.",
-            "price": "269"
-          },
-          {
-            "name": "Fish 'N' Chips",
-            "description": "Panko-fried cod with french fries, aioli, salad mix, vinaigrette and lemon.",
-            "price": "279"
-          }
-        ]
-      },
-      {
-        "name": "Burgers",
-        "description": "Main courses with meat and fish",
-        "image": "/images/2.webp",
-        "items": [
-          {
-            "name": "Double Decker",
-            "description": "2x 120g smashed beef burgers with cheddar cheese, bacon, smoky mayonnaise, crispy lettuce, homemade Potato Burger Bun, tomato, pickled red onion and BBQ sauce. Served with french fries.",
-            "price": "269"
-          },
-          {
-            "name": "Halloumi Burger",
-            "description": "Fried halloumi with truffle mayonnaise, homemade Potato Burger Bun, crispy lettuce, tomato and pickled red onion. Served with french fries.",
-            "price": "259"
-          }
-        ]
-      },
-      {
-        "name": "Neapolitan Pizzas (wood-fired)",
-        "description": "Authentic Neapolitan pizza baked in wood-fired oven according to tradition",
-        "image": "/images/11.webp",
-        "items": [
-          {
-            "name": "Margherita",
-            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, extra virgin olive oil, grana padano.",
-            "price": "175"
-          },
-          {
-            "name": "Vesuvio",
-            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, ham, extra virgin olive oil, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Capricciosa",
-            "description": "San Marzano tomato sauce, fresh mozzarella, ham, fresh mushrooms, artichoke, olives, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Prosciutto & Arugula",
-            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, prosciutto crudo, arugula, extra virgin olive oil, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Calabrese",
-            "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, salami, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "Funghi & Tartufo",
-            "description": "Fresh mozzarella, chanterelles, mushrooms, parsley, grana padano, truffle oil.",
-            "price": "179"
-          },
-          {
-            "name": "Pesto E Pinoli",
-            "description": "San Marzano tomato sauce, fresh mozzarella, chicken fillet, basil pesto, pine nuts, caramelized figs, grana padano.",
-            "price": "179"
-          },
-          {
-            "name": "The Oven's Beef Tenderloin Pizza",
-            "description": "San Marzano tomato sauce, fresh mozzarella, beef tenderloin, grilled bell pepper, mushrooms and gorgonzola.",
-            "price": "199"
-          },
-          {
-            "name": "Baker's Kebab",
-            "description": "San Marzano tomato sauce, fresh mozzarella, gyros kebab, mushrooms and cherry tomatoes.",
-            "price": "189"
-          }
-        ]
-      },
-      {
-        "name": "Dessert",
-        "description": "Traditional Italian desserts",
-        "image": "/images/8.webp",
-        "items": [
-          {
-            "name": "Semifreddo",
-            "description": "With roasted white chocolate and berry sauce.",
-            "price": "109"
-          },
-          {
-            "name": "Crème Brûlée",
-            "description": "Served with fresh berries and green apple flavored sorbet.",
-            "price": "109"
-          },
-          {
-            "name": "2X Truffle",
-            "description": "Dark chocolate truffle with coffee and cointreau flavor. Served with fresh berries and cream.",
-            "price": "69"
-          },
-          {
-            "name": "Party Ice Cream (Ages 3–12 only)",
-            "description": "2 scoops vanilla ice cream, tutti frutti sprinkles, chocolate sauce, cookies and whipped cream.",
-            "price": "59"
-          }
-        ]
-      },
-      {
-        "name": "Kids Menu (Ages 3–12 only)",
-        "description": "Special dishes for our youngest guests",
-        "image": "/images/7.webp",
-        "items": [
-          {
-            "name": "Fish 'N' Chips",
-            "description": "Panko-fried cod with french fries, aioli, salad and lemon.",
-            "price": "149"
-          },
-          {
-            "name": "Pancakes",
-            "description": "Served with cream and jam.",
-            "price": "119"
-          },
-          {
-            "name": "Burger",
-            "description": "120g freshly ground beef burger served with homemade Potato Burger Bun, crispy lettuce, french fries and ketchup.",
-            "price": "149"
-          },
-          {
-            "name": "Pizza Vesuvio",
-            "description": "Tomato sauce, cheese and ham.",
-            "price": "149"
-          }
-        ]
-      }
+"menu": {
+  "title": "Our menu",
+  "subtitle": "Discover our authentic Italian dishes",
+  "categories": [
+    {
+      "name": "Starters",
+      "description": "Traditional Italian starters to begin your meal",
+      "image": "/images/9.webp",
+      "items": [
+        {
+          "name": "Dirty Fries",
+          "description": "French fries with cheddar cheese sauce, jalapeños, red onion, crispy bacon and truffle mayonnaise.",
+          "price": "149"
+        },
+        {
+          "name": "Gambas Al Ajillo",
+          "description": "Scampi fried with garlic, chili and olive oil. Served with toasted, home-baked bread.",
+          "price": "159"
+        },
+        {
+          "name": "Chèvre Chaud",
+          "description": "Butter-fried, home-baked bread topped with gratinated chèvre, honey, candied walnuts, pickled beetroot and arugula.",
+          "price": "169"
+        }
+      ]
+    },
+    {
+      "name": "Main Courses",
+      "description": "Main dishes with meat and fish",
+      "image": "/images/10.webp",
+      "items": [
+        {
+          "name": "Tenderloin Plank Steak 200g",
+          "description": "Served with duchess potatoes, red wine sauce, béarnaise sauce and butter-fried vegetables.",
+          "price": "299"
+        },
+        {
+          "name": "Bouillabaisse",
+          "description": "Seafood and fish stew with saffron and tomato. Served with lemon aioli and toasted, home-baked bread.",
+          "price": "279"
+        },
+        {
+          "name": "Panko-Breaded Pork Schnitzel",
+          "description": "Served with red wine sauce, béarnaise, French fries, parsley butter and butter-fried vegetables.",
+          "price": "199"
+        }
+      ]
+    },
+    {
+      "name": "Lighter Dishes",
+      "description": "Lighter dishes and pasta dishes",
+      "image": "/images/6.webp",
+      "items": [
+        {
+          "name": "Caesar Salad",
+          "description": "Romaine lettuce, red onion, cherry tomatoes, Grana Padano, croutons, Caesar dressing, chicken fillet and bacon.",
+          "price": "199"
+        },
+        {
+          "name": "Beef Tenderloin Tartufo Pasta",
+          "description": "Rigatoni in a creamy sauce with basil and white truffle oil. Topped with beef tenderloin, arugula and Grana Padano.",
+          "price": "249"
+        },
+        {
+          "name": "Pesto Pasta with Chicken",
+          "description": "Rigatoni in a creamy basil pesto sauce (contains nuts). Topped with chicken fillet, arugula and Grana Padano.",
+          "price": "239"
+        },
+        {
+          "name": "Fish 'n' Chips",
+          "description": "Panko-fried cod with French fries, lemon aioli and a mixed salad with citrus-honey vinaigrette.",
+          "price": "249"
+        }
+      ]
+    },
+    {
+      "name": "Burgers",
+      "description": "Smash burgers served with French fries",
+      "image": "/images/2.webp",
+      "items": [
+        {
+          "name": "Double Decker",
+          "description": "2x 100g smashed chuck burgers with cheddar, bacon, smoky mayonnaise, brioche bun, lettuce, tomato, pickled red onion and BBQ sauce. Served with French fries or sweet potato fries.",
+          "price": "219"
+        },
+        {
+          "name": "BBQ & Chèvre",
+          "description": "100g smashed chuck burger with gratinated chèvre and honey. BBQ mayonnaise, brioche bun, lettuce, tomato and pickled red onion. Served with French fries or sweet potato fries.",
+          "price": "219"
+        },
+        {
+          "name": "Halloumi Burger",
+          "description": "Fried halloumi with truffle mayonnaise, brioche bun, lettuce, tomato and pickled red onion. Served with French fries or sweet potato fries.",
+          "price": "199"
+        }
+      ]
+    },
+    {
+      "name": "Neapolitan Pizzas",
+      "description": "Authentic Neapolitan pizza baked in wood-fired oven according to tradition",
+      "image": "/images/11.webp",
+      "items": [
+        {
+          "name": "Margherita",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, virgin olive oil, Grana Padano.",
+          "price": "159"
+        },
+        {
+          "name": "Vesuvio",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, cooked ham, virgin olive oil, Grana Padano.",
+          "price": "159"
+        },
+        {
+          "name": "Capricciosa",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, artichoke, cooked ham, black olives, mushrooms, virgin olive oil, Grana Padano.",
+          "price": "179"
+        },
+        {
+          "name": "Prosciutto & Ruccola",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, prosciutto crudo, arugula, virgin olive oil, Grana Padano. Topped with honey.",
+          "price": "179"
+        },
+        {
+          "name": "Calabrese",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, salami, Grana Padano.",
+          "price": "179"
+        },
+        {
+          "name": "Funghi & Tartufo",
+          "description": "Fresh mozzarella, chanterelles, mushrooms, parsley, Grana Padano, white truffle oil.",
+          "price": "179"
+        },
+        {
+          "name": "Pesto E Pinoli",
+          "description": "San Marzano tomato sauce, fresh mozzarella, chicken fillet, basil pesto (contains nuts), Grana Padano, fig marmalade, candied walnuts.",
+          "price": "179"
+        },
+        {
+          "name": "The Oven's Beef Tenderloin Pizza",
+          "description": "San Marzano tomato sauce, fresh mozzarella, beef tenderloin, grilled peppers, mushrooms and gorgonzola.",
+          "price": "219"
+        },
+        {
+          "name": "The Baker's Kebab",
+          "description": "San Marzano tomato sauce, fresh mozzarella, pork gyros kebab, mushrooms and cherry tomatoes.",
+          "price": "199"
+        },
+        {
+          "name": "Pizza Bianco",
+          "description": "Crème fraîche, goat cheese, pear, pickled beets, candied walnuts, honey, arugula, and Grana Padano. Topped with balsamic.",
+          "price": "209"
+        },
+        {
+          "name": "Bleak Roe Pizza",
+          "description": "Crème fraîche, hand-peeled shrimp, finely chopped red onion, dill, bleak roe and lemon.",
+          "price": "259"
+        }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "description": "Traditional Italian desserts",
+      "image": "/images/8.webp",
+      "items": [
+        {
+          "name": "Semifreddo",
+          "description": "With roasted white chocolate, salted caramel sauce and apple compote with cinnamon and vanilla.",
+          "price": "79"
+        },
+        {
+          "name": "Crème Brûlée",
+          "description": "With raspberry sorbet.",
+          "price": "79"
+        },
+        {
+          "name": "2x Tryffel",
+          "description": "Dark chocolate truffles flavored with coffee and Cointreau. Served with whipped cream.",
+          "price": "59"
+        },
+        {
+          "name": "Party Ice Cream",
+          "description": "2 scoops vanilla ice cream, tutti frutti sprinkles, chocolate sauce, cookies and whipped cream.",
+          "price": "59"
+        }
+      ]
+    },
+    {
+      "name": "For Kids",
+      "description": "Special dishes for our youngest guests",
+      "image": "/images/7.webp",
+      "items": [
+        {
+          "name": "Fish 'n' Chips",
+          "description": "",
+          "price": "129"
+        },
+        {
+          "name": "Pizza Vesuvio",
+          "description": "Tomato sauce, cheese and ham.",
+          "price": "129"
+        },
+        {
+          "name": "Hamburger",
+          "description": "100g smashed chuck burger with brioche bun, lettuce, French fries and ketchup.",
+          "price": "129"
+        }
+      ]
+    }
     ]
   },
   "bookingSection": {

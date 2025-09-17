@@ -23,7 +23,7 @@ export interface NewMenuModalProps {
 export function NewMenuModal({
   triggerDelay = 1000,
   storageKey = "new-menu-modal-seen",
-  backgroundImage = "/images/1.webp",
+  backgroundImage = "/images/ex.webp",
   onOpen,
   onClose,
   onViewMenu
@@ -105,7 +105,7 @@ export function NewMenuModal({
               variant="ghost"
               size="icon"
               onClick={handleClose}
-              className="text-white border-0 hover:bg-white/20 focus:bg-white/20"
+              className="text-white border-0"
               aria-label="Close modal"
             >
               <FaTimes className="h-4 w-4" />
@@ -118,7 +118,7 @@ export function NewMenuModal({
               <h1 className="text-white font-rustic uppercase text-3xl">
                 {t.newMenuModal?.title || "New Menu"}
               </h1>
-              <p className="text-white/90 leading-relaxed text-lg">
+              <p className="text-white leading-relaxed text-lg">
                 {t.newMenuModal?.description || "Check out our new menu with exciting dishes!"}
               </p>
               <Button 
