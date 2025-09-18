@@ -17,6 +17,10 @@ const heroImages = [
     alt: "Smashburgare med smält ost, sallad och tomat på briochebröd",
   },
   {
+    src: "/images/12.webp",
+    alt: "Haitham serverar vin",
+  },
+  {
     src: "/images/3.webp",
     alt: "Riktigt krämig pasta, bara på The Oven",
   },

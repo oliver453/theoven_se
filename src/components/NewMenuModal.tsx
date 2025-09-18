@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
+import Image from "next/image";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import useLocalStorage from "@/lib/hooks/use-local-storage";
@@ -28,7 +29,7 @@ export function NewMenuModal({
   onClose,
   onViewMenu
 }: NewMenuModalProps): JSX.Element {
-  const { t, language } = useLanguage(); // Lägg till language här!
+  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [hasSeenModal, setHasSeenModal] = useLocalStorage<boolean>(storageKey, false);
   const router = useRouter();
@@ -40,7 +41,6 @@ export function NewMenuModal({
   };
 
   const handleViewMenu = (): void => {
-    // Skapa språkmedveten länk till meny-sidan
     const menuPath = language === "en" ? "/en/meny" : "/meny";
     router.push(menuPath);
     onViewMenu?.();
@@ -83,24 +83,28 @@ export function NewMenuModal({
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="max-w-md mx-4 min-h-[500px] p-0 overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('${backgroundImage}')`,
-            backgroundColor: "#000000"
-          }}
-          role="img"
-          aria-label="Menu background"
-        />
+        {/* Optimized Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src={backgroundImage}
+            alt="Menu background"
+            fill
+            className="object-cover"
+            priority
+            quality={85}
+            sizes="(max-width: 768px) 100vw, 448px"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+          />
+        </div>
         
         {/* Overlay */}
-        <div className="absolute inset-0 bg-black/30" aria-hidden="true" />
+        <div className="absolute inset-0 bg-black/30 z-10" aria-hidden="true" />
 
         {/* Content */}
-        <div className="relative z-10 h-full flex flex-col min-h-[500px]">
+        <div className="relative z-20 h-full flex flex-col min-h-[500px]">
           {/* Close Button */}
-          <div className="absolute top-4 right-4 z-20">
+          <div className="absolute top-4 right-4 z-30">
             <Button
               variant="ghost"
               size="icon"
