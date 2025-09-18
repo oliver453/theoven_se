@@ -20,10 +20,6 @@ const heroImages = [
     src: "/images/12.webp",
     alt: "Haitham serverar vin",
   },
-  {
-    src: "/images/3.webp",
-    alt: "Riktigt krämig pasta, bara på The Oven",
-  },
 ];
 
 export function WelcomeSection() {
