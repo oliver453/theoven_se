@@ -95,7 +95,6 @@ export const defaultMetadata: Metadata = {
   alternates: {
     canonical: siteConfig.url,
     languages: {
-      sv: siteConfig.url,
       en: `${siteConfig.url}/en`,
     },
   },
@@ -151,7 +150,6 @@ export const englishMetadata: Metadata = {
     canonical: `${siteConfig.url}/en`,
     languages: {
       sv: siteConfig.url,
-      en: `${siteConfig.url}/en`,
     },
   },
   category: "restaurant",
