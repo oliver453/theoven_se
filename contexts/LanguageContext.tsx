@@ -12,7 +12,7 @@ interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: Translations;
-  isInitialized: boolean; // Lägg till denna så komponenter kan vänta
+  isInitialized: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(

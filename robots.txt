@@ -1,4 +1,4 @@
-Sitemap: https://support.diavana.se/sitemap.xml
+Sitemap: https://theoven.se/sitemap.xml
 
 User-agent: *
 Disallow: /api
