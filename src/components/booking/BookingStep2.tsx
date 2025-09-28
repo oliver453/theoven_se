@@ -55,12 +55,26 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
   const loadAvailabilities = useCallback(async () => {
     setIsLoading(true);
     try {
-      const startDate = formatDateForAPI(
-        new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1),
-      );
-      const endDate = formatDateForAPI(
-        new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0),
-      );
+      // Skapa första dagen i månaden
+      const firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+      
+      // Skapa sista dagen i månaden 
+      const lastDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
+      
+      // Formatera datumen korrekt
+      const startDate = formatDateForAPI(firstDay);
+      const endDate = formatDateForAPI(lastDay);
+
+      console.log('Month info:', {
+        currentMonth: currentMonth.toISOString(),
+        year: currentMonth.getFullYear(),
+        month: currentMonth.getMonth(),
+        firstDay: firstDay.toISOString(),
+        lastDay: lastDay.toISOString(),
+        startDate,
+        endDate,
+        partySize
+      });
 
       const data = await fetchAvailabilities(partySize, startDate, endDate);
       setAvailabilities(data);
