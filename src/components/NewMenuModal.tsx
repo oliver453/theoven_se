@@ -3,14 +3,21 @@
 import React, { useState, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
 import Image from "next/image";
-import { useLanguage } from "../../contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import useLocalStorage from "@/lib/hooks/use-local-storage";
 import { 
   Dialog, 
   DialogContent
 } from "@/components/ui/dialog";
 import { useRouter } from "next/navigation";
+import type { Locale } from "../../i18n.config";
+
+type Dictionary = {
+  newMenuModal?: {
+    title?: string;
+    description?: string;
+    button?: string;
+  };
+};
 
 export interface NewMenuModalProps {
   triggerDelay?: number;
@@ -19,6 +26,8 @@ export interface NewMenuModalProps {
   onOpen?: () => void;
   onClose?: () => void;
   onViewMenu?: () => void;
+  dict: Dictionary;
+  lang?: Locale;
 }
 
 export function NewMenuModal({
@@ -27,22 +36,30 @@ export function NewMenuModal({
   backgroundImage = "/images/ex.webp",
   onOpen,
   onClose,
-  onViewMenu
+  onViewMenu,
+  dict,
+  lang = "sv"
 }: NewMenuModalProps): JSX.Element {
-  const { t, language } = useLanguage();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
-  const [hasSeenModal, setHasSeenModal] = useLocalStorage<boolean>(storageKey, false);
+  const [hasSeenModal, setHasSeenModal] = useState<boolean>(false);
   const router = useRouter();
+
+  // Check localStorage on mount
+  useEffect(() => {
+    const seen = localStorage.getItem(storageKey);
+    setHasSeenModal(seen === "true");
+  }, [storageKey]);
 
   const handleClose = (): void => {
     setIsOpen(false);
+    localStorage.setItem(storageKey, "true");
     setHasSeenModal(true);
     onClose?.();
   };
 
   const handleViewMenu = (): void => {
-    const menuPath = language === "en" ? "/en/meny" : "/meny";
+    const menuPath = lang === "en" ? "/en/meny" : "/meny";
     router.push(menuPath);
     onViewMenu?.();
     handleClose();
@@ -62,11 +79,10 @@ export function NewMenuModal({
   };
 
   const handleImageError = (): void => {
-    // Visa ändå innehållet om bilden inte kan laddas
     setImageLoaded(true);
   };
 
-  // Preload bilden när komponenten mountas
+  // Preload image when component mounts
   useEffect(() => {
     if (!backgroundImage) return;
     
@@ -124,7 +140,6 @@ export function NewMenuModal({
               imageLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             priority
-
             sizes="(max-width: 768px) 100vw, 448px"
             onLoad={handleImageLoad}
             onError={handleImageError}
@@ -166,17 +181,17 @@ export function NewMenuModal({
               }`}
             >
               <h1 className="text-white font-rustic uppercase text-3xl">
-                {t.newMenuModal?.title || "New Menu"}
+                {dict.newMenuModal?.title || "Ny Meny"}
               </h1>
               <p className="text-white leading-relaxed text-lg">
-                {t.newMenuModal?.description || "Check out our new menu with exciting dishes!"}
+                {dict.newMenuModal?.description || "Kolla in vår nya meny med spännande rätter!"}
               </p>
               <Button 
                 onClick={handleViewMenu}
                 className="bg-white text-black hover:bg-gray-200 focus:bg-gray-200 font-rustic uppercase text-lg py-3 px-8 transition-colors duration-200 w-full"
                 aria-describedby="view-menu-description"
               >
-                {t.newMenuModal?.button || "View Menu"}
+                {dict.newMenuModal?.button || "Visa Meny"}
               </Button>
               <span id="view-menu-description" className="sr-only">
                 Navigate to menu page

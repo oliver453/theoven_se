@@ -2,15 +2,32 @@
 
 import React from "react";
 import Image from "next/image";
-import { useLanguage } from "../../../../contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { FaEnvelope } from "react-icons/fa";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-export default function EnglishMenuClient() {
-  const { t } = useLanguage();
+type Dictionary = {
+  menu: {
+    title: string;
+    categories: Array<{
+      name: string;
+      image: string;
+      items: Array<{
+        name: string;
+        description: string;
+        price: string;
+      }>;
+    }>;
+  };
+  bookingSection: {
+    title: string;
+    largeParty: string;
+    email: string;
+  };
+};
 
+export default function MenuClient({ dict }: { dict: Dictionary }) {
   return (
     <>
       {/* Hero Section with Background Image */}
@@ -20,6 +37,7 @@ export default function EnglishMenuClient() {
             src="/images/menu-bg.webp"
             alt="Restaurant background"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
@@ -28,7 +46,7 @@ export default function EnglishMenuClient() {
 
         <div className="container relative z-10 mx-auto px-4 lg:px-8 xl:px-12 text-center">
           <h1 className="mb-4 font-rustic uppercase text-5xl md:text-6xl drop-shadow-lg">
-            {t.menu.title}
+            {dict.menu.title}
           </h1>
         </div>
       </section>
@@ -36,7 +54,7 @@ export default function EnglishMenuClient() {
       {/* Menu Categories */}
       <section className="bg-black pt-16">
         <div className="container mx-auto px-4 lg:px-8 xl:px-12">
-          {t.menu.categories.map((category, categoryIndex) => (
+          {dict.menu.categories.map((category, categoryIndex) => (
             <div key={categoryIndex} className="mb-20">
               <div
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
@@ -75,13 +93,13 @@ export default function EnglishMenuClient() {
                   </div>
                 </div>
 
-                {/* Category Image */}
+                {/* Category Image - Tall aspect ratio */}
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.8, ease: "easeOut" }}
-                  className={`relative h-[50vh] w-full ${
+                  className={`relative h-[65vh] lg:h-[90vh] w-full ${
                     categoryIndex % 2 === 1
                       ? "lg:col-start-1 lg:row-start-1"
                       : ""
@@ -91,6 +109,7 @@ export default function EnglishMenuClient() {
                     src={category.image}
                     alt={category.name}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="rounded-none object-cover"
                   />
                 </motion.div>
@@ -104,13 +123,13 @@ export default function EnglishMenuClient() {
       <section className="bg-black py-16 text-white">
         <div className="container mx-auto px-4 lg:px-8 xl:px-12 text-center">
           <h2 className="mb-6 font-rustic uppercase text-4xl">
-            {t.bookingSection.title}
+            {dict.bookingSection.title}
           </h2>
           <p className="mx-auto mb-8 max-w-3xl font-roboto text-lg text-gray-300">
-            {t.bookingSection.largeParty}
+            {dict.bookingSection.largeParty}
           </p>
 
-          <Link href={`mailto:${t.bookingSection.email}`} passHref>
+          <Link href={`mailto:${dict.bookingSection.email}`} passHref>
             <Button
               asChild
               variant="ghost"
@@ -118,7 +137,7 @@ export default function EnglishMenuClient() {
             >
               <span className="flex items-center gap-2">
                 <FaEnvelope className="h-5 w-5" />
-                {t.bookingSection.email}
+                {dict.bookingSection.email}
               </span>
             </Button>
           </Link>

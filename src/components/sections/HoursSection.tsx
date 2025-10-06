@@ -1,6 +1,6 @@
 "use client";
+
 import React from "react";
-import { useLanguage } from "../../../contexts/LanguageContext";
 import { motion } from "framer-motion";
 
 const openingHours = {
@@ -13,9 +13,27 @@ const openingHours = {
   sunday: "closed",
 };
 
-export function HoursSection() {
-  const { t } = useLanguage();
+type Dictionary = {
+  hours: {
+    title: string;
+    monday: string;
+    tuesday: string;
+    wednesday: string;
+    thursday: string;
+    friday: string;
+    saturday: string;
+    sunday: string;
+    closed: string;
+    today?: string;
+    disclamer: string;
+  };
+};
 
+interface HoursSectionProps {
+  dict: Dictionary;
+}
+
+export function HoursSection({ dict }: HoursSectionProps) {
   const getCurrentDay = () => {
     const days = [
       "sunday",
@@ -57,7 +75,7 @@ export function HoursSection() {
         className="content-box bg-white/95 backdrop-blur-sm max-w-lg text-center px-6 w-full mx-4 md:mx-auto lg:mr-24"
       >
         <h2 className="mb-8 text-center font-rustic text-4xl uppercase text-white">
-          {t.hours.title}
+          {dict.hours.title}
         </h2>
 
         <div className="divide-y divide-white/20">
@@ -77,14 +95,14 @@ export function HoursSection() {
                     isToday ? "text-white font-bold" : "text-white/80"
                   }`}
                 >
-                  {t.hours[day]}
+                  {dict.hours[day]}
                 </span>
                 <span
                   className={`font-roboto ${
                     isToday ? "text-white font-semibold" : "text-white/80"
                   }`}
                 >
-                  {hours === "closed" ? t.hours.closed : hours}
+                  {hours === "closed" ? dict.hours.closed : hours}
                 </span>
               </div>
             );
@@ -92,7 +110,7 @@ export function HoursSection() {
         </div>
 
         <p className="mt-6 text-center text-sm text-white/80 font-roboto">
-          {t.hours.disclamer}
+          {dict.hours.disclamer}
         </p>
       </motion.div>
     </section>

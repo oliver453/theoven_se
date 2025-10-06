@@ -1,17 +1,13 @@
-import type { Viewport, Metadata } from "next";
-import "./globals.css";
-import { LanguageProvider } from "../../contexts/LanguageContext";
-import { rusticPrinted, robotoSlab } from "./fonts";
-import { defaultMetadata } from "./metadata";
-import { Analytics } from "@vercel/analytics/next"
+import type { Viewport } from 'next';
+import './globals.css';
+import { rusticPrinted, robotoSlab } from './fonts';
+import { Analytics } from '@vercel/analytics/next';
 
 export const viewport: Viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
-  themeColor: "#000000",
+  themeColor: '#000000',
 };
-
-export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
@@ -26,8 +22,9 @@ export default function RootLayout({
     >
       <body
         className={`${robotoSlab.className} bg-black text-white antialiased selection:bg-primary/20`}
+        suppressHydrationWarning
       >
-        <LanguageProvider>{children}</LanguageProvider>
+        {children}
         <Analytics />
       </body>
     </html>

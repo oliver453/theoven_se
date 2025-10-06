@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useLanguage } from "../../../contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import Slideshow from "../ui/slideshow";
+import type { Locale } from "../../../i18n.config";
 
 const heroImages = [
   {
@@ -22,13 +22,25 @@ const heroImages = [
   },
 ];
 
-export function WelcomeSection() {
-  const { t, language } = useLanguage();
+type Dictionary = {
+  welcome: {
+    subheading: string;
+    title: string;
+    text: string;
+    button: string;
+  };
+};
 
-  // Funktion för att skapa korrekt länk baserat på språk
+interface WelcomeSectionProps {
+  dict: Dictionary;
+  lang?: Locale;
+}
+
+export function WelcomeSection({ dict, lang = "sv" }: WelcomeSectionProps) {
+  // Function to create correct link based on language
   const createLink = (path: string) => {
-    if (language === "en") {
-      // För engelska, lägg till /en prefix
+    if (lang === "en") {
+      // For English, add /en prefix
       if (path.startsWith("/#")) {
         return `/en${path}`;
       } else if (path.startsWith("/")) {
@@ -36,7 +48,7 @@ export function WelcomeSection() {
       }
       return `/en/${path}`;
     }
-    // För svenska, använd original path
+    // For Swedish, use original path
     return path;
   };
 
@@ -45,7 +57,7 @@ export function WelcomeSection() {
       {/* Content */}
       <div className="relative z-10 mx-auto h-full max-w-7xl px-6">
         <div className="grid min-h-screen items-center gap-12 py-20 lg:grid-cols-2">
-          {/* Image slideshow med 4:5 aspect ratio - visas först på mobil */}
+          {/* Image slideshow with 4:5 aspect ratio - shown first on mobile */}
           <div className="relative order-1 mx-auto w-full max-w-md lg:order-2 lg:max-w-none">
             <Slideshow
               images={heroImages}
@@ -57,19 +69,19 @@ export function WelcomeSection() {
           
           <div className="order-2 space-y-6 text-center text-white lg:order-1">
             <h4 className="hidden font-rustic uppercase tracking-wider lg:block">
-              {t.welcome.subheading}
+              {dict.welcome.subheading}
             </h4>
             <h1 className="mb-4 font-rustic text-3xl uppercase text-white">
-              {t.welcome.title}
+              {dict.welcome.title}
             </h1>
             <p className="text-md mx-auto max-w-lg leading-relaxed text-white/80 lg:mx-0">
-              {t.welcome.text}
+              {dict.welcome.text}
             </p>
             <Link href={createLink("/meny")} className="block">
-  <Button className="bg-white hover:bg-gray-200 px-8 py-7 font-rustic text-lg uppercase text-black">
-    {t.welcome.button}
-  </Button>
-</Link>
+              <Button className="bg-white hover:bg-gray-200 px-8 py-7 font-rustic text-lg uppercase text-black">
+                {dict.welcome.button}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

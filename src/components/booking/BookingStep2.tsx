@@ -7,8 +7,19 @@ import {
   formatDateForAPI,
   getDaysInMonth,
 } from "../../utils/dateHelpers";
-import { useLanguage } from "../../../contexts/LanguageContext";
 import type { TheForkAvailability } from "../../../types/booking";
+import type { Locale } from "../../../i18n.config";
+
+type Dictionary = {
+  booking: {
+    step2?: {
+      title?: string;
+      subtitle?: string;
+    };
+    backButton?: string;
+    nextButton?: string;
+  };
+};
 
 interface BookingStep2Props {
   partySize: number;
@@ -16,6 +27,8 @@ interface BookingStep2Props {
   onDateSelect: (date: string) => void;
   onNext: () => void;
   onPrev: () => void;
+  dict: Dictionary;
+  lang?: Locale;
 }
 
 export const BookingStep2: React.FC<BookingStep2Props> = ({
@@ -24,20 +37,21 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
   onDateSelect,
   onNext,
   onPrev,
+  dict,
+  lang = "sv",
 }) => {
-  const { t, language } = useLanguage();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [availabilities, setAvailabilities] = useState<TheForkAvailability[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   // Weekday names based on language
-  const weekdays = language === "en" 
+  const weekdays = lang === "en" 
     ? ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     : ["Mån", "Tis", "Ons", "Tor", "Fre", "Lör", "Sön"];
 
   // Get month name based on selected language
   const getMonthName = (date: Date): string => {
-    const locale = language === "en" ? "en-US" : "sv-SE";
+    const locale = lang === "en" ? "en-US" : "sv-SE";
     return date.toLocaleDateString(locale, { 
       month: "long", 
       year: "numeric" 
@@ -55,26 +69,11 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
   const loadAvailabilities = useCallback(async () => {
     setIsLoading(true);
     try {
-      // Skapa första dagen i månaden
       const firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
-      
-      // Skapa sista dagen i månaden 
       const lastDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
       
-      // Formatera datumen korrekt
       const startDate = formatDateForAPI(firstDay);
       const endDate = formatDateForAPI(lastDay);
-
-      console.log('Month info:', {
-        currentMonth: currentMonth.toISOString(),
-        year: currentMonth.getFullYear(),
-        month: currentMonth.getMonth(),
-        firstDay: firstDay.toISOString(),
-        lastDay: lastDay.toISOString(),
-        startDate,
-        endDate,
-        partySize
-      });
 
       const data = await fetchAvailabilities(partySize, startDate, endDate);
       setAvailabilities(data);
@@ -123,7 +122,6 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
     currentMonth.getMonth(),
   );
   
-  // Skapa dagens datum utan tid för korrekt jämförelse
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -131,10 +129,10 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
     <div className="space-y-6">
       <div className="text-center">
         <h3 className="mb-2 text-xl font-semibold text-white">
-          {t.booking?.step2?.title || "Vilken dag?"}
+          {dict.booking?.step2?.title || "Vilken dag?"}
         </h3>
         <p className="text-sm text-gray-300">
-          {t.booking?.step2?.subtitle || "Välj datum för din bokning"}
+          {dict.booking?.step2?.subtitle || "Välj datum för din bokning"}
         </p>
       </div>
 
@@ -185,7 +183,6 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
               const available = isDateAvailable(date);
               const selected = isDateSelected(date);
               
-              // Korrekt jämförelse för att tillåta dagens datum
               const dateWithoutTime = new Date(date.getFullYear(), date.getMonth(), date.getDate());
               const isPast = dateWithoutTime < today;
               const canSelect = available && !isPast;
@@ -226,14 +223,14 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
           onClick={onPrev}
           className="flex-1 rounded-lg bg-gray-700 py-3 font-medium text-white transition-colors hover:bg-gray-600"
         >
-          {t.booking?.backButton || "Tillbaka"}
+          {dict.booking?.backButton || "Tillbaka"}
         </button>
         <button
           onClick={onNext}
           disabled={!selectedDate}
           className="flex-1 rounded-lg bg-white py-3 font-medium text-black transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {t.booking?.nextButton || "Nästa"}
+          {dict.booking?.nextButton || "Nästa"}
         </button>
       </div>
     </div>

@@ -5,19 +5,30 @@ import { FaTimes } from "react-icons/fa";
 import { BookingStep1 } from "./BookingStep1";
 import { BookingStep2 } from "./BookingStep2";
 import { BookingStep3 } from "./BookingStep3";
-import { useLanguage } from "../../../contexts/LanguageContext";
 import type { BookingFormData } from "../../../types/booking";
+import type { Locale } from "../../../i18n.config";
+
+type Dictionary = {
+  bookingBtn: {
+    buttonText: string;
+    buttonAriaLabel: string;
+  };
+  booking: any;
+};
 
 interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
+  dict: Dictionary;
+  lang?: Locale;
 }
 
 export const BookingModal: React.FC<BookingModalProps> = ({
   isOpen,
   onClose,
+  dict,
+  lang = "sv",
 }) => {
-  const { language } = useLanguage();
   const [currentStep, setCurrentStep] = useState(1);
   const [bookingData, setBookingData] = useState<BookingFormData>({
     partySize: 0,
@@ -39,19 +50,15 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   }, []);
 
   const handleFinalBooking = useCallback(() => {
-    // Skapa URL för TheFork widget
-    const locale = language === "en" ? "en-GB" : "sv";
+    const locale = lang === "en" ? "en-GB" : "sv";
     const restaurantUuid = "1e84bc93-cf21-42ac-8bc2-6d2c234f393e";
     const utmSource = "theoven.se";
     
     const theForkUrl = `https://widget.thefork.com/${locale}/${restaurantUuid}?utm_source=${utmSource}&step=info&pax=${bookingData.partySize}&date=${bookingData.date}&time=${bookingData.time}`;
     
-    // Öppna TheFork widget i nytt fönster/tab
     window.open(theForkUrl, '_blank');
-    
-    // Stäng modalen
     onClose();
-  }, [bookingData, language, onClose]);
+  }, [bookingData, lang, onClose]);
 
   const resetForm = () => {
     setBookingData({ partySize: 0, date: "", time: 0, offerUuid: "" });
@@ -76,6 +83,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             selectedPartySize={bookingData.partySize}
             onPartySizeSelect={handlePartySizeSelect}
             onNext={nextStep}
+            dict={dict}
           />
         );
       case 2:
@@ -86,6 +94,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             onDateSelect={handleDateSelect}
             onNext={nextStep}
             onPrev={prevStep}
+            dict={dict}
+            lang={lang}
           />
         );
       case 3:
@@ -97,6 +107,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
             onTimeSelect={handleTimeSelect}
             onBook={handleFinalBooking}
             onPrev={prevStep}
+            dict={dict}
+            lang={lang}
           />
         );
       default:

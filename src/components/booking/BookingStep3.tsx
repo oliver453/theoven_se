@@ -4,8 +4,19 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { fetchTimeslots } from "../../utils/theForkApi";
 import { formatTimeFromMinutes } from "../../utils/dateHelpers";
-import { useLanguage } from "../../../contexts/LanguageContext";
 import type { TheForkTimeslot } from "../../../types/booking";
+import type { Locale } from "../../../i18n.config";
+
+type Dictionary = {
+  booking: {
+    step3?: {
+      title?: string;
+      noTimes?: string;
+      bookButton?: string;
+    };
+    backButton?: string;
+  };
+};
 
 interface BookingStep3Props {
   partySize: number;
@@ -14,6 +25,8 @@ interface BookingStep3Props {
   onTimeSelect: (time: number) => void;
   onBook: () => void;
   onPrev: () => void;
+  dict: Dictionary;
+  lang?: Locale;
 }
 
 export const BookingStep3: React.FC<BookingStep3Props> = ({
@@ -23,8 +36,9 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
   onTimeSelect,
   onBook,
   onPrev,
+  dict,
+  lang = "sv",
 }) => {
-  const { t, language } = useLanguage();
   const [timeslots, setTimeslots] = useState<TheForkTimeslot[]>([]);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +62,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
     }
   }, [selectedDate, loadTimeslots]);
 
-  // Lyssna på scrollposition och visa/dölj pilen
+  // Listen to scroll position and show/hide arrow
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
@@ -59,7 +73,6 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
       setShowScrollIndicator(!isAtBottom && scrollHeight > clientHeight);
     };
 
-    // Kör en gång direkt
     handleScroll();
 
     scrollContainer.addEventListener("scroll", handleScroll);
@@ -73,7 +86,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
 
   // Time period names based on language
   const getPeriodName = (hour: number) => {
-    if (language === "en") {
+    if (lang === "en") {
       if (hour < 12) return "Morning";
       else if (hour < 17) return "Lunch";
       else if (hour < 22) return "Dinner";
@@ -99,7 +112,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
   );
 
   const formatDate = (dateString: string) => {
-    const locale = language === "en" ? "en-US" : "sv-SE";
+    const locale = lang === "en" ? "en-US" : "sv-SE";
     return new Date(dateString).toLocaleDateString(locale, {
       weekday: "long",
       day: "numeric",
@@ -108,7 +121,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
   };
 
   const getPersonText = (count: number) => {
-    if (language === "en") {
+    if (lang === "en") {
       return count === 1 ? "person" : "people";
     } else {
       return count === 1 ? "person" : "personer";
@@ -119,7 +132,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
     <div className="space-y-6">
       <div className="text-center">
         <h3 className="mb-2 text-xl font-semibold text-white">
-          {t.booking?.step3?.title || "Vilken tid?"}
+          {dict.booking?.step3?.title || "Vilken tid?"}
         </h3>
         <p className="text-sm text-gray-300">
           {formatDate(selectedDate)} • {partySize} {getPersonText(partySize)}
@@ -135,7 +148,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
         ) : Object.keys(groupedTimeslots).length === 0 ? (
           <div className="py-8 text-center">
             <p className="text-gray-400">
-              {t.booking?.step3?.noTimes || "Inga lediga tider för detta datum"}
+              {dict.booking?.step3?.noTimes || "Inga lediga tider för detta datum"}
             </p>
           </div>
         ) : (
@@ -143,7 +156,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
             {/* Background gradient for scroll area */}
             <div className="absolute inset-0 bg-gradient-to-b from-gray-900/10 via-transparent to-gray-900/30 rounded-xl pointer-events-none" />
 
-            {/* Scrollable content - increased height */}
+            {/* Scrollable content */}
             <div
               ref={scrollContainerRef}
               className="relative max-h-96 overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-gray-600 hover:scrollbar-thumb-gray-500"
@@ -177,7 +190,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
               </div>
             </div>
 
-            {/* Scroll indicator at bottom with smooth transition */}
+            {/* Scroll indicator at bottom */}
             <div
               className={`absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-2 transform transition-all duration-500 ${
                 showScrollIndicator
@@ -196,14 +209,14 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
           onClick={onPrev}
           className="flex-1 rounded-lg bg-gray-700 py-3 font-medium text-white transition-colors hover:bg-gray-600"
         >
-          {t.booking?.backButton || "Tillbaka"}
+          {dict.booking?.backButton || "Tillbaka"}
         </button>
         <button
           onClick={onBook}
           disabled={selectedTime === null}
           className="flex-1 rounded-lg bg-white py-3 font-medium text-black transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {t.booking?.step3?.bookButton || "Boka bord"}
+          {dict.booking?.step3?.bookButton || "Boka bord"}
         </button>
       </div>
     </div>

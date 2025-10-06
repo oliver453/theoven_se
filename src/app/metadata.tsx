@@ -27,6 +27,10 @@ export const siteConfig = {
     country: "SE",
   },
   phone: "+46 570 188 80",
+  coordinates: {
+    latitude: '59.65479679282539',
+    longitude: '12.59550767923555',
+  },
   // Engelska översättningar
   en: {
     name: "The Oven | Authentic Neapolitan Pizza in Arvika",
@@ -47,10 +51,12 @@ export const siteConfig = {
   },
 };
 
-// Svenska bas-metadata (default)
+// ---------------------------
+// Svenska startsidan (/sv eller root)
+// ---------------------------
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: "The Oven | Äkta napolitansk pizza i Arvika", // ← Direkt titel, ingen template
+  title: siteConfig.name,
   description: siteConfig.description,
   keywords: siteConfig.keywords,
   authors: [{ name: siteConfig.shortName }],
@@ -58,16 +64,16 @@ export const defaultMetadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "sv_SE",
-    url: siteConfig.url,
-    title: "The Oven | Äkta napolitansk pizza i Arvika",
+    url: `${siteConfig.url}/sv`,
+    title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.shortName,
     images: [
       {
-        url: "/og.png",
+        url: siteConfig.ogImage,
         width: 1920,
         height: 1080,
-        alt: "The Oven | Äkta napolitansk pizza i Arvika",
+        alt: siteConfig.name,
         type: "image/png",
       },
     ],
@@ -79,49 +85,43 @@ export const defaultMetadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: { index: true, follow: true },
   verification: {
     google: "1xyjYRSepMna-uvd6Ba2qJnSHDihdXm-crC6jNcpF7I",
   },
   alternates: {
-    canonical: siteConfig.url,
+    canonical: `${siteConfig.url}/sv`,
     languages: {
+      sv: `${siteConfig.url}/sv`,
       en: `${siteConfig.url}/en`,
     },
   },
   category: "restaurant",
 };
 
-// Engelska bas-metadata
+// ---------------------------
+// Engelska startsidan (/en)
+// ---------------------------
 export const englishMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
-  title: "The Oven | Authentic Neapolitan Pizza in Arvika", // ← Direkt titel utan template
+  title: siteConfig.en.name,
   description: siteConfig.en.description,
   keywords: siteConfig.en.keywords,
   authors: [{ name: siteConfig.shortName }],
   creator: siteConfig.creator,
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_GB",
     url: `${siteConfig.url}/en`,
-    title: "The Oven | Authentic Neapolitan Pizza in Arvika",
+    title: siteConfig.en.name,
     description: siteConfig.en.description,
     siteName: siteConfig.shortName,
     images: [
       {
-        url: "/og.png",
+        url: siteConfig.ogImage,
         width: 1920,
         height: 1080,
-        alt: "The Oven | Authentic Neapolitan Pizza in Arvika",
+        alt: siteConfig.en.name,
         type: "image/png",
       },
     ],
@@ -133,33 +133,28 @@ export const englishMetadata: Metadata = {
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: { index: true, follow: true },
   verification: {
     google: "1xyjYRSepMna-uvd6Ba2qJnSHDihdXm-crC6jNcpF7I",
   },
   alternates: {
     canonical: `${siteConfig.url}/en`,
     languages: {
-      sv: siteConfig.url,
+      sv: `${siteConfig.url}/sv`,
+      en: `${siteConfig.url}/en`,
     },
   },
   category: "restaurant",
 };
 
-// Svenska meny-metadata
+// ---------------------------
+// Svenska meny (/sv/meny)
+// ---------------------------
 export const menuMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: "Meny | The Oven",
-  description: "Upptäck vår meny med äkta napolitansk pizza, förrätter, huvudrätter och efterrätter. Alla rätter tillagas med noggrant utvalda ingredienser och bakas i vår vedugn.",
+  description:
+    "Upptäck vår meny med äkta napolitansk pizza, förrätter, huvudrätter och efterrätter. Alla rätter tillagas med noggrant utvalda ingredienser och bakas i vår vedugn.",
   keywords: [
     "The Oven",
     "Arvika restaurang",
@@ -182,13 +177,14 @@ export const menuMetadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "sv_SE",
-    url: `${siteConfig.url}/meny`,
+    url: `${siteConfig.url}/sv/meny`,
     title: "Meny | The Oven",
-    description: "Upptäck vår meny med äkta napolitansk pizza, förrätter, huvudrätter och efterrätter. Alla rätter tillagas med noggrant utvalda ingredienser och bakas i vår vedugn.",
+    description:
+      "Upptäck vår meny med äkta napolitansk pizza, förrätter, huvudrätter och efterrätter.",
     siteName: siteConfig.shortName,
     images: [
       {
-        url: "/og.png",
+        url: siteConfig.ogImage,
         width: 1920,
         height: 1080,
         alt: "Meny | The Oven",
@@ -199,38 +195,33 @@ export const menuMetadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Meny | The Oven",
-    description: "Upptäck vår meny med äkta napolitansk pizza, förrätter, huvudrätter och efterrätter.",
+    description:
+      "Upptäck vår meny med äkta napolitansk pizza, förrätter, huvudrätter och efterrätter.",
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: { index: true, follow: true },
   verification: {
     google: "1xyjYRSepMna-uvd6Ba2qJnSHDihdXm-crC6jNcpF7I",
   },
   alternates: {
-    canonical: `${siteConfig.url}/meny`,
+    canonical: `${siteConfig.url}/sv/meny`,
     languages: {
-      sv: `${siteConfig.url}/meny`,
+      sv: `${siteConfig.url}/sv/meny`,
       en: `${siteConfig.url}/en/meny`,
     },
   },
   category: "restaurant",
 };
 
-// Engelska meny-metadata
+// ---------------------------
+// Engelska meny (/en/meny)
+// ---------------------------
 export const englishMenuMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: "Menu | The Oven",
-  description: "Discover our menu with authentic Neapolitan pizzas, starters, main courses and desserts. All dishes are prepared with carefully selected ingredients and baked in our wood-fired oven.",
+  description:
+    "Discover our menu with authentic Neapolitan pizzas, starters, main courses and desserts. All dishes are prepared with carefully selected ingredients and baked in our wood-fired oven.",
   keywords: [
     "The Oven",
     "Arvika restaurant",
@@ -252,14 +243,15 @@ export const englishMenuMetadata: Metadata = {
   creator: siteConfig.creator,
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_GB",
     url: `${siteConfig.url}/en/meny`,
     title: "Menu | The Oven",
-    description: "Discover our menu with authentic Neapolitan pizzas, starters, main courses and desserts. All dishes are prepared with carefully selected ingredients and baked in our wood-fired oven.",
+    description:
+      "Discover our menu with authentic Neapolitan pizzas, starters, main courses and desserts.",
     siteName: siteConfig.shortName,
     images: [
       {
-        url: "/og.png",
+        url: siteConfig.ogImage,
         width: 1920,
         height: 1080,
         alt: "Menu | The Oven",
@@ -270,27 +262,19 @@ export const englishMenuMetadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Menu | The Oven",
-    description: "Discover our menu with authentic Neapolitan pizzas, starters, main courses and desserts.",
+    description:
+      "Discover our menu with authentic Neapolitan pizzas, starters, main courses and desserts.",
     images: [siteConfig.ogImage],
     creator: siteConfig.creator,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: { index: true, follow: true },
   verification: {
     google: "1xyjYRSepMna-uvd6Ba2qJnSHDihdXm-crC6jNcpF7I",
   },
   alternates: {
     canonical: `${siteConfig.url}/en/meny`,
     languages: {
-      sv: `${siteConfig.url}/meny`,
+      sv: `${siteConfig.url}/sv/meny`,
       en: `${siteConfig.url}/en/meny`,
     },
   },

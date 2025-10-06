@@ -1,15 +1,31 @@
 "use client";
 
 import React from "react";
-import { useLanguage } from "../../../contexts/LanguageContext";
 import { ContentBox } from "@/components/ContentBox";
 import { motion } from "framer-motion";
 
 const sectionBackgrounds = ["/images/4.webp", "/images/5.webp"];
 
-export function InfoSections() {
-  const { t } = useLanguage();
+type Dictionary = {
+  info: {
+    section1: {
+      title: string;
+      text: string;
+    };
+    section2: {
+      subheading: string;
+      title: string;
+      text: string;
+      button: string;
+    };
+  };
+};
 
+interface InfoSectionsProps {
+  dict: Dictionary;
+}
+
+export function InfoSections({ dict }: InfoSectionsProps) {
   const sections = [
     {
       key: "section1",
@@ -31,7 +47,7 @@ export function InfoSections() {
   return (
     <>
       {sections.map((section) => {
-        const sectionData = t.info[section.key as keyof typeof t.info];
+        const sectionData = dict.info[section.key as keyof typeof dict.info];
 
         return (
           <section
@@ -59,7 +75,7 @@ export function InfoSections() {
                   position={section.position}
                   subheading={
                     section.id === "stora"
-                      ? t.info.section2.subheading
+                      ? dict.info.section2.subheading
                       : undefined
                   }
                 />

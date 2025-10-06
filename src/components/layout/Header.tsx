@@ -5,17 +5,26 @@ import Link from "next/link";
 import Image from "next/image";
 import useScroll from "@/lib/hooks/use-scroll";
 import LanguageSwitcher from "../LanguageSwitcher";
-import { useLanguage } from "../../../contexts/LanguageContext";
+import type { Locale } from "../../../i18n.config";
 
-export default function Header() {
+type Dictionary = {
+  nav: {
+    about: string;
+    menu: string;
+    groups: string;
+    hours: string;
+    contact: string;
+  };
+};
+
+interface HeaderProps {
+  lang: Locale;
+  dict: Dictionary;
+}
+
+export default function Header({ lang, dict }: HeaderProps) {
   const scrolled = useScroll(50);
-  const { t, language, isInitialized } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Visa inte headern förrän språket är initialiserat
-  if (!isInitialized) {
-    return null; // eller en enkel placeholder
-  }
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -25,28 +34,13 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  // Funktion för att skapa korrekt länk baserat på språk
-  const createLink = (path: string) => {
-    if (language === "en") {
-      // För engelska, lägg till /en prefix
-      if (path.startsWith("/#")) {
-        return `/en${path}`;
-      } else if (path.startsWith("/")) {
-        return `/en${path}`;
-      }
-      return `/en/${path}`;
-    }
-    // För svenska, använd original path
-    return path;
-  };
-
-  // Navigationsobjekt med språkmedvetna länkar
+  // Navigation items with locale-aware links
   const navigationItems = [
-    { href: createLink("/#om-oss"), label: t.nav.about },
-    { href: createLink("/meny"), label: t.nav.menu },
-    { href: createLink("/#stora"), label: t.nav.groups },
-    { href: createLink("/#business-hours"), label: t.nav.hours },
-    { href: createLink("#kontakt"), label: t.nav.contact },
+    { href: `/${lang}#om-oss`, label: dict.nav.about },
+    { href: `/${lang}/meny`, label: dict.nav.menu },
+    { href: `/${lang}#stora`, label: dict.nav.groups },
+    { href: `/${lang}#business-hours`, label: dict.nav.hours },
+    { href: `/${lang}#kontakt`, label: dict.nav.contact },
   ];
 
   return (
@@ -74,7 +68,7 @@ export default function Header() {
               }
             `}
             >
-              <Link href={createLink("/")}>
+              <Link href={`/${lang}`}>
                 <Image
                   src="/the-oven.svg"
                   alt="The Oven Logo"
@@ -123,7 +117,7 @@ export default function Header() {
             </div>
 
             <div className="mr-0">
-              <LanguageSwitcher />
+              <LanguageSwitcher currentLang={lang} />
             </div>
           </div>
         </div>

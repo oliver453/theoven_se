@@ -1,12 +1,20 @@
 "use client";
 
 import React from "react";
-import { useLanguage } from "../../../contexts/LanguageContext";
 import Image from "next/image";
 
-export function HeroSection() {
-  const { t } = useLanguage();
+type Dictionary = {
+  hero: {
+    title: string;
+    subtitle?: string;
+  };
+};
 
+interface HeroSectionProps {
+  dict: Dictionary;
+}
+
+export function HeroSection({ dict }: HeroSectionProps) {
   return (
     <section className="relative h-screen overflow-hidden">
       <video
@@ -27,7 +35,7 @@ export function HeroSection() {
       <div className="absolute inset-0 flex items-center justify-center">
         <Image
           src="/the-oven.svg"
-          alt={t.hero.title}
+          alt={dict.hero.title}
           width={300}
           height={150}
           priority

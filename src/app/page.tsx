@@ -1,27 +1,6 @@
-import Header from "@/components/layout/Header";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { WelcomeSection } from "@/components/sections/WelcomeSection";
-import { InfoSections } from "@/components/sections/InfoSections";
-import { HoursSection } from "@/components/sections/HoursSection";
-import { FAQSection } from "@/components/sections/FAQSection";
-import Footer from "@/components/layout/Footer";
-import SocialSidebar from "@/components/layout/SocialSidebar";
-import { BookingButton } from "@/components/booking";
-import { NewMenuModal } from "@/components/NewMenuModal";
+import { redirect } from 'next/navigation';
+import { i18n } from '../../i18n.config';
 
-export default function HomePage() {
-  return (
-    <main>
-      <Header />
-      <HeroSection />
-      <WelcomeSection />
-      <InfoSections />
-      <HoursSection />
-      <FAQSection />
-      <Footer />
-      <BookingButton />
-      <SocialSidebar />
-      <NewMenuModal />
-    </main>
-  );
+export default function RootPage() {
+  redirect(`/${i18n.defaultLocale}`);
 }

@@ -2,17 +2,31 @@
 
 import React, { useState } from "react";
 import { BookingModal } from "./BookingModal";
-import { useLanguage } from "../../../contexts/LanguageContext";
+import type { Locale } from "../../../i18n.config";
 
-export function BookingButton() {
+type Dictionary = {
+  bookingBtn: {
+    buttonText: string;
+    buttonAriaLabel: string;
+  };
+  booking: any;
+};
+
+interface BookingButtonProps {
+  dict: Dictionary;
+  lang?: Locale;
+}
+
+export function BookingButton({ dict, lang = "sv" }: BookingButtonProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { t } = useLanguage();
 
   return (
     <>
       <BookingModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        dict={dict}
+        lang={lang}
       />
 
       <div className="fixed bottom-4 right-4 z-10">
@@ -25,9 +39,9 @@ export function BookingButton() {
             shadow-lg transition-all duration-300
             hover:scale-105 hover:opacity-90 hover:shadow-xl
           "
-          aria-label={t.bookingBtn?.buttonAriaLabel || "Boka bord"}
+          aria-label={dict.bookingBtn.buttonAriaLabel}
         >
-          <span>{t.bookingBtn?.buttonText || "Boka bord"}</span>
+          <span>{dict.bookingBtn.buttonText}</span>
         </button>
       </div>
     </>

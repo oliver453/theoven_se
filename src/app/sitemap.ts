@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     // Svenska sidor
     {
-      url: baseUrl,
+      url: `${baseUrl}/sv`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 1.0,
@@ -18,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     },
     {
-      url: `${baseUrl}/meny`,
+      url: `${baseUrl}/sv/meny`,
       lastModified: currentDate,
       changeFrequency: 'weekly' as const,
       priority: 0.9,
@@ -36,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
       alternates: {
         languages: {
-          sv: baseUrl,
+          sv: `${baseUrl}/sv`,
         },
       },
     },
@@ -47,7 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
       alternates: {
         languages: {
-          sv: `${baseUrl}/meny`,
+          sv: `${baseUrl}/sv/meny`,
         },
       },
     },
