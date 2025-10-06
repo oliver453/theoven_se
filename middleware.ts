@@ -12,12 +12,17 @@ function getLocale(request: NextRequest): string {
   // Check Accept-Language header
   const acceptLanguage = request.headers.get('accept-language');
   if (acceptLanguage) {
-    const browserLocale = acceptLanguage.split(',')[0].split('-')[0];
-    if (i18n.locales.includes(browserLocale as any)) {
-      return browserLocale;
+    // Kolla om 'en' finns någonstans i accept-language
+    if (acceptLanguage.toLowerCase().includes('en')) {
+      return 'en';
+    }
+    // Kolla om 'sv' finns någonstans i accept-language
+    if (acceptLanguage.toLowerCase().includes('sv')) {
+      return 'sv';
     }
   }
 
+  // Default alltid till svenska
   return i18n.defaultLocale;
 }
 
@@ -34,7 +39,7 @@ export function middleware(request: NextRequest) {
     const locale = pathname.split('/')[1];
     response.cookies.set('NEXT_LOCALE', locale, { 
       maxAge: 31536000,
-      path: '/' 
+      path: '/'
     });
     return response;
   }
@@ -46,7 +51,7 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.redirect(newUrl);
   response.cookies.set('NEXT_LOCALE', locale, { 
     maxAge: 31536000,
-    path: '/' 
+    path: '/'
   });
   
   return response;
@@ -54,14 +59,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder files (images, etc.)
-     */
     '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*|_next).*)',
   ],
 };

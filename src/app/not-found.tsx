@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { cookies } from 'next/headers';
 import { i18n } from '../../i18n.config';
 import { getDictionary } from '@/lib/dictionaries';
+import { rusticPrinted, robotoSlab } from './fonts';
 
 export default async function RootNotFound() {
   const cookieStore = await cookies();
@@ -14,8 +15,11 @@ export default async function RootNotFound() {
   const dict = await getDictionary(lang);
 
   return (
-    <html lang={lang}>
-      <body>
+    <html 
+      lang={lang}
+      className={`${rusticPrinted.variable} ${robotoSlab.variable}`}
+    >
+      <body className={robotoSlab.className}>
         <Header lang={lang} dict={dict} />
         <main className="min-h-screen bg-black flex items-center justify-center px-4">
           <div className="text-center space-y-8 max-w-md mx-auto">
