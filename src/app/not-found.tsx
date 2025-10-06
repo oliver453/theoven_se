@@ -38,7 +38,7 @@ export default async function RootNotFound() {
             </div>
             
             <div className="flex flex-col sm:flex-row justify-center gap-3">
-              <Link href={`/${lang}`}>
+              <a href={`/${lang}`}>
                 <Button
                   variant="default"
                   size="lg"
@@ -46,9 +46,9 @@ export default async function RootNotFound() {
                 >
                   {dict.notFound.homeButton}
                 </Button>
-              </Link>
+              </a>
               
-              <Link href={`/${lang}/meny`}>
+              <a href={`/${lang}/meny`}>
                 <Button
                   variant="outline"
                   size="lg"
@@ -56,7 +56,7 @@ export default async function RootNotFound() {
                 >
                   {dict.notFound.menuButton}
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </main>
