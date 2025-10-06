@@ -37,21 +37,6 @@ interface WelcomeSectionProps {
 }
 
 export function WelcomeSection({ dict, lang = "sv" }: WelcomeSectionProps) {
-  // Function to create correct link based on language
-  const createLink = (path: string) => {
-    if (lang === "en") {
-      // For English, add /en prefix
-      if (path.startsWith("/#")) {
-        return `/en${path}`;
-      } else if (path.startsWith("/")) {
-        return `/en${path}`;
-      }
-      return `/en/${path}`;
-    }
-    // For Swedish, use original path
-    return path;
-  };
-
   return (
     <section id="om-oss" className="relative flex min-h-screen items-center justify-center bg-black">
       {/* Content */}
@@ -77,7 +62,7 @@ export function WelcomeSection({ dict, lang = "sv" }: WelcomeSectionProps) {
             <p className="text-md mx-auto max-w-lg leading-relaxed text-white/80 lg:mx-0">
               {dict.welcome.text}
             </p>
-            <Link href={createLink("/meny")} className="block">
+            <Link href={`/${lang}/meny`} className="block">
               <Button className="bg-white hover:bg-gray-200 px-8 py-7 font-rustic text-lg uppercase text-black">
                 {dict.welcome.button}
               </Button>
