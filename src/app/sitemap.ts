@@ -5,11 +5,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date();
 
   return [
+    // Root
+    {
+      url: baseUrl,
+      lastModified: currentDate,
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
+      alternates: {
+        languages: {
+          sv: `${baseUrl}/sv`,
+          en: `${baseUrl}/en`,
+        },
+      },
+    },
     // Svenska sidor
     {
       url: `${baseUrl}/sv`,
       lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
+      changeFrequency: "weekly" as const,
       priority: 1.0,
       alternates: {
         languages: {
@@ -20,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${baseUrl}/sv/meny`,
       lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
+      changeFrequency: "weekly" as const,
       priority: 0.9,
       alternates: {
         languages: {
@@ -32,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${baseUrl}/en`,
       lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
+      changeFrequency: "weekly" as const,
       priority: 1.0,
       alternates: {
         languages: {
@@ -43,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     {
       url: `${baseUrl}/en/meny`,
       lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
+      changeFrequency: "weekly" as const,
       priority: 0.9,
       alternates: {
         languages: {

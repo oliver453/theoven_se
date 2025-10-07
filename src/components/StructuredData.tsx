@@ -26,43 +26,50 @@ export function StructuredData({ lang, type = 'home' }: StructuredDataProps) {
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '59.65479679282539',
-      longitude: '12.59550767923555',
+      latitude: 59.65479679282539,
+      longitude: 12.59550767923555,
     },
     openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: 'Monday',
-          opens: '00:00',
-          closes: '00:00',
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday'],
-          opens: '16:00',
-          closes: '21:00',
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: 'Friday',
-          opens: '14:00',
-          closes: '23:00',
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: 'Saturday',
-          opens: '12:00',
-          closes: '23:00',
-        },
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: 'Sunday',
-          opens: '00:00',
-          closes: '00:00',
-        },
-      ],      
-    menu: `${siteConfig.url}/${lang === 'sv' ? 'meny' : 'en/meny'}`,
-    acceptsReservations: 'True',
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday'],
+        opens: '16:00',
+        closes: '21:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Friday',
+        opens: '14:00',
+        closes: '23:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: 'Saturday',
+        opens: '12:00',
+        closes: '23:00',
+      },
+    ],
+    hasMenu: [
+      {
+        '@type': 'Menu',
+        name: 'Meny (Svenska)',
+        url: `${siteConfig.url}/sv/meny`,
+      },
+      {
+        '@type': 'Menu',
+        name: 'Menu (English)',
+        url: `${siteConfig.url}/en/meny`,
+      },
+    ],
+    acceptsReservations: true,
+    sameAs: [
+      'https://www.facebook.com/profile.php?id=61554892137607',
+      'https://www.instagram.com/theoven_arvika',
+      'https://maps.app.goo.gl/dBvSXPCJEE9gaswr8',
+      'https://www.tripadvisor.com/Restaurant_Review-g285721-d3502137-Reviews-The_Oven-Arvika_Varmland_County.html',
+      'https://www.tiktok.com/@theovenarvika'
+
+    ],
   };
 
   if (type === 'home') {
@@ -116,14 +123,14 @@ export function StructuredData({ lang, type = 'home' }: StructuredDataProps) {
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Home',
+        name: siteConfig.shortName,
         item: siteConfig.url,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: lang === 'sv' ? 'Meny' : 'Menu',
-        item: `${siteConfig.url}/${lang === 'sv' ? 'meny' : 'en/meny'}`,
+        item: `${siteConfig.url}/${lang === 'sv' ? 'sv/meny' : 'en/meny'}`,
       },
     ],
   };

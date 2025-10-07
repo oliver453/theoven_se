@@ -26,7 +26,7 @@ export const siteConfig = {
     city: "Arvika",
     country: "SE",
   },
-  phone: "+46 570 188 80",
+  phone: "+46 570 10 100",
   coordinates: {
     latitude: '59.65479679282539',
     longitude: '12.59550767923555',
