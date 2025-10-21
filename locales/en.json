@@ -82,6 +82,7 @@
       "title": "Weekend Treat!",
       "description": "Enjoy a pizza or kebab plate for only 99 kr – takeaway available Friday and Saturday.",
       "button": "Call to order",
+      "menuButton": "Our menu",
       "close": "Close"  
   },
 "menu": {

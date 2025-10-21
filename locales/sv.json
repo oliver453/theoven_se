@@ -50,7 +50,7 @@
       },
       {
         "question": "Tar ni kontanter?",
-        "answer": "Vi är en kontantfri restaurang och tar endast betalning med kort."
+        "answer": "Vi är en kontantfri restaurang och tar endast betalning med kort eller Swish."
       },
       {
         "question": "Kan ni hantera allergier och specialkost?",
@@ -82,6 +82,7 @@
     "title": "Helgerbjudande!",
     "description": "Valfri pizza eller kebabtallrik för bara 99 kr, gäller vid avhämtning fredag och lördag.",
     "button": "Ring och beställ",
+    "menuButton": "Se meny",
     "close": "Stäng"
   },
 "menu": {

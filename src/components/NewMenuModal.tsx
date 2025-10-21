@@ -16,6 +16,7 @@ type Dictionary = {
     title?: string;
     description?: string;
     button?: string;
+    menuButton?: string;
   };
 };
 
@@ -62,6 +63,12 @@ export function NewMenuModal({
     const menuPath = lang === "en" ? "tel:0570-10100" : "tel:0570-10100";
     router.push(menuPath);
     onViewMenu?.();
+    handleClose();
+  };
+
+  const handleMenuClick = (): void => {
+    const menuPath = lang === "en" ? "/en/menu" : "/meny";
+    router.push(menuPath);
     handleClose();
   };
 
@@ -174,7 +181,7 @@ export function NewMenuModal({
           {/* Centered Content med fade-in animation */}
           <div className="flex-1 flex flex-col items-center justify-center px-8 py-16">
             <div 
-              className={`text-center max-w-xs mx-auto space-y-8 transition-all duration-700 ${
+              className={`text-center max-w-xs mx-auto space-y-6 transition-all duration-700 ${
                 imageLoaded 
                   ? 'opacity-100 transform translate-y-0' 
                   : 'opacity-70 transform translate-y-4'
@@ -186,13 +193,22 @@ export function NewMenuModal({
               <p className="text-white leading-relaxed text-lg">
                 {dict.newMenuModal?.description || "Kolla in vår nya meny med spännande rätter!"}
               </p>
-              <Button 
-                onClick={handleViewMenu}
-                className="bg-white text-black hover:bg-gray-200 focus:bg-gray-200 font-rustic uppercase text-lg py-3 px-8 transition-colors duration-200 w-full"
-                aria-describedby="view-menu-description"
-              >
-                {dict.newMenuModal?.button || "Visa Meny"}
-              </Button>
+              <div className="space-y-3 w-full">
+                <Button 
+                  onClick={handleViewMenu}
+                  className="bg-white text-black hover:bg-gray-200 focus:bg-gray-200 font-rustic uppercase text-lg py-3 px-8 transition-colors duration-200 w-full"
+                  aria-describedby="view-menu-description"
+                >
+                  {dict.newMenuModal?.button || "Ring och beställ"}
+                </Button>
+                <Button 
+                  onClick={handleMenuClick}
+                  variant="ghost"
+                  className="border-2 border-white text-white hover:bg-white hover:text-black font-rustic uppercase text-lg py-3 px-8 w-full"
+                >
+                  {dict.newMenuModal?.menuButton || "Se meny"}
+                </Button>
+              </div>
               <span id="view-menu-description" className="sr-only">
                 Navigate to page
               </span>
