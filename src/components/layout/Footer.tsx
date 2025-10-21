@@ -4,6 +4,7 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 type Dictionary = {
   footer: {
     contactTitle: string;
+    credits: string;
   };
 };
 
@@ -51,12 +52,30 @@ export default function Footer({ dict }: FooterProps) {
                   <span>hello@theoven.se</span>
                 </a>
               </li>
+
               <li className="flex items-center justify-center gap-2">
                 <FaMapMarkerAlt className="h-4 w-4" />
                 <span>Kyrkogatan 20, 671 31 Arvika</span>
               </li>
             </ul>
+            
+
           </div>
+        </div>
+        
+        {/* Credits */}
+        <div className="border-t border-white/10 lg:border-0 py-6 text-center">
+          <p className="font-roboto text-sm text-white/50">
+          {dict.footer.credits}{" "}
+            <a 
+              href="https://otdesign.se?utm_source=theoven&utm_medium=referral" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-white/80 transition-colors"
+            >
+              Otd.
+            </a>
+          </p>
         </div>
       </div>
     </footer>

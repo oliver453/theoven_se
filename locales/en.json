@@ -72,17 +72,17 @@
     "phone": "+46 8 123 456 78",
     "email": "hello@theoven.se",
     "followUs": "Follow us",
-    "copyright": "© 2024 The Oven. All rights reserved."
+    "credits": "Website by"
   },
   "bookingBtn": {
     "buttonText": "Book Table",
     "buttonAriaLabel": "Book table"
   },
   "newMenuModal": {
-    "title": "New menu!",
-    "description": "We have released our updated menu with new exciting dishes and flavors.",
-    "button": "See the menu",
-    "close": "Close"
+      "title": "Weekend Treat!",
+      "description": "Enjoy a pizza or kebab plate for only 99 kr – takeaway available Friday and Saturday.",
+      "button": "Call to order",
+      "close": "Close"  
   },
 "menu": {
   "title": "Our menu",

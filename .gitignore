@@ -2,6 +2,9 @@ node_modules/
 .next/
 dist/
 build/
+out/
 *.log
 *.gz
 .DS_Store
+.env
+.env.*

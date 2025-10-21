@@ -29,6 +29,7 @@ export default async function HomePage({
       <FAQSection dict={dict} />
       <Footer dict={dict} />
       <BookingButton dict={dict} />
+      <NewMenuModal dict={dict} />
       <SocialSidebar />
     </main>
   );

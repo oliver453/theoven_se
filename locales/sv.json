@@ -72,16 +72,16 @@
     "phone": "+46 8 123 456 78",
     "email": "hello@theoven.se",
     "followUs": "Följ oss",
-    "copyright": "© 2024 The Oven. Alla rättigheter förbehållna."
+    "credits": "Webbsida av"
   },
   "bookingBtn": {
     "buttonText": "Boka bord",
     "buttonAriaLabel": "Boka bord"
   },
   "newMenuModal": {
-    "title": "Ny meny!",
-    "description": "Vi har släppt vår uppdaterade meny med nya spännande rätter och smaker.",
-    "button": "Se menyn",
+    "title": "Helgerbjudande!",
+    "description": "Valfri pizza eller kebabtallrik för bara 99 kr, gäller vid avhämtning fredag och lördag.",
+    "button": "Ring och beställ",
     "close": "Stäng"
   },
 "menu": {

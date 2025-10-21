@@ -1,5 +1,0 @@
-Sitemap: https://theoven.se/sitemap.xml
-
-User-agent: *
-Allow: /
-Disallow: /api

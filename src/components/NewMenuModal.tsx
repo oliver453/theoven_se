@@ -32,8 +32,8 @@ export interface NewMenuModalProps {
 
 export function NewMenuModal({
   triggerDelay = 1000,
-  storageKey = "new-menu-modal-seen",
-  backgroundImage = "/images/ex.webp",
+  storageKey = "promo:a7f3-modal-seen",
+  backgroundImage = "/images/5.webp",
   onOpen,
   onClose,
   onViewMenu,
@@ -59,7 +59,7 @@ export function NewMenuModal({
   };
 
   const handleViewMenu = (): void => {
-    const menuPath = lang === "en" ? "/en/meny" : "/meny";
+    const menuPath = lang === "en" ? "tel:0570-10100" : "tel:0570-10100";
     router.push(menuPath);
     onViewMenu?.();
     handleClose();
@@ -134,7 +134,7 @@ export function NewMenuModal({
         <div className="absolute inset-0">
           <Image
             src={backgroundImage}
-            alt="Menu background"
+            alt="Background"
             fill
             className={`object-cover transition-opacity duration-500 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -194,7 +194,7 @@ export function NewMenuModal({
                 {dict.newMenuModal?.button || "Visa Meny"}
               </Button>
               <span id="view-menu-description" className="sr-only">
-                Navigate to menu page
+                Navigate to page
               </span>
             </div>
           </div>

@@ -155,7 +155,7 @@ export default function ConfirmationClient({ lang, code, dict }: ConfirmationCli
             {/* Expiry Date */}
             {expiresDate && (
               <div className="text-center">
-                <p className="text-white/50 text-sm font-roboto">
+                <p className="text-white/70 text-sm font-roboto">
                   Giltig till
                 </p>
                 <p className="text-white/90 text-base font-roboto font-medium mt-1">
