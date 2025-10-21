@@ -364,5 +364,45 @@
         "tryAgainButton": "Försök igen"
       }
     }
-  }
+  },
+    "offer": {
+      "page": {
+        "title": "Erbjudande",
+        "description": "Ange ditt mobilnummer och få en valfri läsk vid ditt nästa besök!"
+      },
+      "form": {
+        "phoneLabel": "Mobilnummer",
+        "phonePlaceholder": "070-123 45 67",
+        "consentLabel": "Jag samtycker till att The Oven får skicka nyheter och erbjudanden.",
+        "submitButton": "Få erbjudande",
+        "submitting": "Registrerar...",
+        "invalidPhone": "Ange ett giltigt svenskt mobilnummer",
+        "consentRequired": "Du måste godkänna att vi kontaktar dig",
+        "alreadyRegistered": "Detta nummer är redan registrerat",
+        "error": "Ett fel uppstod vid registreringen"
+      },
+      "confirmation": {
+        "title": "Snyggt jobbat!",
+        "description": "Visa denna kod för personalen vid ditt nästa besök. Ta gärna en skärmdump så att du har den sparad.",
+        "codeLabel": "Din kod:",
+        "warning": "OBS: Spara denna kod! Den går bara att visa en gång."
+      },
+      "dashboard": {
+        "title": "Dashboard",
+        "passwordLabel": "Lösenord",
+        "loginButton": "Logga in",
+        "wrongPassword": "Felaktigt lösenord",
+        "error": "Ett fel uppstod",
+        "registeredNumbers": "Registrerade nummer",
+        "copyAll": "Kopiera alla",
+        "copied": "Kopierat!",
+        "downloadCSV": "Ladda ner CSV",
+        "total": "Totalt:",
+        "numbers": "nummer",
+        "loading": "Laddar...",
+        "mobileNumber": "Mobilnummer",
+        "code": "Kod",
+        "noNumbers": "Inga registrerade nummer än"
+      }
+    }
 }

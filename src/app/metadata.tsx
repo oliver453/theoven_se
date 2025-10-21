@@ -8,6 +8,7 @@ export const siteConfig = {
   url: "https://theoven.se",
   ogImage: "/og.png",
   creator: "@theovenarvika",
+  developer: "otdesign.se — design, kod och lite kaffe",
   keywords: [
     "The Oven",
     "Arvika restaurang",
@@ -61,6 +62,9 @@ export const defaultMetadata: Metadata = {
   keywords: siteConfig.keywords,
   authors: [{ name: siteConfig.shortName }],
   creator: siteConfig.creator,
+  other: {
+    developer: siteConfig.developer,
+  },
   openGraph: {
     type: "website",
     locale: "sv_SE",
@@ -109,6 +113,9 @@ export const englishMetadata: Metadata = {
   keywords: siteConfig.en.keywords,
   authors: [{ name: siteConfig.shortName }],
   creator: siteConfig.creator,
+  other: {
+    developer: siteConfig.developer,
+  },
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -174,6 +181,9 @@ export const menuMetadata: Metadata = {
   ],
   authors: [{ name: siteConfig.shortName }],
   creator: siteConfig.creator,
+  other: {
+    developer: siteConfig.developer,
+  },
   openGraph: {
     type: "website",
     locale: "sv_SE",
@@ -241,6 +251,9 @@ export const englishMenuMetadata: Metadata = {
   ],
   authors: [{ name: siteConfig.shortName }],
   creator: siteConfig.creator,
+  other: {
+    developer: siteConfig.developer,
+  },
   openGraph: {
     type: "website",
     locale: "en_GB",

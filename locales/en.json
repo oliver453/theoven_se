@@ -364,5 +364,45 @@
         "tryAgainButton": "Try Again"
       }
     }
+  },
+  "offer": {
+    "page": {
+      "title": "Special Offer",
+      "description": "Enter your mobile number and get a free drink on your next visit!"
+    },
+    "form": {
+      "phoneLabel": "Mobile number",
+      "phonePlaceholder": "070-123 45 67",
+      "consentLabel": "I agree that The Oven may contact me with offers and news",
+      "submitButton": "Get offer",
+      "submitting": "Registering...",
+      "invalidPhone": "Please enter a valid Swedish mobile number",
+      "consentRequired": "You must agree to be contacted",
+      "alreadyRegistered": "This number is already registered",
+      "error": "An error occurred during registration"
+    },
+    "confirmation": {
+      "title": "Thank you!",
+      "description": "Show this code to the staff during your next visit. Please take a screenshot so you have it saved.",
+      "codeLabel": "Your code:",
+      "warning": "NOTE: Save this code! It can only be displayed once."
+    },
+    "dashboard": {
+      "title": "Dashboard",
+      "passwordLabel": "Password",
+      "loginButton": "Login",
+      "wrongPassword": "Incorrect password",
+      "error": "An error occurred",
+      "registeredNumbers": "Registered Numbers",
+      "copyAll": "Copy All",
+      "copied": "Copied!",
+      "downloadCSV": "Download CSV",
+      "total": "Total:",
+      "numbers": "numbers",
+      "loading": "Loading...",
+      "mobileNumber": "Mobile Number",
+      "code": "Code",
+      "noNumbers": "No registered numbers yet"
+    }
   }
 }
