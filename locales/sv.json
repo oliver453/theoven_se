@@ -486,7 +486,6 @@
           "title": "10. Ändringar i denna policy",
           "content": "Vi kan komma att uppdatera denna integritetspolicy vid behov. Senaste uppdateringsdatum anges alltid högst upp på sidan. Vi rekommenderar att du regelbundet kontrollerar denna sida för att hålla dig informerad."
         }
-        }
       },
       "unsubscribe": {
         "title": "Avregistrera dig",
@@ -502,4 +501,5 @@
         "infoText": "När du avregistrerar dig tas ditt nummer bort från vår databas och du kommer inte längre att få SMS-utskick från oss.",
         "backLink": "Tillbaka till startsidan"
       }
+    }
 }
