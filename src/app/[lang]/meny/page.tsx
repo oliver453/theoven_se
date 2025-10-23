@@ -32,7 +32,7 @@ export default async function MenuPage({
       <main>
         <Header lang={lang} dict={dict} />
         <MenuClient dict={dict} />
-        <Footer dict={dict} />
+        <Footer dict={dict} lang={lang} />
         <BookingButton dict={dict} />
         <SocialSidebar />
       </main>
