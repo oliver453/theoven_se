@@ -60,7 +60,7 @@ export default async function RootNotFound() {
             </div>
           </div>
         </main>
-        <Footer dict={dict} />
+       <Footer dict={dict} lang={lang} />
       </body>
     </html>
   );
