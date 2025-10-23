@@ -10,6 +10,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/sv/erbjudande",
           "/en/erbjudande",
+          "/sv/erbjudande/avregistrera",
+          "/en/erbjudande/avregistrera",
           "/sv/erbjudande/dashboard",
           "/en/erbjudande/dashboard",
         ],

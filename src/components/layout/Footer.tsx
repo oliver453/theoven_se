@@ -1,18 +1,21 @@
 import React from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import type { Locale } from "../../../i18n.config";
 
 type Dictionary = {
   footer: {
     contactTitle: string;
     credits: string;
+    privacy: string;
   };
 };
 
 interface FooterProps {
   dict: Dictionary;
+  lang: Locale;
 }
 
-export default function Footer({ dict }: FooterProps) {
+export default function Footer({ dict, lang }: FooterProps) {
   return (
     <footer id="kontakt" className="bg-black text-white">
       <div className="mx-auto w-full">
@@ -58,22 +61,30 @@ export default function Footer({ dict }: FooterProps) {
                 <span>Kyrkogatan 20, 671 31 Arvika</span>
               </li>
             </ul>
-            
-
           </div>
         </div>
         
         {/* Credits */}
-        <div className="border-t border-white/10 lg:border-0 py-6 text-center">
+        <div className="border-t border-white/10 lg:border-0 py-6 text-center flex items-center justify-center gap-4">
           <p className="font-roboto text-sm text-white/50">
-          {dict.footer.credits}{" "}
+            <a 
+              href={`/${lang}/integritetspolicy`}
+              className="hover:text-white/80 transition-colors"
+            >
+              {dict.footer.privacy}
+            </a>
+          </p>
+          <span className="text-white/30">|</span>
+         
+          <p className="font-roboto text-sm text-white/50">
+            {dict.footer.credits}{" "}
             <a 
               href="https://otdesign.se?utm_source=theoven&utm_medium=referral" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:text-white/80 transition-colors"
             >
-              Otd.
+              Otd
             </a>
           </p>
         </div>

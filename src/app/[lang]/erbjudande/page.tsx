@@ -60,7 +60,7 @@ export default async function OfferPage({
           </div>
         </div>
       </main>
-      <Footer dict={dict} />
+      <Footer dict={dict} lang={lang} />
       <SocialSidebar />
     </>
   );

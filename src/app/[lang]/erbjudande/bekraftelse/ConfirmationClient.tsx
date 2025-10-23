@@ -81,7 +81,7 @@ export default function ConfirmationClient({ lang, code, dict }: ConfirmationCli
         <main className="min-h-screen bg-black flex items-center justify-center">
           <div className="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin" />
         </main>
-        <Footer dict={dict} />
+        <Footer dict={dict} lang={lang} />
         <SocialSidebar />
       </>
     );
@@ -105,7 +105,7 @@ export default function ConfirmationClient({ lang, code, dict }: ConfirmationCli
             </div>
           </div>
         </main>
-        <Footer dict={dict} />
+        <Footer dict={dict} lang={lang} />
         <SocialSidebar />
       </>
     );
@@ -227,7 +227,7 @@ export default function ConfirmationClient({ lang, code, dict }: ConfirmationCli
           </div>
         </div>
       </main>
-      <Footer dict={dict} />
+      <Footer dict={dict} lang={lang} />
       <SocialSidebar />
     </>
   );

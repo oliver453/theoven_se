@@ -72,7 +72,8 @@
     "phone": "+46 8 123 456 78",
     "email": "hello@theoven.se",
     "followUs": "Follow us",
-    "credits": "Website by"
+    "credits": "Website by",
+    "privacy": "Privacy Policy"
   },
   "bookingBtn": {
     "buttonText": "Book Table",
@@ -405,5 +406,100 @@
       "code": "Code",
       "noNumbers": "No registered numbers yet"
     }
+  },
+  "privacy": {
+  "title": "Privacy Policy",
+  "lastUpdated": "Last updated: 23 October 2025",
+  "sections": {
+    "intro": {
+      "title": "1. Introduction",
+      "content": "Theoven.se is operated by The Oven AB. We value your privacy and are committed to protecting your personal data. This policy explains how we collect and process information on our website."
+    },
+    "dataCollection": {
+      "title": "2. Collection of personal data",
+      "content": "We collect personal data in the following ways:",
+      "list": [
+        "**Table bookings**: When you make a reservation, we collect your name, email address, and phone number to confirm your booking.",
+        "**Campaigns and offers**: When you sign up for our offers and promotions, we collect your mobile number to send you the offer and any future marketing messages.",
+        "**Photography**: Occasionally, photography may take place on our premises for marketing purposes. By being present in the venue, you consent to this. Please contact us if you wish to have a photo or video in which you appear removed."
+      ]
+    },
+    "dataUsage": {
+      "title": "3. How we use your data",
+      "content": "We use the collected information to:",
+      "list": [
+        "Manage and confirm table reservations",
+        "Send promotional offers and marketing material (with your consent)",
+        "Improve our website and services",
+        "Communicate with you regarding your booking or visit"
+      ]
+    },
+    "localStorage": {
+      "title": "4. Local storage",
+      "content": "Our website uses local storage in your browser to enhance your user experience. This storage does NOT contain personal data but is only used to:",
+      "list": [
+        "Remember if you have closed information modals",
+        "Save your website preferences",
+        "Improve site functionality"
+      ],
+      "note": "You can clear this information at any time through your browser settings."
+    },
+    "cookies": {
+      "title": "5. Cookies and tracking",
+      "content": "We do NOT use tracking cookies or analytics tools that collect behavioural data. We only use technically necessary local storage for basic website functionality."
+    },
+    "rights": {
+      "title": "6. Your rights",
+      "content": "Under GDPR, you have the following rights:",
+      "list": [
+        "**Right of access**: You may request a copy of the personal data we hold about you",
+        "**Right to rectification**: You may request that we correct any inaccurate data",
+        "**Right to erasure**: You may request that we delete your data",
+        "**Right to object**: You may object to marketing at any time",
+        "**Right to withdraw consent**: You may withdraw your consent for campaigns and newsletters at any time"
+      ],
+      "unsubscribe": "To unsubscribe from our newsletter or promotional messages, click the link below:",
+      "unsubscribeLink": "Unsubscribe here"
+    },
+    "dataSharing": {
+      "title": "7. Data sharing",
+      "content": "We NEVER sell your personal data. We only share information with:",
+      "list": [
+        "Booking systems to manage reservations",
+        "Email services to send booking confirmations",
+        "SMS services for campaigns and offers (only with your consent)"
+      ]
+    },
+    "dataSecurity": {
+      "title": "8. Security",
+      "content": "We take appropriate technical and organisational measures to protect your personal data from unauthorised access, loss, or misuse."
+    },
+    "contact": {
+      "title": "9. Contact us",
+      "content": "If you have any questions about this privacy policy or how we handle your personal data, please contact us:",
+      "company": "The Oven AB",
+      "email": "hello@theoven.se",
+      "phone": "+46 570 10 100",
+      "address": "Kyrkogatan 20, 671 31 Arvika"
+    },
+    "changes": {
+      "title": "10. Changes to this policy",
+      "content": "We may update this privacy policy when necessary. The latest revision date is always shown at the top of the page. We recommend checking this page regularly to stay informed."
+    }
+  },
+  "unsubscribe": {
+    "title": "Unsubscribe",
+    "description": "Enter your mobile number to unsubscribe from our SMS messages",
+    "phoneLabel": "Mobile number",
+    "phonePlaceholder": "070-123 45 67",
+    "submitButton": "Unsubscribe",
+    "submitting": "Unsubscribing...",
+    "successTitle": "Done!",
+    "successMessage": "Your number has been removed from our mailing list",
+    "errorNotFound": "No number registered with this phone number",
+    "errorGeneral": "An error occurred while unsubscribing",
+    "infoText": "When you unsubscribe, your number will be removed from our database and you will no longer receive SMS messages from us.",
+    "backLink": "Back to homepage"
   }
+}
 }

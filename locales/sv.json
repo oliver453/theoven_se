@@ -72,7 +72,8 @@
     "phone": "+46 8 123 456 78",
     "email": "hello@theoven.se",
     "followUs": "Följ oss",
-    "credits": "Webbsida av"
+    "credits": "Webbsida av",
+    "privacy": "Integritetspolicy"
   },
   "bookingBtn": {
     "buttonText": "Boka bord",
@@ -405,5 +406,100 @@
         "code": "Kod",
         "noNumbers": "Inga registrerade nummer än"
       }
-    }
+    },
+    "privacy": {
+      "title": "Integritetspolicy",
+      "lastUpdated": "Senast uppdaterad: 23 oktober 2025",
+      "sections": {
+        "intro": {
+          "title": "1. Introduktion",
+          "content": "Theoven.se drivs av The Oven AB. Vi värnar om din integritet och strävar efter att skydda dina personuppgifter. Denna policy beskriver hur vi samlar in och behandlar information på vår webbplats."
+        },
+        "dataCollection": {
+          "title": "2. Insamling av personuppgifter",
+          "content": "Vi samlar in personuppgifter på följande sätt:",
+          "list": [
+            "**Bordsbokning**: När du bokar ett bord samlar vi in namn, e-postadress och telefonnummer för att bekräfta din bokning.",
+            "**Kampanjer och erbjudanden**: När du anmäler dig till våra erbjudanden och kampanjer samlar vi in ditt mobilnummer för att kunna skicka erbjudandet och eventuella framtida marknadsföringsmeddelanden.",
+            "**Fotografering**: Ibland förekommer fotografering i våra lokaler för marknadsföringsändamål. Genom att vistas i lokalen samtycker du till detta. Kontakta oss om du önskar att en bild eller video där du förekommer tas bort."
+          ]
+        },
+        "dataUsage": {
+          "title": "3. Hur vi använder dina uppgifter",
+          "content": "Vi använder insamlad information för att:",
+          "list": [
+            "Hantera och bekräfta bordsreservationer",
+            "Skicka kampanjerbjudanden och marknadsföringsmaterial (med ditt samtycke)",
+            "Förbättra vår webbplats och våra tjänster",
+            "Kommunicera med dig om din bokning eller ditt besök"
+          ]
+        },
+        "localStorage": {
+          "title": "4. Lokal lagring",
+          "content": "Vår webbplats använder lokal lagring i din webbläsare för att förbättra din användarupplevelse. Denna lagring innehåller INTE personuppgifter utan används endast för:",
+          "list": [
+            "Att komma ihåg om du har stängt informationsmodaler",
+            "Att spara dina preferenser för webbplatsen",
+            "Att förbättra webbplatsens funktionalitet"
+          ],
+          "note": "Du kan när som helst rensa denna information genom din webbläsares inställningar."
+        },
+        "cookies": {
+          "title": "5. Cookies och spårning",
+          "content": "Vi använder INTE spårningscookies eller analysverktyg som samlar in information om ditt beteende på webbplatsen. Vi använder endast tekniskt nödvändig lokal lagring för grundläggande webbplatsfunktionalitet."
+        },
+        "rights": {
+          "title": "6. Dina rättigheter",
+          "content": "Enligt GDPR har du följande rättigheter:",
+          "list": [
+            "**Rätt till tillgång**: Du kan begära en kopia av de personuppgifter vi har om dig",
+            "**Rätt till rättelse**: Du kan begära att vi korrigerar felaktiga uppgifter",
+            "**Rätt till radering**: Du kan begära att vi raderar dina uppgifter",
+            "**Rätt till invändning**: Du kan när som helst invända mot marknadsföring",
+            "**Rätt att återkalla samtycke**: Du kan när som helst återkalla ditt samtycke för kampanjer och nyhetsbrev"
+          ],
+          "unsubscribe": "För att avsluta din prenumeration på vårt nyhetsbrev eller våra kampanjer, klicka på länken nedan:",
+          "unsubscribeLink": "Avregistrera dig här"
+        },
+        "dataSharing": {
+          "title": "7. Delning av uppgifter",
+          "content": "Vi säljer ALDRIG dina personuppgifter. Vi delar endast information med:",
+          "list": [
+            "Bokningssystem för att hantera reservationer",
+            "E-posttjänster för att skicka bokningsbekräftelser",
+            "SMS-tjänster för kampanjer och erbjudanden (endast med ditt samtycke)"
+          ]
+        },
+        "dataSecurity": {
+          "title": "8. Säkerhet",
+          "content": "Vi vidtar lämpliga tekniska och organisatoriska åtgärder för att skydda dina personuppgifter mot obehörig åtkomst, förlust eller missbruk."
+        },
+        "contact": {
+          "title": "9. Kontakta oss",
+          "content": "Om du har frågor om denna integritetspolicy eller vår behandling av dina personuppgifter, kontakta oss:",
+          "company": "The Oven AB",
+          "email": "hello@theoven.se",
+          "phone": "0570-10 100",
+          "address": "Kyrkogatan 20, 671 31 Arvika"
+        },
+        "changes": {
+          "title": "10. Ändringar i denna policy",
+          "content": "Vi kan komma att uppdatera denna integritetspolicy vid behov. Senaste uppdateringsdatum anges alltid högst upp på sidan. Vi rekommenderar att du regelbundet kontrollerar denna sida för att hålla dig informerad."
+        }
+        }
+      },
+      "unsubscribe": {
+        "title": "Avregistrera dig",
+        "description": "Ange ditt mobilnummer för att avregistrera dig från våra SMS-utskick",
+        "phoneLabel": "Mobilnummer",
+        "phonePlaceholder": "070-123 45 67",
+        "submitButton": "Avregistrera",
+        "submitting": "Avregistrerar...",
+        "successTitle": "Klart!",
+        "successMessage": "Ditt nummer har tagits bort från våra utskick",
+        "errorNotFound": "Inget nummer registrerat med detta telefonnummer",
+        "errorGeneral": "Ett fel uppstod vid avregistreringen",
+        "infoText": "När du avregistrerar dig tas ditt nummer bort från vår databas och du kommer inte längre att få SMS-utskick från oss.",
+        "backLink": "Tillbaka till startsidan"
+      }
 }
