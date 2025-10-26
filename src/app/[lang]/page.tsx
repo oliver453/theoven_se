@@ -29,7 +29,7 @@ export default async function HomePage({
       <FAQSection dict={dict} />
       <Footer dict={dict} lang={lang} />
       <BookingButton dict={dict} />
-      <NewMenuModal dict={dict} />
+      {/* <NewMenuModal dict={dict} /> */}
       <SocialSidebar />
     </main>
   );
