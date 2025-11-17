@@ -105,22 +105,16 @@ export async function DELETE(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
-    const weekNumber = searchParams.get('week');
-    const year = searchParams.get('year');
-    const dayOfWeek = searchParams.get('day');
+    const id = searchParams.get('id');
 
-    if (!weekNumber || !year || !dayOfWeek) {
+    if (!id) {
       return NextResponse.json(
-        { error: 'Veckonummer, år och veckodag krävs' },
+        { error: 'ID krävs' },
         { status: 400 }
       );
     }
 
-    await deleteLunchMenuItem(
-      parseInt(weekNumber),
-      parseInt(year),
-      parseInt(dayOfWeek)
-    );
+    await deleteLunchMenuItem(parseInt(id));
 
     return NextResponse.json({ success: true });
   } catch (error) {
