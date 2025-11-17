@@ -2,6 +2,7 @@
   "nav": {
     "about": "Om oss",
     "menu": "Meny",
+    "lunchmenu": "Lunch",
     "groups": "Stora sällskap",
     "hours": "Öppettider",
     "contact": "Kontakt"
@@ -14,7 +15,8 @@
     "subheading": "Äkta Napolitansk pizza i Arvika",
     "title": "Välkommen till The Oven",
     "text": "I Arvika sticker vi ut. Med noggrant utvalda råvaror och pizzor gräddade i äkta vedugn märker du direkt skillnaden. För oss går fantastisk mat och service hand i hand – därför lägger vi lika mycket hjärta i köket som i serveringen. Vårt mål är att ge dig som gäst en upplevelse utöver det vanliga. Välkommen och smaklig måltid!",
-    "button": "Se meny"
+    "button": "Se meny",
+    "lunch": "Lunchmeny"
   },
   "info": {
     "section1": {
@@ -80,10 +82,9 @@
     "buttonAriaLabel": "Boka bord"
   },
   "newMenuModal": {
-    "title": "Helgerbjudande!",
-    "description": "Valfri pizza eller kebabtallrik för bara 99 kr, gäller vid avhämtning fredag och lördag.",
-    "button": "Ring och beställ",
-    "menuButton": "Se meny",
+    "title": "Nu kör vi lunch igen!",
+    "description": "Kommer ni ihåg vår omtyckta lunch? Det gör vi också – och nu är den tillbaka!",
+    "menuButton": "Se veckans meny",
     "close": "Stäng"
   },
 "menu": {

@@ -28,6 +28,7 @@ type Dictionary = {
     title: string;
     text: string;
     button: string;
+    lunch: string;
   };
 };
 
@@ -62,11 +63,18 @@ export function WelcomeSection({ dict, lang = "sv" }: WelcomeSectionProps) {
             <p className="text-md mx-auto max-w-lg leading-relaxed text-white/80 lg:mx-0">
               {dict.welcome.text}
             </p>
+            <div className="flex justify-center mx-auto gap-4">
             <Link href={`/${lang}/meny`} className="block">
               <Button className="bg-white hover:bg-gray-200 px-8 py-7 font-rustic text-lg uppercase text-black">
                 {dict.welcome.button}
               </Button>
             </Link>
+            <Link href={`/${lang}/lunch`} className="block">
+              <Button className="bg-white hover:bg-gray-200 px-8 py-7 font-rustic text-lg uppercase text-black">
+                {dict.welcome.lunch}
+              </Button>
+            </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -33,8 +33,8 @@ export interface NewMenuModalProps {
 
 export function NewMenuModal({
   triggerDelay = 1000,
-  storageKey = "promo:a7f3-modal-seen",
-  backgroundImage = "/images/5.webp",
+  storageKey = "promo:b1f1-modal-seen",
+  backgroundImage = "/images/lunch.webp",
   onOpen,
   onClose,
   onViewMenu,
@@ -67,7 +67,7 @@ export function NewMenuModal({
   };
 
   const handleMenuClick = (): void => {
-    const menuPath = lang === "en" ? "/en/menu" : "/meny";
+    const menuPath = lang === "en" ? "/en/lunch" : "/sv/lunch";
     router.push(menuPath);
     handleClose();
   };
@@ -194,17 +194,17 @@ export function NewMenuModal({
                 {dict.newMenuModal?.description || "Kolla in vår nya meny med spännande rätter!"}
               </p>
               <div className="space-y-3 w-full">
-                <Button 
+              {/*   <Button 
                   onClick={handleViewMenu}
                   className="bg-white text-black hover:bg-gray-200 focus:bg-gray-200 font-rustic uppercase text-lg py-3 px-8 transition-colors duration-200 w-full"
                   aria-describedby="view-menu-description"
                 >
                   {dict.newMenuModal?.button || "Ring och beställ"}
                 </Button>
+              */}
                 <Button 
                   onClick={handleMenuClick}
-                  variant="ghost"
-                  className="border-2 border-white text-white hover:bg-white hover:text-black font-rustic uppercase text-lg py-3 px-8 w-full"
+                  className="bg-white text-black hover:bg-gray-200 focus:bg-gray-200 font-rustic uppercase text-lg py-3 px-8 transition-colors duration-200 w-full"
                 >
                   {dict.newMenuModal?.menuButton || "Se meny"}
                 </Button>

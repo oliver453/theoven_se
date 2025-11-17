@@ -11,6 +11,7 @@ type Dictionary = {
   nav: {
     about: string;
     menu: string;
+    lunchmenu: string;
     groups: string;
     hours: string;
     contact: string;
@@ -38,7 +39,8 @@ export default function Header({ lang, dict }: HeaderProps) {
   const navigationItems = [
     { href: `/${lang}#om-oss`, label: dict.nav.about },
     { href: `/${lang}/meny`, label: dict.nav.menu },
-    { href: `/${lang}#stora`, label: dict.nav.groups },
+    { href: `/${lang}/lunch`, label: dict.nav.lunchmenu },
+   // { href: `/${lang}#stora`, label: dict.nav.groups },
     { href: `/${lang}#business-hours`, label: dict.nav.hours },
     { href: `/${lang}#kontakt`, label: dict.nav.contact },
   ];

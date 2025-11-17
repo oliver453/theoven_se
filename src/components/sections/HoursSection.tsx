@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 const openingHours = {
   monday: "closed",
   tuesday: "16:00 - 21:00",
-  wednesday: "16:00 - 21:00",
-  thursday: "16:00 - 21:00",
-  friday: "14:00 - 23:00",
+  wednesday: "11:00 - 21:00",
+  thursday: "11:00 - 21:00",
+  friday: "11:00 - 23:00",
   saturday: "12:00 - 23:00",
   sunday: "closed",
 };
