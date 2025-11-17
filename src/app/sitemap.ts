@@ -2,13 +2,13 @@ import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://theoven.se";
-  const currentDate = new Date();
+  const lastModified = new Date().toISOString();
 
   return [
     // Root
     {
       url: baseUrl,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 1.0,
       alternates: {
@@ -21,7 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Svenska sidor
     {
       url: `${baseUrl}/sv`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 1.0,
       alternates: {
@@ -32,7 +32,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/sv/meny`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.9,
       alternates: {
@@ -41,10 +41,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
       },
     },
+      {
+        url: `${baseUrl}/sv/lunch`,
+        lastModified,
+        changeFrequency: "weekly" as const,
+        priority: 0.9,
+        alternates: {
+          languages: {
+            en: `${baseUrl}/en/lunch`,
+          },
+        },
+    },
     // Engelska sidor
     {
       url: `${baseUrl}/en`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 1.0,
       alternates: {
@@ -55,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${baseUrl}/en/meny`,
-      lastModified: currentDate,
+      lastModified,
       changeFrequency: "weekly" as const,
       priority: 0.9,
       alternates: {
@@ -63,6 +74,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           sv: `${baseUrl}/sv/meny`,
         },
       },
+    },
+      {
+        url: `${baseUrl}/en/lunch`,
+        lastModified,
+        changeFrequency: "weekly" as const,
+        priority: 0.9,
+        alternates: {
+          languages: {
+            sv: `${baseUrl}/sv/lunch`,
+          },
+        },
     },
   ];
 }

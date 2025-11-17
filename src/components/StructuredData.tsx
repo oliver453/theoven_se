@@ -32,14 +32,20 @@ export function StructuredData({ lang, type = 'home' }: StructuredDataProps) {
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday'],
+        dayOfWeek: 'Tuesday',
         opens: '16:00',
         closes: '21:00',
       },
       {
         '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Wednesday', 'Thursday'],
+        opens: '11:00',
+        closes: '21:00',
+      },
+      {
+        '@type': 'OpeningHoursSpecification',
         dayOfWeek: 'Friday',
-        opens: '14:00',
+        opens: '11:00',
         closes: '23:00',
       },
       {
