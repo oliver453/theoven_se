@@ -1,11 +1,15 @@
+// src/components/booking/BookingModal.tsx
 "use client";
 
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { FaTimes } from "react-icons/fa";
+import { toast } from "sonner";
 import { BookingStep1 } from "./BookingStep1";
 import { BookingStep2 } from "./BookingStep2";
 import { BookingStep3 } from "./BookingStep3";
-import type { BookingFormData } from "../../../types/booking";
+import { BookingStep4 } from "./BookingStep4";
+import { createBooking } from "../../utils/easyTableApi";
+import type { BookingFormData, CustomerInfo, BookingOptions } from "../../../types/booking";
 import type { Locale } from "../../../i18n.config";
 
 type Dictionary = {
@@ -23,6 +27,12 @@ interface BookingModalProps {
   lang?: Locale;
 }
 
+const INITIAL_BOOKING_DATA: Partial<BookingFormData> = {
+  partySize: 0,
+  date: "",
+  time: 0,
+};
+
 export const BookingModal: React.FC<BookingModalProps> = ({
   isOpen,
   onClose,
@@ -30,12 +40,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
   lang = "sv",
 }) => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [bookingData, setBookingData] = useState<BookingFormData>({
-    partySize: 0,
-    date: "",
-    time: 0,
-    offerUuid: "",
-  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingData, setBookingData] = useState<Partial<BookingFormData>>(INITIAL_BOOKING_DATA);
 
   const handlePartySizeSelect = useCallback((size: number) => {
     setBookingData((prev) => ({ ...prev, partySize: size }));
@@ -45,42 +51,90 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     setBookingData((prev) => ({ ...prev, date }));
   }, []);
 
-  const handleTimeSelect = useCallback((time: number) => {
-    setBookingData((prev) => ({ ...prev, time }));
+  const handleTimeSelect = useCallback((time: number, bookingTypeID?: number) => {
+    setBookingData((prev) => ({ ...prev, time, bookingTypeID }));
   }, []);
 
-  const handleFinalBooking = useCallback(() => {
-    const locale = lang === "en" ? "en-GB" : "sv";
-    const restaurantUuid = "1e84bc93-cf21-42ac-8bc2-6d2c234f393e";
-    const utmSource = "theoven.se";
+  const handleFinalBooking = useCallback(async (
+    customerInfo: CustomerInfo,
+    options: BookingOptions
+  ) => {
+    if (isSubmitting) return;
     
-    const theForkUrl = `https://widget.thefork.com/${locale}/${restaurantUuid}?utm_source=${utmSource}&step=info&pax=${bookingData.partySize}&date=${bookingData.date}&time=${bookingData.time}`;
+    setIsSubmitting(true);
     
-    window.open(theForkUrl, '_blank');
-    onClose();
-  }, [bookingData, lang, onClose]);
+    try {
+      const completeBookingData: BookingFormData = {
+        partySize: bookingData.partySize!,
+        date: bookingData.date!,
+        time: bookingData.time!,
+        bookingTypeID: bookingData.bookingTypeID,
+        customerInfo,
+        options,
+      };
 
-  const resetForm = () => {
-    setBookingData({ partySize: 0, date: "", time: 0, offerUuid: "" });
-    setCurrentStep(1);
-  };
+      const response = await createBooking(completeBookingData);
 
-  const handleClose = () => {
-    onClose();
-    resetForm();
-  };
+      if (response.success) {
+        // Visa success toast
+        const successTitle = lang === 'en' 
+          ? 'Booking confirmed!' 
+          : 'Bokning bekräftad!';
+        const successMessage = lang === 'en'
+          ? 'You will receive a confirmation email shortly.'
+          : 'Du får en bekräftelse via e-post inom kort.';
+        
+        toast.success(successTitle, {
+          description: successMessage,
+        });
+        
+        // Stäng modal efter kort delay
+        setTimeout(() => {
+          onClose();
+          setBookingData(INITIAL_BOOKING_DATA);
+          setCurrentStep(1);
+        }, 1500);
+      } else {
+        throw new Error(response.error || "Booking failed");
+      }
+    } catch (error) {
+      console.error("Booking error:", error);
+      
+      // Visa error toast
+      const errorTitle = lang === 'en' 
+        ? 'Booking failed' 
+        : 'Bokningen misslyckades';
+      const errorMessage = lang === 'en'
+        ? 'An error occurred. Please try again or contact the restaurant directly.'
+        : 'Ett fel uppstod. Vänligen försök igen eller kontakta restaurangen direkt.';
+      
+      toast.error(errorTitle, {
+        description: errorMessage,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  }, [bookingData, lang, onClose, isSubmitting]);
 
-  const nextStep = () => setCurrentStep((prev) => Math.min(prev + 1, 3));
-  const prevStep = () => setCurrentStep((prev) => Math.max(prev - 1, 1));
+  const handleClose = useCallback(() => {
+    if (!isSubmitting) {
+      onClose();
+      setTimeout(() => {
+        setBookingData(INITIAL_BOOKING_DATA);
+        setCurrentStep(1);
+      }, 300);
+    }
+  }, [isSubmitting, onClose]);
 
-  if (!isOpen) return null;
+  const nextStep = useCallback(() => setCurrentStep((prev) => Math.min(prev + 1, 4)), []);
+  const prevStep = useCallback(() => setCurrentStep((prev) => Math.max(prev - 1, 1)), []);
 
-  const renderStep = () => {
+  const stepContent = useMemo(() => {
     switch (currentStep) {
       case 1:
         return (
           <BookingStep1
-            selectedPartySize={bookingData.partySize}
+            selectedPartySize={bookingData.partySize || 0}
             onPartySizeSelect={handlePartySizeSelect}
             onNext={nextStep}
             dict={dict}
@@ -89,8 +143,8 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       case 2:
         return (
           <BookingStep2
-            partySize={bookingData.partySize}
-            selectedDate={bookingData.date}
+            partySize={bookingData.partySize || 0}
+            selectedDate={bookingData.date || ""}
             onDateSelect={handleDateSelect}
             onNext={nextStep}
             onPrev={prevStep}
@@ -101,20 +155,36 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       case 3:
         return (
           <BookingStep3
-            partySize={bookingData.partySize}
-            selectedDate={bookingData.date}
+            partySize={bookingData.partySize || 0}
+            selectedDate={bookingData.date || ""}
             selectedTime={bookingData.time || null}
             onTimeSelect={handleTimeSelect}
-            onBook={handleFinalBooking}
+            onNext={nextStep}
             onPrev={prevStep}
             dict={dict}
             lang={lang}
           />
         );
+      case 4:
+        return (
+          <BookingStep4
+            partySize={bookingData.partySize || 0}
+            selectedDate={bookingData.date || ""}
+            selectedTime={bookingData.time || 0}
+            onBook={handleFinalBooking}
+            onPrev={prevStep}
+            dict={dict}
+            lang={lang}
+            isLoading={isSubmitting}
+          />
+        );
       default:
         return null;
     }
-  };
+  }, [currentStep, bookingData, handlePartySizeSelect, handleDateSelect, handleTimeSelect, 
+      handleFinalBooking, nextStep, prevStep, dict, lang, isSubmitting]);
+
+  if (!isOpen) return null;
 
   return (
     <>
@@ -122,14 +192,21 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       <div
         className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-all duration-300 z-[80]"
         onClick={handleClose}
+        aria-hidden="true"
       />
 
       {/* Modal */}
-      <div className="fixed bottom-0 left-2 right-2 z-[100] transform rounded-t-2xl bg-black transition-all duration-300 ease-out md:left-auto md:w-[50vh]">
+      <div 
+        className="fixed bottom-0 left-2 right-2 z-[100] transform rounded-t-2xl bg-black transition-all duration-300 ease-out md:left-auto md:w-[50vh]"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="booking-modal-title"
+      >
         <div className="max-h-[80vh] overflow-y-auto p-6">
           <div className="mb-6 flex items-center justify-between">
-            <div className="flex space-x-2">
-              {[1, 2, 3].map((step) => (
+            {/* Progress indicators */}
+            <div className="flex space-x-2" role="progressbar" aria-valuenow={currentStep} aria-valuemin={1} aria-valuemax={4}>
+              {[1, 2, 3, 4].map((step) => (
                 <div
                   key={step}
                   className={`h-2 w-2 rounded-full transition-colors ${
@@ -139,19 +216,22 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                       ? "bg-gray-400"
                       : "bg-gray-600"
                   }`}
+                  aria-label={`Steg ${step}${step === currentStep ? ' (aktiv)' : ''}`}
                 />
               ))}
             </div>
             
             <button
               onClick={handleClose}
-              className="text-gray-400 transition-colors hover:text-white"
+              disabled={isSubmitting}
+              className="text-gray-400 transition-colors hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Stäng bokningsformulär"
             >
               <FaTimes className="h-4 w-4" />
             </button>
           </div>
 
-          {renderStep()}
+          {stepContent}
         </div>
       </div>
     </>

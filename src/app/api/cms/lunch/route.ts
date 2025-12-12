@@ -3,7 +3,7 @@ import { getCurrentWeekLunch, getLunchByWeek } from '@/lib/cms-db';
 import { revalidatePath } from 'next/cache';
 
 // Cache i 5 minuter för att minska DB-anrop
-export const revalidate = 600; // 5 minuter
+export const revalidate = 21600; // 6 timmar
 
 // GET: Hämta lunchmeny (publik)
 export async function GET(request: NextRequest) {

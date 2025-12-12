@@ -1,42 +1,47 @@
+// types/booking.ts
 export interface BookingFormData {
   partySize: number;
   date: string;
   time: number;
-  offerUuid?: string;
+  customerInfo: CustomerInfo;
+  options?: BookingOptions;
+  bookingTypeID?: number; // Lägg till bookingTypeID
 }
 
 export interface CustomerInfo {
-  email: string;
   firstName: string;
   lastName: string;
+  email: string;
   phone: string;
-  locale: string;
-  civility: 'mr' | 'mrs' | 'miss';
-  customerNote?: string;
-  optins: {
-    restaurantNewsletter: boolean;
-  };
+  company?: string;
+  comment?: string;
 }
 
-export interface TheForkTimeslot {
-  datetime: string;
-  time: number;
-  bestOffer: {
-    offerType: string;
-    uuid: string;
-    __typename: string;
-  } | null;
-  availabilityType: string;
-  __typename: string;
+export interface BookingOptions {
+  highchair?: boolean;
+  birthday?: boolean;
+  wheelchair?: boolean;
 }
 
-export interface TheForkAvailability {
+export interface EasyTableAvailability {
   date: string;
-  hasNormalStock: boolean;
-  offerList: string[];
-  bestOffer: {
-    uuid: string;
-    __typename: string;
-  } | null;
-  __typename: string;
+  hasAvailability: boolean;
+  times: Array<{
+    time: string;
+    available: number;
+  }>;
+}
+
+export interface EasyTableTimeslot {
+  time: number; // minutes from midnight
+  datetime: string;
+  bookingTypeID?: number;
+}
+
+export interface EasyTableBookingResponse {
+  success: boolean;
+  bookingID?: number;
+  customerID?: number;
+  paymentURL?: string;
+  error?: string;
 }

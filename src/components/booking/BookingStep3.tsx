@@ -1,10 +1,10 @@
+// src/components/booking/BookingStep3.tsx
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { fetchTimeslots } from "../../utils/theForkApi";
-import { formatTimeFromMinutes } from "../../utils/dateHelpers";
-import type { TheForkTimeslot } from "../../../types/booking";
+import { fetchTimeslots } from "../../utils/easyTableApi";
+import type { EasyTableTimeslot } from "../../../types/booking";
 import type { Locale } from "../../../i18n.config";
 
 type Dictionary = {
@@ -12,9 +12,9 @@ type Dictionary = {
     step3?: {
       title?: string;
       noTimes?: string;
-      bookButton?: string;
     };
     backButton?: string;
+    nextButton?: string;
   };
 };
 
@@ -22,47 +22,127 @@ interface BookingStep3Props {
   partySize: number;
   selectedDate: string;
   selectedTime: number | null;
-  onTimeSelect: (time: number) => void;
-  onBook: () => void;
+  onTimeSelect: (time: number, bookingTypeID?: number) => void;
+  onNext: () => void;
   onPrev: () => void;
   dict: Dictionary;
   lang?: Locale;
 }
+
+// Memoized TimeSlot button
+const TimeSlotButton = React.memo<{
+  slot: EasyTableTimeslot;
+  isSelected: boolean;
+  onSelect: (time: number, bookingTypeID?: number) => void;
+  formatTime: (minutes: number) => string;
+}>(({ slot, isSelected, onSelect, formatTime }) => (
+  <button
+    onClick={() => onSelect(slot.time, slot.bookingTypeID)}
+    className={`
+      rounded-lg border-2 px-4 py-3 text-sm font-medium transition-all duration-200
+      ${
+        isSelected
+          ? "border-white bg-white text-black"
+          : "border-gray-600 bg-gray-800 text-white hover:border-gray-400 hover:bg-gray-700"
+      }
+    `}
+  >
+    {formatTime(slot.time)}
+  </button>
+));
+TimeSlotButton.displayName = 'TimeSlotButton';
 
 export const BookingStep3: React.FC<BookingStep3Props> = ({
   partySize,
   selectedTime,
   selectedDate,
   onTimeSelect,
-  onBook,
+  onNext,
   onPrev,
   dict,
   lang = "sv",
 }) => {
-  const [timeslots, setTimeslots] = useState<TheForkTimeslot[]>([]);
+  const [timeslots, setTimeslots] = useState<EasyTableTimeslot[]>([]);
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+  // Memoized time formatter
+  const formatTimeFromMinutes = useCallback((minutes: number) => {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}`;
+  }, []);
+
+  // Memoized period name getter
+  const getPeriodName = useCallback((hour: number) => {
+    if (lang === "en") {
+      if (hour < 12) return "Morning";
+      else if (hour < 17) return "Lunch";
+      else if (hour < 22) return "Dinner";
+      else return "Evening";
+    } else {
+      if (hour < 12) return "Förmiddag";
+      else if (hour < 17) return "Lunch";
+      else if (hour < 22) return "Middag";
+      else return "Kväll";
+    }
+  }, [lang]);
+
+  // Memoized grouped timeslots
+  const groupedTimeslots = useMemo(() => {
+    return timeslots.reduce(
+      (groups: Record<string, EasyTableTimeslot[]>, slot) => {
+        const hour = Math.floor(slot.time / 60);
+        const period = getPeriodName(hour);
+
+        if (!groups[period]) groups[period] = [];
+        groups[period].push(slot);
+        return groups;
+      },
+      {},
+    );
+  }, [timeslots, getPeriodName]);
+
+  // Memoized date formatter
+  const formattedDate = useMemo(() => {
+    const locale = lang === "en" ? "en-US" : "sv-SE";
+    return new Date(selectedDate).toLocaleDateString(locale, {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+    });
+  }, [selectedDate, lang]);
+
+  // Memoized person text
+  const personText = useMemo(() => {
+    if (lang === "en") {
+      return partySize === 1 ? "person" : "people";
+    } else {
+      return partySize === 1 ? "person" : "personer";
+    }
+  }, [partySize, lang]);
+
   const loadTimeslots = useCallback(async () => {
+    if (!selectedDate) return;
+    
     setIsLoading(true);
     try {
       const data = await fetchTimeslots(selectedDate, partySize);
       setTimeslots(data);
     } catch (error) {
       console.error("Failed to load timeslots:", error);
+      setTimeslots([]);
     } finally {
       setIsLoading(false);
     }
   }, [selectedDate, partySize]);
 
   useEffect(() => {
-    if (selectedDate) {
-      loadTimeslots();
-    }
-  }, [selectedDate, loadTimeslots]);
+    loadTimeslots();
+  }, [loadTimeslots]);
 
-  // Listen to scroll position and show/hide arrow
+  // Scroll indicator logic
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
@@ -75,58 +155,14 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
 
     handleScroll();
 
-    scrollContainer.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleScroll);
+    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
 
     return () => {
       scrollContainer.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
   }, [timeslots]);
-
-  // Time period names based on language
-  const getPeriodName = (hour: number) => {
-    if (lang === "en") {
-      if (hour < 12) return "Morning";
-      else if (hour < 17) return "Lunch";
-      else if (hour < 22) return "Dinner";
-      else return "Evening";
-    } else {
-      if (hour < 12) return "Förmiddag";
-      else if (hour < 17) return "Lunch";
-      else if (hour < 22) return "Middag";
-      else return "Kväll";
-    }
-  };
-
-  const groupedTimeslots = timeslots.reduce(
-    (groups: Record<string, TheForkTimeslot[]>, slot) => {
-      const hour = Math.floor(slot.time / 60);
-      const period = getPeriodName(hour);
-
-      if (!groups[period]) groups[period] = [];
-      groups[period].push(slot);
-      return groups;
-    },
-    {},
-  );
-
-  const formatDate = (dateString: string) => {
-    const locale = lang === "en" ? "en-US" : "sv-SE";
-    return new Date(dateString).toLocaleDateString(locale, {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-    });
-  };
-
-  const getPersonText = (count: number) => {
-    if (lang === "en") {
-      return count === 1 ? "person" : "people";
-    } else {
-      return count === 1 ? "person" : "personer";
-    }
-  };
 
   return (
     <div className="space-y-6">
@@ -135,11 +171,11 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
           {dict.booking?.step3?.title || "Vilken tid?"}
         </h3>
         <p className="text-sm text-gray-300">
-          {formatDate(selectedDate)} • {partySize} {getPersonText(partySize)}
+          {formattedDate} • {partySize} {personText}
         </p>
       </div>
 
-      {/* Time slots container with scroll indicators */}
+      {/* Time slots container */}
       <div className="relative">
         {isLoading ? (
           <div className="flex items-center justify-center py-12">
@@ -153,7 +189,7 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
           </div>
         ) : (
           <>
-            {/* Background gradient for scroll area */}
+            {/* Background gradient */}
             <div className="absolute inset-0 bg-gradient-to-b from-gray-900/10 via-transparent to-gray-900/30 rounded-xl pointer-events-none" />
 
             {/* Scrollable content */}
@@ -164,25 +200,18 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
               <div className="space-y-4 p-2">
                 {Object.entries(groupedTimeslots).map(([period, slots]) => (
                   <div key={period}>
-                    <h4 className="mb-3 text-sm font-medium text-gray-300 sticky top-0 bg-black/80 backdrop-blur-sm py-1">
+                    <h4 className="mb-3 text-sm font-medium text-gray-300 sticky top-0 bg-black/80 backdrop-blur-sm py-1 z-10">
                       {period}
                     </h4>
                     <div className="grid grid-cols-3 gap-2">
                       {slots.map((slot) => (
-                        <button
+                        <TimeSlotButton
                           key={slot.time}
-                          onClick={() => onTimeSelect(slot.time)}
-                          className={`
-                            rounded-lg border-2 px-4 py-3 text-sm font-medium transition-all duration-200
-                            ${
-                              selectedTime === slot.time
-                                ? "border-white bg-white text-black"
-                                : "border-gray-600 bg-gray-800 text-white hover:border-gray-400 hover:bg-gray-700"
-                            }
-                          `}
-                        >
-                          {formatTimeFromMinutes(slot.time)}
-                        </button>
+                          slot={slot}
+                          isSelected={selectedTime === slot.time}
+                          onSelect={onTimeSelect}
+                          formatTime={formatTimeFromMinutes}
+                        />
                       ))}
                     </div>
                   </div>
@@ -190,7 +219,6 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
               </div>
             </div>
 
-            {/* Scroll indicator at bottom */}
             <div
               className={`absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center pb-2 transform transition-all duration-500 ${
                 showScrollIndicator
@@ -212,11 +240,11 @@ export const BookingStep3: React.FC<BookingStep3Props> = ({
           {dict.booking?.backButton || "Tillbaka"}
         </button>
         <button
-          onClick={onBook}
+          onClick={onNext}
           disabled={selectedTime === null}
           className="flex-1 rounded-lg bg-white py-3 font-medium text-black transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {dict.booking?.step3?.bookButton || "Boka bord"}
+          {dict.booking?.nextButton || "Nästa"}
         </button>
       </div>
     </div>

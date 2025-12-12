@@ -1,13 +1,11 @@
+// src/components/booking/BookingStep2.tsx
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { fetchAvailabilities } from "../../utils/theForkApi";
-import {
-  formatDateForAPI,
-  getDaysInMonth,
-} from "../../utils/dateHelpers";
-import type { TheForkAvailability } from "../../../types/booking";
+import { fetchAvailabilities } from "../../utils/easyTableApi";
+import { getDaysInMonth } from "../../utils/dateHelpers";
+import type { EasyTableAvailability } from "../../../types/booking";
 import type { Locale } from "../../../i18n.config";
 
 type Dictionary = {
@@ -41,7 +39,7 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
   lang = "sv",
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [availabilities, setAvailabilities] = useState<TheForkAvailability[]>([]);
+  const [availabilities, setAvailabilities] = useState<EasyTableAvailability[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   // Weekday names based on language
@@ -72,8 +70,8 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
       const firstDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
       const lastDay = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0);
       
-      const startDate = formatDateForAPI(firstDay);
-      const endDate = formatDateForAPI(lastDay);
+      const startDate = createDateString(firstDay);
+      const endDate = createDateString(lastDay);
 
       const data = await fetchAvailabilities(partySize, startDate, endDate);
       setAvailabilities(data);
@@ -91,7 +89,7 @@ export const BookingStep2: React.FC<BookingStep2Props> = ({
   const isDateAvailable = (date: Date): boolean => {
     const dateStr = createDateString(date);
     return availabilities.some(
-      (avail) => avail.date === dateStr && avail.hasNormalStock,
+      (avail) => avail.date === dateStr && avail.hasAvailability,
     );
   };
 

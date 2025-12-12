@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { i18n, type Locale } from '../../../i18n.config';
 import { defaultMetadata, englishMetadata } from '../metadata';
 import { StructuredData } from '@/components/StructuredData';
+import { ToastProvider } from "@/components/providers/ToastProvider";
 
 export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ lang: locale }));
@@ -36,6 +37,7 @@ export default async function LangLayout({
     <>
       <StructuredData lang={lang as Locale} type="home" />
       {children}
+      <ToastProvider />
     </>
   );
 }
