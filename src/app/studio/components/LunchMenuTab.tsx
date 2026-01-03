@@ -130,10 +130,17 @@ export default function LunchMenuTab({ authToken, lang }: LunchMenuTabProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.dishNameSv || !formData.dishNameEn || formData.price <= 0) {
+    if (!formData.dishNameSv || formData.price <= 0) {
       alert('Fyll i alla obligatoriska fält');
       return;
     }
+
+    // Kopiera svenska till engelska om engelska är tomt
+    const submitData = {
+      ...formData,
+      dishNameEn: formData.dishNameEn || formData.dishNameSv,
+      descriptionEn: formData.descriptionEn || formData.descriptionSv,
+    };
 
     try {
       const response = await fetch('/api/admin/lunch', {
@@ -142,7 +149,7 @@ export default function LunchMenuTab({ authToken, lang }: LunchMenuTabProps) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${authToken}`,
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submitData),
       });
 
       if (response.ok) {
@@ -290,13 +297,13 @@ export default function LunchMenuTab({ authToken, lang }: LunchMenuTabProps) {
               </div>
 
               <div>
-                <label className="block text-white mb-2 text-sm">Dish name (English) *</label>
+                <label className="block text-white mb-2 text-sm">Dish name (English)</label>
                 <input
                   type="text"
                   value={formData.dishNameEn}
                   onChange={(e) => setFormData({ ...formData, dishNameEn: e.target.value })}
                   className="w-full px-4 py-3 bg-black text-white border border-gray-700 rounded focus:outline-none focus:border-gray-500"
-                  required
+                  placeholder="Lämna tomt för att kopiera svenska"
                 />
               </div>
             </div>
@@ -319,6 +326,7 @@ export default function LunchMenuTab({ authToken, lang }: LunchMenuTabProps) {
                   onChange={(e) => setFormData({ ...formData, descriptionEn: e.target.value })}
                   className="w-full px-4 py-3 bg-black text-white border border-gray-700 rounded focus:outline-none focus:border-gray-500"
                   rows={2}
+                  placeholder="Lämna tomt för att kopiera svenska"
                 />
               </div>
             </div>
