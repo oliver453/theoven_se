@@ -15,10 +15,10 @@ export async function generateMetadata({
   const { lang } = await params;
   
   return {
-    title: lang === 'sv' ? 'Lunchmeny | The Oven' : 'Lunch Menu | The Oven',
+    title: lang === 'sv' ? 'Lunchbuffé | The Oven' : 'Lunch Buffet | The Oven',
     description: lang === 'sv' 
-      ? 'Veckans lunchmeny med dagens husman på The Oven i Arvika'
-      : 'This week\'s lunch menu with daily specials at The Oven in Arvika',
+      ? 'Veckans lunchbuffé med dagens husman på The Oven i Arvika'
+      : 'This week\'s lunch buffet with daily specials at The Oven in Arvika',
     robots: {
       index: true,
       follow: true,

@@ -1,4 +1,3 @@
-// types/booking.ts
 export interface BookingFormData {
   partySize: number;
   date: string;
