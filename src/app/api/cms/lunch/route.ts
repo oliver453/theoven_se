@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getCurrentWeekLunch, getLunchByWeek } from '@/lib/cms-db';
 import { revalidatePath } from 'next/cache';
 
-// Cache i 5 minuter för att minska DB-anrop
-export const revalidate = 21600; // 6 timmar
+// Cache i 10 minuter för att minska DB-anrop
+export const revalidate = 600; // 10 minuter
 
 // GET: Hämta lunchmeny (publik)
 export async function GET(request: NextRequest) {
@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(formatted, {
       headers: {
-        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+        'Cache-Control': 'public, s-maxage=600, stale-while-revalidate=600',
       },
     });
   } catch (error) {
