@@ -70,8 +70,8 @@
   },
   "footer": {
     "contactTitle": "Kontakta oss och hitta hit",
-    "address": "Storgatan 123, 123 45 Stockholm",
-    "phone": "+46 8 123 456 78",
+    "address": "Kyrkogatan 20, 671 31 Arvika",
+    "phone": "0570-101 00",
     "email": "hello@theoven.se",
     "followUs": "Följ oss",
     "credits": "Webbsida av",
@@ -92,8 +92,40 @@
   "subtitle": "Upptäck våra autentiska italienska rätter",
   "categories": [
     {
+      "name": "Gôtt att börja med",
+      "description": "Drinkar och förrätter för att starta måltiden",
+      "image": "/images/9.webp",
+      "items": [
+        {
+          "name": "Cava",
+          "description": "",
+          "price": "99"
+        },
+        {
+          "name": "Prosecco",
+          "description": "",
+          "price": "75"
+        },
+        {
+          "name": "Negroni (5cl)",
+          "description": "Gin, Campari, vermouth.",
+          "price": "155"
+        },
+        {
+          "name": "Mojito (5cl)",
+          "description": "Rom, limejuice, sodavatten, mynta.",
+          "price": "155"
+        },
+        {
+          "name": "Daiquiri",
+          "description": "Rom, limejuice, Monin fruktpuré, färsk frukt. Finns i jordgubb, hallon eller mango.",
+          "price": "155"
+        }
+      ]
+    },
+    {
       "name": "Förrätter",
-      "description": "Traditionella italienska förrätter för att starta måltiden",
+      "description": "Traditionella förrätter för att starta måltiden",
       "image": "/images/9.webp",
       "items": [
         {
@@ -102,14 +134,14 @@
           "price": "149"
         },
         {
-          "name": "Gambas Al Ajillo",
-          "description": "Scampiräkor med vitlök, chili och olivolja. Serveras med rostat hembakat bröd.",
-          "price": "159"
+          "name": "Toast Skagen",
+          "description": "Rostat surdegsbröd, löjrom, handskalade räkor och rödlök.",
+          "price": "189"
         },
         {
-          "name": "Chèvre Chaud",
-          "description": "Smörstekt hembakat bröd med gratinerad chèvreost. Toppas med honung, kanderade valnötter, picklade betor och ruccola.",
-          "price": "169"
+          "name": "Charkbricka",
+          "description": "Prosciutto, salami, kanderade valnötter, olivmix, fikonmarmelad och smörstekt bröd.",
+          "price": "189"
         }
       ]
     },
@@ -119,19 +151,19 @@
       "image": "/images/10.webp",
       "items": [
         {
-          "name": "Plankstek med Oxfilé 200g",
-          "description": "Serveras med duchessemos, rödvinssås, bearnaisesås och smörstekta grönsaker.",
-          "price": "299"
+          "name": "Plankstek med Oxfilé",
+          "description": "200g oxfilé, serveras med duchessemos, rödvinssås, bearnaisesås och smörstekta grönsaker. Ursprung: Brasilien.",
+          "price": "399"
         },
         {
           "name": "Bouillabaisse",
           "description": "Fisk- och skaldjursgryta med smak av saffran och tomat. Serveras med citronaioli och rostat hembakat bröd.",
-          "price": "279"
+          "price": "299"
         },
         {
           "name": "Pankopanerad Schnitzel",
           "description": "Fläskschnitzel med rödvinssås, bearnaisesås, pommes frites, persiljesmör samt smörstekta grönsaker.",
-          "price": "199"
+          "price": "239"
         }
       ]
     },
@@ -142,23 +174,23 @@
       "items": [
         {
           "name": "Caesarsallad",
-          "description": "Romansallad, rödlök, cocktailtomater, grana padano, krutonger, caesardressing, kyckling och bacon.",
-          "price": "199"
+          "description": "Romansallad, rödlök, cocktailtomater, parmesan, krutonger, caesardressing, kyckling och bacon.",
+          "price": "259"
         },
         {
           "name": "Pasta Tartufo med Oxfilé",
-          "description": "Rigatoni i krämig gräddsås med basilika och vittryffelolja. Toppas med stekt oxfilé, ruccola och grana padano.",
-          "price": "249"
+          "description": "Rigatoni i krämig gräddsås med basilika, champinjoner och vittryffelolja. Toppas med stekt oxfilé, ruccola och parmesan.",
+          "price": "269"
         },
         {
           "name": "Pestopasta med Kyckling",
-          "description": "Rigatoni i krämig gräddsås smaksatt med basilikapesto (nötter). Toppas med stekt kycklingfilé, ruccola och grana padano.",
-          "price": "239"
+          "description": "Rigatoni i krämig gräddsås smaksatt med basilikapesto (nötter). Toppas med stekt kycklingfilé, ruccola, champinjoner och parmesan.",
+          "price": "259"
         },
         {
           "name": "Fish 'n' Chips",
           "description": "Pankofriterad torsk med pommes frites, citronaioli och salladsmix med citrus och honungsvinägrett.",
-          "price": "249"
+          "price": "289"
         }
       ]
     },
@@ -169,18 +201,18 @@
       "items": [
         {
           "name": "Double Decker",
-          "description": "2x 100g smashed högrevsburgare med cheddarost, bacon, rökig majonnäs, briochebröd, krispsallad, tomat, picklad rödlök och BBQ-sås. Serveras med pommes frites eller sötpotatispommes.",
-          "price": "219"
+          "description": "2x 100g smashed högrevsburgare med cheddarost, bacon, rökig majonnäs, briochebröd, krispsallad, tomat, picklad rödlök och BBQ-sås. Serveras med pommes frites.",
+          "price": "269"
         },
         {
           "name": "BBQ & Chèvre",
-          "description": "100g smashed högrevsburgare med gratinerad chèvreost och honung. BBQ-majonnäs, briochebröd, krispsallad, tomat och picklad rödlök. Serveras med pommes frites eller sötpotatispommes.",
-          "price": "219"
+          "description": "100g smashed högrevsburgare med gratinerad chèvreost och honung. BBQ-majonnäs, briochebröd, krispsallad, tomat och picklad rödlök. Serveras med pommes frites.",
+          "price": "269"
         },
         {
           "name": "Halloumiburgare",
-          "description": "Friterad halloumi med tryffelmajonnäs, briochebröd, krispsallad, tomat och picklad rödlök. Serveras med pommes frites eller sötpotatispommes.",
-          "price": "199"
+          "description": "Friterad halloumi med tryffelmajonnäs, briochebröd, krispsallad, tomat och picklad rödlök. Serveras med pommes frites.",
+          "price": "259"
         }
       ]
     },
@@ -191,37 +223,37 @@
       "items": [
         {
           "name": "Margherita",
-          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, jungfruolivolja, grana padano.",
-          "price": "159"
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, jungfruolivolja, parmesan.",
+          "price": "169"
         },
         {
           "name": "Vesuvio",
-          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, kokt skinka, jungfruolivolja, grana padano.",
-          "price": "159"
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, kokt skinka, jungfruolivolja, parmesan.",
+          "price": "169"
         },
         {
           "name": "Capricciosa",
-          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, kronärtskocka, kokt skinka, svarta oliver, champinjoner, jungfruolivolja, grana padano.",
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, kronärtskocka, kokt skinka, svarta oliver, champinjoner, jungfruolivolja, parmesan.",
           "price": "179"
         },
         {
           "name": "Prosciutto & Ruccola",
-          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, prosciutto crudo, ruccola, jungfruolivolja, grana padano. Toppas med honung.",
-          "price": "179"
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, prosciutto crudo, ruccola, jungfruolivolja, parmesan. Toppas med honung.",
+          "price": "199"
         },
         {
           "name": "Calabrese",
-          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, salami, grana padano.",
+          "description": "San Marzano-tomatsås, färsk mozzarella, färsk basilika, salami, parmesan.",
           "price": "179"
         },
         {
           "name": "Funghi & Tartufo",
-          "description": "Färsk mozzarella, kantareller, svamp, persilja, grana padano, vittryffelolja.",
+          "description": "Färsk mozzarella, kantareller, svamp, persilja, parmesan, vittryffelolja.",
           "price": "179"
         },
         {
           "name": "Pesto E Pinoli",
-          "description": "San Marzano-tomatsås, färsk mozzarella, kycklingfilé, basilikapesto (nötter), grana padano, fikonmarmelad, kanderade valnötter.",
+          "description": "San Marzano-tomatsås, färsk mozzarella, kycklingfilé, basilikapesto (nötter), parmesan, fikonmarmelad, kanderade valnötter.",
           "price": "179"
         },
         {
@@ -236,13 +268,35 @@
         },
         {
           "name": "Pizza Bianco",
-          "description": "Crème fraîche, chèvreost, päron, picklade rödbetor, kanderade valnötter, honung, ruccola och grana padano. Toppad med balsamico.",
-          "price": "209"
+          "description": "Crème fraîche, chèvreost, päron, picklade rödbetor, kanderade valnötter, honung, ruccola och parmesan. Toppad med balsamico.",
+          "price": "219"
         },
         {
           "name": "Löjromspizza",
           "description": "Crème fraîche, handskalade räkor, finhackad rödlök, dill, löjrom och citron.",
-          "price": "259"
+          "price": "229"
+        }
+      ]
+    },
+    {
+      "name": "Tillbehör & Extra",
+      "description": "Förbättra din måltid",
+      "image": "/images/9.webp",
+      "items": [
+        {
+          "name": "Kålsallad",
+          "description": "Rödkålssallad med kanderade valnötter, parmesan samt citrus- och honungsvinägrett.",
+          "price": "39"
+        },
+        {
+          "name": "Sås eller Dip",
+          "description": "Citronaioli, vitlökscrème, rökig majonnäs, bbq-majonnäs, bbq-sås, tryffelmajonnäs, bearnaisesås.",
+          "price": "20"
+        },
+        {
+          "name": "Uppgradera till Dirty Fries",
+          "description": "Uppgradera dina pommes frites till dirty fries.",
+          "price": "49"
         }
       ]
     },
@@ -254,22 +308,22 @@
         {
           "name": "Semifreddo",
           "description": "Med rostad vit choklad, salt kolasås och äppelkompott med kanel och vanilj.",
-          "price": "79"
+          "price": "119"
         },
         {
           "name": "Crème Brûlée",
           "description": "Med hallonsorbet.",
-          "price": "79"
+          "price": "119"
         },
         {
           "name": "2x Tryffel",
           "description": "Mörk chokladtryffel med smak av kaffe och cointreau. Serveras med grädde.",
-          "price": "59"
+          "price": "69"
         },
         {
-          "name": "Kalasgott!",
+          "name": "Kalasgott! (upp till 12 år)",
           "description": "2 kulor vaniljglass med tutti frutti-strössel, chokladsås, rån och vispad grädde.",
-          "price": "59"
+          "price": "79"
         }
       ]
     },

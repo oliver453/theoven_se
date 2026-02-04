@@ -60,7 +60,7 @@
       },
       {
         "question": "Do you offer takeaway?",
-        "answer": "You can order takeaway directly from us for pick-up. If you’d prefer to have your food delivered straight to your door, it’s quick and easy via Foodora, where you’ll also find our full menu."
+        "answer": "You can order takeaway directly from us for pick-up. If you'd prefer to have your food delivered straight to your door, it's quick and easy via Foodora, where you'll also find our full menu."
       },
       {
         "question": "Do you serve alcohol?",
@@ -70,8 +70,8 @@
   },
   "footer": {
     "contactTitle": "Contact us and find your way here",
-    "address": "Storgatan 123, 123 45 Stockholm",
-    "phone": "+46 8 123 456 78",
+    "address": "Kyrkogatan 20, 671 31 Arvika",
+    "phone": "0570-101 00",
     "email": "hello@theoven.se",
     "followUs": "Follow us",
     "credits": "Website by",
@@ -93,24 +93,56 @@
   "subtitle": "Discover our authentic Italian dishes",
   "categories": [
     {
+      "name": "Lovely to start with",
+      "description": "Drinks and starters to begin your meal",
+      "image": "/images/1.webp",
+      "items": [
+        {
+          "name": "Cava",
+          "description": "",
+          "price": "99"
+        },
+        {
+          "name": "Prosecco",
+          "description": "",
+          "price": "75"
+        },
+        {
+          "name": "Negroni (5cl)",
+          "description": "Gin, Campari, vermouth.",
+          "price": "155"
+        },
+        {
+          "name": "Mojito (5cl)",
+          "description": "Rum, lime juice, soda water, mint.",
+          "price": "155"
+        },
+        {
+          "name": "Daiquiri",
+          "description": "Rum, lime juice, Monin fruit purée, fresh fruit. Available in strawberry, raspberry or mango.",
+          "price": "155"
+        }
+      ]
+    },
+    {
       "name": "Starters",
-      "description": "Traditional Italian starters to begin your meal",
+      "description": "Traditional starters to begin your meal",
       "image": "/images/9.webp",
       "items": [
         {
           "name": "Dirty Fries",
-          "description": "French fries with cheddar cheese sauce, jalapeños, red onion, crispy bacon and truffle mayonnaise.",
+          "description": "Chips, cheddar sauce, jalapeño, red onion, crispy bacon and truffle mayonnaise.",
           "price": "149"
         },
         {
-          "name": "Gambas Al Ajillo",
-          "description": "Scampi fried with garlic, chili and olive oil. Served with toasted, home-baked bread.",
-          "price": "159"
+          "name": "Toast Skagen",
+          "description": "Toasted sourdough bread, bleak roe, hand-peeled prawns and red onion.",
+          "price": "189"
         },
         {
-          "name": "Chèvre Chaud",
-          "description": "Butter-fried, home-baked bread topped with gratinated chèvre, honey, candied walnuts, pickled beetroot and arugula.",
-          "price": "169"
+          "name": "Charcuterie Board",
+          "description": "Prosciutto, salami, candied walnuts, olive mix, fig marmalade and butter-fried bread.",
+          "price": "189"
         }
       ]
     },
@@ -120,19 +152,19 @@
       "image": "/images/10.webp",
       "items": [
         {
-          "name": "Tenderloin Plank Steak 200g",
-          "description": "Served with duchess potatoes, red wine sauce, béarnaise sauce and butter-fried vegetables.",
-          "price": "299"
+          "name": "Plank Steak with Fillet Steak",
+          "description": "200g fillet steak, served with duchess potatoes, red wine sauce, béarnaise and butter-fried vegetables. Origin: Brazil.",
+          "price": "399"
         },
         {
           "name": "Bouillabaisse",
-          "description": "Seafood and fish stew with saffron and tomato. Served with lemon aioli and toasted, home-baked bread.",
-          "price": "279"
+          "description": "Fish and shellfish stew with flavours of saffron and tomato. Served with lemon aioli and toasted homemade bread.",
+          "price": "299"
         },
         {
-          "name": "Panko-Breaded Pork Schnitzel",
-          "description": "Served with red wine sauce, béarnaise, French fries, parsley butter and butter-fried vegetables.",
-          "price": "199"
+          "name": "Breaded Schnitzel",
+          "description": "Pork schnitzel with red wine sauce, béarnaise sauce, chips, parsley butter and butter-fried vegetables.",
+          "price": "239"
         }
       ]
     },
@@ -143,45 +175,45 @@
       "items": [
         {
           "name": "Caesar Salad",
-          "description": "Romaine lettuce, red onion, cherry tomatoes, Grana Padano, croutons, Caesar dressing, chicken fillet and bacon.",
-          "price": "199"
+          "description": "Romaine lettuce, red onion, cherry tomatoes, parmesan, croutons, Caesar dressing, chicken and bacon.",
+          "price": "259"
         },
         {
-          "name": "Beef Tenderloin Tartufo Pasta",
-          "description": "Rigatoni in a creamy sauce with basil and white truffle oil. Topped with beef tenderloin, arugula and Grana Padano.",
-          "price": "249"
+          "name": "Pasta Tartufo with Fillet Steak",
+          "description": "Rigatoni in creamy cream sauce with basil, mushrooms and white truffle oil. Topped with fried fillet steak, rocket and parmesan.",
+          "price": "269"
         },
         {
           "name": "Pesto Pasta with Chicken",
-          "description": "Rigatoni in a creamy basil pesto sauce (contains nuts). Topped with chicken fillet, arugula and Grana Padano.",
-          "price": "239"
+          "description": "Rigatoni in creamy cream sauce flavoured with basil pesto (nuts). Topped with fried chicken fillet, rocket, mushrooms and parmesan.",
+          "price": "259"
         },
         {
           "name": "Fish 'n' Chips",
-          "description": "Panko-fried cod with French fries, lemon aioli and a mixed salad with citrus-honey vinaigrette.",
-          "price": "249"
+          "description": "Breaded cod with chips, lemon aioli and salad mix with citrus and honey vinaigrette.",
+          "price": "289"
         }
       ]
     },
     {
       "name": "Burgers",
-      "description": "Smash burgers served with French fries",
+      "description": "Smash burgers served with chips",
       "image": "/images/2.webp",
       "items": [
         {
           "name": "Double Decker",
-          "description": "2x 100g smashed chuck burgers with cheddar, bacon, smoky mayonnaise, brioche bun, lettuce, tomato, pickled red onion and BBQ sauce. Served with French fries or sweet potato fries.",
-          "price": "219"
+          "description": "2x 100g smashed beef burgers with cheddar cheese, bacon, smoky mayonnaise, brioche bun, crispy lettuce, tomato, pickled red onion and BBQ sauce. Served with chips.",
+          "price": "269"
         },
         {
           "name": "BBQ & Chèvre",
-          "description": "100g smashed chuck burger with gratinated chèvre and honey. BBQ mayonnaise, brioche bun, lettuce, tomato and pickled red onion. Served with French fries or sweet potato fries.",
-          "price": "219"
+          "description": "100g smashed beef burger with grilled goat's cheese and honey. BBQ mayonnaise, brioche bun, crispy lettuce, tomato and pickled red onion. Served with chips.",
+          "price": "269"
         },
         {
           "name": "Halloumi Burger",
-          "description": "Fried halloumi with truffle mayonnaise, brioche bun, lettuce, tomato and pickled red onion. Served with French fries or sweet potato fries.",
-          "price": "199"
+          "description": "Fried halloumi with truffle mayonnaise, brioche bun, crispy lettuce, tomato and pickled red onion. Served with chips.",
+          "price": "259"
         }
       ]
     },
@@ -192,58 +224,80 @@
       "items": [
         {
           "name": "Margherita",
-          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, virgin olive oil, Grana Padano.",
-          "price": "159"
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, extra virgin olive oil, parmesan.",
+          "price": "169"
         },
         {
           "name": "Vesuvio",
-          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, cooked ham, virgin olive oil, Grana Padano.",
-          "price": "159"
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, cooked ham, extra virgin olive oil, parmesan.",
+          "price": "169"
         },
         {
           "name": "Capricciosa",
-          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, artichoke, cooked ham, black olives, mushrooms, virgin olive oil, Grana Padano.",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, artichoke, cooked ham, black olives, mushrooms, extra virgin olive oil, parmesan.",
           "price": "179"
         },
         {
-          "name": "Prosciutto & Ruccola",
-          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, prosciutto crudo, arugula, virgin olive oil, Grana Padano. Topped with honey.",
-          "price": "179"
+          "name": "Prosciutto & Rocket",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, prosciutto crudo, rocket, extra virgin olive oil, parmesan. Topped with honey.",
+          "price": "199"
         },
         {
           "name": "Calabrese",
-          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, salami, Grana Padano.",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fresh basil, salami, parmesan.",
           "price": "179"
         },
         {
           "name": "Funghi & Tartufo",
-          "description": "Fresh mozzarella, chanterelles, mushrooms, parsley, Grana Padano, white truffle oil.",
+          "description": "Fresh mozzarella, chanterelles, mushrooms, parsley, parmesan, white truffle oil.",
           "price": "179"
         },
         {
           "name": "Pesto E Pinoli",
-          "description": "San Marzano tomato sauce, fresh mozzarella, chicken fillet, basil pesto (contains nuts), Grana Padano, fig marmalade, candied walnuts.",
+          "description": "San Marzano tomato sauce, fresh mozzarella, chicken fillet, basil pesto (nuts), parmesan, fig marmalade, candied walnuts.",
           "price": "179"
         },
         {
-          "name": "The Oven's Beef Tenderloin Pizza",
-          "description": "San Marzano tomato sauce, fresh mozzarella, beef tenderloin, grilled peppers, mushrooms and gorgonzola.",
+          "name": "The Oven's Fillet Steak Pizza",
+          "description": "San Marzano tomato sauce, fresh mozzarella, fillet steak, grilled peppers, mushrooms and gorgonzola.",
           "price": "219"
         },
         {
           "name": "The Baker's Kebab",
-          "description": "San Marzano tomato sauce, fresh mozzarella, pork gyros kebab, mushrooms and cherry tomatoes.",
+          "description": "San Marzano tomato sauce, fresh mozzarella, gyros kebab, mushrooms and cherry tomatoes.",
           "price": "199"
         },
         {
           "name": "Pizza Bianco",
-          "description": "Crème fraîche, goat cheese, pear, pickled beets, candied walnuts, honey, arugula, and Grana Padano. Topped with balsamic.",
-          "price": "209"
+          "description": "Crème fraîche, goat's cheese, pear, pickled beetroot, candied walnuts, honey, rocket and parmesan. Topped with balsamic vinegar.",
+          "price": "219"
         },
         {
           "name": "Bleak Roe Pizza",
-          "description": "Crème fraîche, hand-peeled shrimp, finely chopped red onion, dill, bleak roe and lemon.",
-          "price": "259"
+          "description": "Crème fraîche, hand-peeled prawns, finely chopped red onion, dill, bleak roe and lemon.",
+          "price": "229"
+        }
+      ]
+    },
+    {
+      "name": "Sides & Extras",
+      "description": "Enhance your meal",
+      "image": "/images/9.webp",
+      "items": [
+        {
+          "name": "Cabbage Salad",
+          "description": "Red cabbage salad with candied walnuts, parmesan, citrus and honey vinaigrette.",
+          "price": "39"
+        },
+        {
+          "name": "Sauce or Dip",
+          "description": "Lemon aioli, garlic cream, smoky mayonnaise, BBQ mayonnaise, BBQ sauce, truffle mayonnaise, béarnaise sauce.",
+          "price": "20"
+        },
+        {
+          "name": "Upgrade to Dirty Fries",
+          "description": "Upgrade your chips to dirty fries.",
+          "price": "49"
         }
       ]
     },
@@ -255,22 +309,22 @@
         {
           "name": "Semifreddo",
           "description": "With roasted white chocolate, salted caramel sauce and apple compote with cinnamon and vanilla.",
-          "price": "79"
+          "price": "119"
         },
         {
           "name": "Crème Brûlée",
           "description": "With raspberry sorbet.",
+          "price": "119"
+        },
+        {
+          "name": "2x Truffle",
+          "description": "Dark chocolate truffle with flavours of coffee and Cointreau. Served with cream.",
+          "price": "69"
+        },
+        {
+          "name": "Party Treat! (up to 12 years)",
+          "description": "2 scoops vanilla ice cream with tutti frutti sprinkles, chocolate sauce, whipped cream.",
           "price": "79"
-        },
-        {
-          "name": "2x Tryffel",
-          "description": "Dark chocolate truffles flavored with coffee and Cointreau. Served with whipped cream.",
-          "price": "59"
-        },
-        {
-          "name": "Party Ice Cream",
-          "description": "2 scoops vanilla ice cream, tutti frutti sprinkles, chocolate sauce, cookies and whipped cream.",
-          "price": "59"
         }
       ]
     },
@@ -291,7 +345,7 @@
         },
         {
           "name": "Hamburger",
-          "description": "100g smashed chuck burger with brioche bun, lettuce, French fries and ketchup.",
+          "description": "100g smashed beef burger served with brioche bun, crispy lettuce, chips and ketchup.",
           "price": "129"
         }
       ]
@@ -481,7 +535,7 @@
       "content": "If you have any questions about this privacy policy or how we handle your personal data, please contact us:",
       "company": "The Oven AB",
       "email": "hello@theoven.se",
-      "phone": "+46 570 10 100",
+      "phone": "0570-10 100",
       "address": "Kyrkogatan 20, 671 31 Arvika"
     },
     "changes": {

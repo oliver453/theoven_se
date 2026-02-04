@@ -153,15 +153,12 @@ export default function LunchMenuDisplay({ lang }: { lang: Locale }) {
                       <div className="bg-white/5 border-b-2 border-white/20 px-8 py-4">
                         <div className="flex items-center justify-between">
                           <div>
-                            <h2 className="font-rustic uppercase text-3xl md:text-4xl text-white tracking-wider mb-1">
+                            <h2 className="font-rustic uppercase text-3xl md:text-4xl text-white mb-1">
                               {weekdays[parseInt(day)]}
                             </h2>
                           </div>
                           {!hasDifferentPrices && (
                             <div className="text-right">
-                              <div className="text-sm uppercase tracking-widest text-white/60 font-roboto">
-                                {lang === 'sv' ? 'Pris' : 'Price'}
-                              </div>
                               <div className="font-rustic text-3xl md:text-4xl text-white">
                                 {dayPrice} <span className="text-2xl text-white/80">kr</span>
                               </div>
